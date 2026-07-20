@@ -1,0 +1,55 @@
+generated: '2026-07-18'
+method: searched
+docs: https://docs.asapp.com/getting-started/developers
+notes: >-
+  ASAPP authenticates every request with a paired API Id and API Secret sent as
+  two headers: asapp-api-id and asapp-api-secret. Keys are issued per environment
+  (sandbox vs production). No OAuth2/OIDC surface is published. Base URLs:
+  https://api.asapp.com (production), https://api.sandbox.asapp.com (sandbox).
+source: openapi/asapp-autocompose-openapi.yml, openapi/asapp-autosummary-openapi.yml, openapi/asapp-autotranscribe-openapi.yml,
+  openapi/asapp-conversations-openapi.yml, openapi/asapp-fileexporter-openapi.yml, openapi/asapp-generativeagent-openapi.yml,
+  openapi/asapp-healthcheck-openapi.yml, openapi/asapp-knowledge-base-openapi.yml, openapi/asapp-metadata-ingestion-openapi.yml,
+  openapi/asapp-mg-autotranscribe-openapi.yml, openapi/asapp-mg-genagent-openapi.yml, openapi/asapp-openapi-openapi.yml
+  ...
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: API-ID
+  type: apiKey
+  in: header
+  parameter: asapp-api-id
+  sources:
+  - openapi/asapp-autocompose-openapi.yml
+  - openapi/asapp-autosummary-openapi.yml
+  - openapi/asapp-autotranscribe-openapi.yml
+  - openapi/asapp-conversations-openapi.yml
+  - openapi/asapp-fileexporter-openapi.yml
+  - openapi/asapp-generativeagent-openapi.yml
+  - openapi/asapp-healthcheck-openapi.yml
+  - openapi/asapp-knowledge-base-openapi.yml
+  - openapi/asapp-metadata-ingestion-openapi.yml
+  - openapi/asapp-mg-autotranscribe-openapi.yml
+  - openapi/asapp-mg-genagent-openapi.yml
+  - openapi/asapp-openapi-openapi.yml
+  - openapi/asapp-partner-configuration-openapi.yml
+- name: API-Secret
+  type: apiKey
+  in: header
+  parameter: asapp-api-secret
+  sources:
+  - openapi/asapp-autocompose-openapi.yml
+  - openapi/asapp-autosummary-openapi.yml
+  - openapi/asapp-autotranscribe-openapi.yml
+  - openapi/asapp-conversations-openapi.yml
+  - openapi/asapp-fileexporter-openapi.yml
+  - openapi/asapp-generativeagent-openapi.yml
+  - openapi/asapp-healthcheck-openapi.yml
+  - openapi/asapp-knowledge-base-openapi.yml
+  - openapi/asapp-metadata-ingestion-openapi.yml
+  - openapi/asapp-mg-autotranscribe-openapi.yml
+  - openapi/asapp-mg-genagent-openapi.yml
+  - openapi/asapp-openapi-openapi.yml
+  - openapi/asapp-partner-configuration-openapi.yml
