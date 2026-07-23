@@ -1,0 +1,34 @@
+generated: '2026-07-18'
+method: derived
+source: >-
+  ASAPP developer docs (docs.asapp.com) SDK/integration pages. ASAPP does not
+  publish server-side client libraries to public registries (npm/PyPI/Maven/
+  NuGet/RubyGems/pkg.go.dev were probed, no first-party ASAPP SDK found); its
+  published SDKs are client/embedded mobile + web SDKs distributed to customers.
+packages:
+- language: kotlin
+  platform: android
+  registry: vendor
+  name: ASAPP Android SDK
+  url: https://docs.asapp.com/agent-desk/integrations/android-sdk
+  official: true
+  kind: mobile-sdk
+  notes: Native Android SDK for embedding ASAPP messaging/chat into a mobile app.
+- language: swift
+  platform: ios
+  registry: vendor
+  name: ASAPP iOS SDK
+  url: https://docs.asapp.com/agent-desk/integrations/ios-sdk
+  official: true
+  kind: mobile-sdk
+  notes: Native iOS SDK for embedding ASAPP messaging/chat into a mobile app.
+- language: javascript
+  platform: web
+  registry: vendor
+  name: ASAPP Web SDK
+  url: https://docs.asapp.com/generativeagent/integrate/web-sdk
+  official: true
+  kind: web-sdk
+  notes: >-
+    Unified Web SDK supporting the full conversation lifecycle (GenerativeAgent
+    and human agent) via a JavaScript API embedded in a web page.

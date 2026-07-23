@@ -1,0 +1,40 @@
+{
+  "provider": "asapp",
+  "sources": [
+    "asapp-autocompose-api-openapi.yml",
+    "asapp-autosummary-api-openapi.yml",
+    "asapp-autotranscribe-api-openapi.yml",
+    "asapp-autotranscribe-media-gateway-api-openapi.yml",
+    "asapp-configuration-api-openapi.yml",
+    "asapp-conversations-api-openapi.yml",
+    "asapp-disengage-api-openapi.yml",
+    "asapp-engage-api-openapi.yml",
+    "asapp-file-exporter-api-openapi.yml",
+    "asapp-generativeagent-api-openapi.yml",
+    "asapp-health-check-api-openapi.yml",
+    "asapp-knowledge-base-api-openapi.yml",
+    "asapp-metadata-api-openapi.yml",
+    "asapp-twilio-media-stream-api-openapi.yml"
+  ],
+  "outputs": [
+    "asapp-autocompose-api-openapi.yml",
+    "asapp-autosummary-api-openapi.yml",
+    "asapp-autotranscribe-api-openapi.yml",
+    "asapp-autotranscribe-media-gateway-api-openapi.yml",
+    "asapp-configuration-api-openapi.yml",
+    "asapp-conversations-api-openapi.yml",
+    "asapp-disengage-api-openapi.yml",
+    "asapp-engage-api-openapi.yml",
+    "asapp-file-exporter-api-openapi.yml",
+    "asapp-generativeagent-api-openapi.yml",
+    "asapp-health-check-api-openapi.yml",
+    "asapp-knowledge-base-api-openapi.yml",
+    "asapp-metadata-api-openapi.yml",
+    "asapp-twilio-media-stream-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

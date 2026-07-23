@@ -1,0 +1,87 @@
+generated: '2026-07-18'
+method: searched
+type: Webhooks
+source: >-
+  https://docs.asapp.com/reporting/real-time-event-api,
+  https://docs.asapp.com/reporting/secure-data-retrieval,
+  https://docs.asapp.com/generativeagent/integrate/handling-events
+transport: webhook
+detail: >-
+  ASAPP's Real-Time Event API is a webhook (server-push) surface: an ASAPP
+  service POSTs one HTTP request per event to one or more customer-maintained
+  HTTPS endpoints, secured with mutual TLS (mTLS). Endpoints are registered with
+  a url, timeout_ms, retries, and an optional event_list filter. (GenerativeAgent
+  also exposes an SSE event stream via createStreamUrl / postStreams for the
+  agent conversation loop.)
+envelope:
+  levels:
+  - routing metadata (top-level common fields)
+  - metadata common to all events
+  - feed-specific data
+  - event-type-specific details
+registration:
+  fields: [url, timeout_ms, retries, event_list]
+security: mTLS (mutual TLS)
+feeds:
+- feed: activity
+  event_types:
+  - agent_activity_identity_updated
+  - agent_activity_status_updated
+  - agent_activity_capacity_updated
+  - agent_activity_assignment_load_updated
+  - agent_activity_routing_status_updated
+  - agent_activity_previous_routing_status
+  - agent_activity_queue_membership
+  - agent_activity_utilization_5_min
+- feed: journey
+  event_types:
+  - ISSUE_CREATED
+  - ISSUE_ENDED
+  - INTENT_CHANGE
+  - FIRST_INTENT_UPDATED
+  - INTENT_PATH_UPDATED
+  - NODE_VISITED
+  - LINK_RESOLVED
+  - FLOW_SUCCESS
+  - FLOW_SUCCESS_NEGATED
+  - END_SRS_RESPONSE
+  - SURVEY_SUBMITTED
+  - CONVERSATION_ENDED
+  - CUSTOMER_ENDED
+  - ISSUE_SESSION_UPDATED
+  - DETECTED
+  - OPPORTUNITY_ENDED
+  - OPPORTUNITY_ESCALATED
+  - QUEUED
+  - QUEUE_ABANDONED
+  - TIMED_OUT
+  - TEXT_MESSAGE
+  - FIRST_OPPORTUNITY
+  - QUEUED_DURATION
+  - CUSTOMER_RESPONSE_BY_OPPORTUNITY
+  - ISSUE_OPPORTUNITY_QUEUE_INFO_UPDATED
+  - ASSIGNED
+  - ASSIGNMENT_ENDED
+  - AGENT_RESPONSE_BY_OPPORTUNITY
+  - SUPERVISOR_UTTERANCE_BY_OPPORTUNITY
+  - AGENT_FIRST_RESPONDED
+  - ISSUE_ASSIGNMENT_AGENT_INFO_UPDATED
+  - LAST_FLOW_ACTION_CALLED
+  - JOURNEY_CUSTOMER_PARAMETERS
+  - FILE_UPLOAD_DETECTED
+  - DISPOSITION
+  - LAST_ASSIGNMENT_SUMMARY
+- feed: queue_state
+  event_types:
+  - queue_info_updated
+  - queue_size_updated
+  - queue_estimated_wait_time_updated
+  - business_hours_settings_updated
+  - holiday_settings_updated
+  - queue_capping_settings_updated
+  - queue_mitigation_updated
+  - queue_availability_updated
+notes: >-
+  Captured as a Webhooks catalog. No provider-published AsyncAPI document exists,
+  so none is fabricated; event names/envelope are transcribed verbatim from the
+  Real-Time Event API docs.

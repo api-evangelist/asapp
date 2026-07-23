@@ -1,27 +1,260 @@
 aid: asapp
 name: ASAPP
-description: 'ASAPP is a company surfaced as a portfolio company of emergence-capital and added to the
-  API Evangelist network as a stub for enrichment. Sector: ai. This profile is a lead awaiting the enrichment
-  pipeline.'
+description: >-
+  ASAPP is an AI-native customer experience (CX) company whose platform, ASAPP CXP,
+  automates and augments contact-center interactions across voice and chat. Its
+  flagship GenerativeAgent resolves customer issues autonomously while keeping a
+  human in the loop (HILA), backed by AI productivity tools (AutoCompose agent
+  suggestions, AI Summary, AI Transcribe), a Knowledge Base, Digital Agent Desk,
+  and Insights. ASAPP exposes a REST API platform (api.asapp.com) covering
+  Conversations, Messages, GenerativeAgent, AutoSummary, AutoCompose, AutoTranscribe,
+  Knowledge Base, Metadata Ingestion, File Exporter, Partner Configuration, and a
+  webhook-based Real-Time Event API, secured with API Id + API Secret credentials.
+  Backed by Emergence Capital. Enriched from the provider's public developer docs.
 url: https://raw.githubusercontent.com/api-evangelist/asapp/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - emergence-capital
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: full-api-provider
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
+image: https://www.asapp.com/favicon.ico
 tags:
 - Company
-- Ai
-apis: []
+- AI
+- Conversational AI
+- Contact Center
+- Customer Experience
+- Customer Service
+- Generative AI
+- Agent Assist
+- Speech Recognition
+- Knowledge Base
+apis:
+- aid: asapp:asapp-autocompose-api
+  name: ASAPP AutoCompose API
+  description: Improve agent productivity with AutoCompose API
+  humanURL: https://docs.asapp.com/apis/conversations
+  baseURL: https://api.asapp.com
+  tags:
+  - AutoCompose
+  properties:
+  - type: OpenAPI
+    url: openapi/asapp-autocompose-api-openapi.yml
+- aid: asapp:asapp-autosummary-api
+  name: ASAPP AutoSummary API
+  description: Endpoints for summarizing conversations and retrieving structured data
+  humanURL: https://docs.asapp.com/apis/conversations
+  baseURL: https://api.asapp.com
+  tags:
+  - AutoSummary
+  properties:
+  - type: OpenAPI
+    url: openapi/asapp-autosummary-api-openapi.yml
+- aid: asapp:asapp-autotranscribe-api
+  name: ASAPP AutoTranscribe API
+  description: Get streaming URL to transcribe audio
+  humanURL: https://docs.asapp.com/apis/conversations
+  baseURL: https://api.asapp.com
+  tags:
+  - AutoTranscribe
+  properties:
+  - type: OpenAPI
+    url: openapi/asapp-autotranscribe-api-openapi.yml
+- aid: asapp:asapp-autotranscribe-media-gateway-api
+  name: ASAPP AutoTranscribe Media Gateway API
+  description: Operations for controlling AutoTranscribe Media Gateway transcription and streaming
+  humanURL: https://docs.asapp.com/apis/conversations
+  baseURL: https://api.asapp.com
+  tags:
+  - AutoTranscribe Media Gateway
+  properties:
+  - type: OpenAPI
+    url: openapi/asapp-autotranscribe-media-gateway-api-openapi.yml
+- aid: asapp:asapp-configuration-api
+  name: ASAPP Configuration API
+  description: Operations to manage ASAPP configurations
+  humanURL: https://docs.asapp.com/apis/conversations
+  baseURL: https://api.asapp.com
+  tags:
+  - Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/asapp-configuration-api-openapi.yml
+- aid: asapp:asapp-conversations-api
+  name: ASAPP Conversations API
+  description: Operations to send conversational inputs to ASAPP AI services
+  humanURL: https://docs.asapp.com/apis/conversations
+  baseURL: https://api.asapp.com
+  tags:
+  - Conversations
+  properties:
+  - type: OpenAPI
+    url: openapi/asapp-conversations-api-openapi.yml
+- aid: asapp:asapp-disengage-api
+  name: ASAPP Disengage API
+  description: end the connection of a call with GenAgent
+  humanURL: https://docs.asapp.com/apis/conversations
+  baseURL: https://api.asapp.com
+  tags:
+  - Disengage
+  properties:
+  - type: OpenAPI
+    url: openapi/asapp-disengage-api-openapi.yml
+- aid: asapp:asapp-engage-api
+  name: ASAPP Engage API
+  description: establish the connection of a call with GenAgent
+  humanURL: https://docs.asapp.com/apis/conversations
+  baseURL: https://api.asapp.com
+  tags:
+  - Engage
+  properties:
+  - type: OpenAPI
+    url: openapi/asapp-engage-api-openapi.yml
+- aid: asapp:asapp-file-exporter-api
+  name: ASAPP File Exporter API
+  description: API to get client exports
+  humanURL: https://docs.asapp.com/apis/conversations
+  baseURL: https://api.asapp.com
+  tags:
+  - File Exporter
+  properties:
+  - type: OpenAPI
+    url: openapi/asapp-file-exporter-api-openapi.yml
+- aid: asapp:asapp-generativeagent-api
+  name: ASAPP GenerativeAgent API
+  description: >-
+    Operations to send messages and trigger GenerativeAgent to respond or query the current state
+  humanURL: https://docs.asapp.com/apis/conversations
+  baseURL: https://api.asapp.com
+  tags:
+  - GenerativeAgent
+  properties:
+  - type: OpenAPI
+    url: openapi/asapp-generativeagent-api-openapi.yml
+- aid: asapp:asapp-health-check-api
+  name: ASAPP Health Check API
+  description: Operations to ensure that ASAPP APIs are up and running.
+  humanURL: https://docs.asapp.com/apis/conversations
+  baseURL: https://api.asapp.com
+  tags:
+  - Health Check
+  properties:
+  - type: OpenAPI
+    url: openapi/asapp-health-check-api-openapi.yml
+- aid: asapp:asapp-knowledge-base-api
+  name: ASAPP Knowledge Base API
+  description: The Knowledge Base API from ASAPP — 3 operation(s) for knowledge base.
+  humanURL: https://docs.asapp.com/apis/conversations
+  baseURL: https://api.asapp.com
+  tags:
+  - Knowledge Base
+  properties:
+  - type: OpenAPI
+    url: openapi/asapp-knowledge-base-api-openapi.yml
+- aid: asapp:asapp-metadata-api
+  name: ASAPP Metadata API
+  description: API to submit entity's attributes to ASAPP
+  humanURL: https://docs.asapp.com/apis/conversations
+  baseURL: https://api.asapp.com
+  tags:
+  - Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/asapp-metadata-api-openapi.yml
+- aid: asapp:asapp-twilio-media-stream-api
+  name: ASAPP Twilio Media Stream API
+  description: The Twilio Media Stream API from ASAPP — 1 operation(s) for twilio media stream.
+  humanURL: https://docs.asapp.com/apis/conversations
+  baseURL: https://api.asapp.com
+  tags:
+  - Twilio Media Stream
+  properties:
+  - type: OpenAPI
+    url: openapi/asapp-twilio-media-stream-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DeveloperPortal
+  url: https://docs.asapp.com
+- type: Documentation
+  url: https://docs.asapp.com
+- type: APIReference
+  url: https://docs.asapp.com/apis/overview
+- type: GettingStarted
+  url: https://docs.asapp.com/getting-started/developers
+- type: Authentication
+  url: authentication/asapp-authentication.yml
+- type: Conventions
+  url: conventions/asapp-conventions.yml
+- type: ErrorCatalog
+  url: errors/asapp-problem-types.yml
+- type: DataModel
+  url: data-model/asapp-data-model.yml
+- type: Lifecycle
+  url: lifecycle/asapp-lifecycle.yml
+- type: StatusPage
+  url: https://status.asapp.com
+- type: ChangeLog
+  url: changelog/asapp-changelog.yml
+- type: Sandbox
+  url: sandbox/asapp-sandbox.yml
+- type: Packages
+  url: packages/asapp-packages.yml
+- type: SDKs
+  url: packages/asapp-packages.yml
+- type: Components
+  url: components/asapp-components.yml
+- type: MCPServer
+  url: mcp/asapp-mcp.yml
+- type: WellKnown
+  url: well-known/asapp-well-known.yml
+- type: Conformance
+  url: conformance/asapp-conformance.yml
+- type: Compliance
+  url: https://trust.asapp.com/
+- type: Webhooks
+  url: asyncapi/asapp-realtime-events-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/asapp-llms.txt
+- type: AgenticAccess
+  url: agentic-access/asapp-agentic-access.yml
+- type: TrustCenter
+  url: security/asapp-trust-center.yml
+- type: DomainSecurity
+  url: security/asapp-domain-security.yml
+- type: Blog
+  url: https://www.asapp.com/blog
+- type: PrivacyPolicy
+  url: https://www.asapp.com/privacy-policy
+- type: SignUp
+  url: https://www.asapp.com/get-started
+- type: Support
+  url: https://docs.asapp.com/support
 - type: Website
   url: https://www.asapp.com
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

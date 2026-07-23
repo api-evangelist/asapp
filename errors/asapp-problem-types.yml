@@ -1,0 +1,68 @@
+generated: '2026-07-18'
+method: searched
+format: custom-json
+source: >-
+  https://docs.asapp.com/getting-started/developers/error-handling
+  + derived from openapi/* 4xx/5xx responses
+envelope:
+  shape: '{ "error": { "requestId": string, "message": string, "code": string } }'
+  fields:
+    error.requestId: Unique identifier for the request that generated the error.
+    error.message: Human-readable description of the error / validation issue.
+    error.code: 'Error code in the format HTTP_STATUS_CODE-ERROR_SUBCODE, e.g. 400-03.'
+notes: >-
+  ASAPP returns a consistent JSON error envelope (NOT RFC 9457 problem+json).
+  The error.code embeds the HTTP status plus a granular subcode. The list below
+  is derived from the HTTP status codes actually declared across the 14 ASAPP
+  OpenAPI specs; specific subcodes are runtime-assigned per validation rule.
+problems:
+- status: 400
+  code_prefix: '400'
+  title: Bad Request
+  meaning: Malformed request or failed field validation (subcode identifies the field/rule, e.g. 400-03 timestamp validation).
+  action: Fix the request payload; do not retry unchanged.
+- status: 401
+  code_prefix: '401'
+  title: Unauthorized
+  meaning: Missing or invalid asapp-api-id / asapp-api-secret credentials.
+  action: Verify API Id/Secret for the target environment.
+- status: 403
+  code_prefix: '403'
+  title: Forbidden
+  meaning: Credentials valid but not permitted for this resource/feature (e.g. feature not enabled for the account).
+  action: Request the feature/entitlement from ASAPP.
+- status: 404
+  code_prefix: '404'
+  title: Not Found
+  meaning: The referenced resource (conversation, message, article, etc.) does not exist.
+  action: Verify the id / externalId.
+- status: 409
+  code_prefix: '409'
+  title: Conflict
+  meaning: The entity was already persisted (e.g. duplicate create / retried request).
+  action: Treat as success on retry; do not re-create.
+- status: 413
+  code_prefix: '413'
+  title: Payload Too Large
+  meaning: Request body exceeds the accepted size.
+  action: Reduce payload / batch size.
+- status: 422
+  code_prefix: '422'
+  title: Unprocessable Entity
+  meaning: Semantically invalid request that passed syntactic validation.
+  action: Correct the field values indicated in error.message.
+- status: 429
+  code_prefix: '429'
+  title: Too Many Requests
+  meaning: Spike-arrest (100 req/s) or daily rate limit exceeded.
+  action: 'Back off and retry (1s, 2s, 4s); slow request rate.'
+- status: 500
+  code_prefix: '500'
+  title: Internal Server Error
+  meaning: Unexpected server-side error.
+  action: 'Retry with backoff (250ms, 500ms, 1000ms); quote error.requestId to support if persistent.'
+- status: 503
+  code_prefix: '503'
+  title: Service Unavailable
+  meaning: The API platform is temporarily unavailable.
+  action: 'Retry with backoff; check https://status.asapp.com.'

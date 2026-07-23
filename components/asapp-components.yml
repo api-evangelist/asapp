@@ -1,0 +1,36 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.asapp.com (integrations + Web SDK docs)
+families:
+- family: Web
+  components:
+  - name: ASAPP Web SDK
+    url: https://docs.asapp.com/generativeagent/integrate/web-sdk
+    loader: JavaScript Web SDK (embedded chat surface + Web JavaScript API)
+    detail: >-
+      Embeddable web chat surface covering the full conversation lifecycle
+      (GenerativeAgent + human agent) with ContextProvider, authentication,
+      and customization hooks.
+- family: Mobile
+  components:
+  - name: ASAPP Android SDK
+    url: https://docs.asapp.com/agent-desk/integrations/android-sdk
+    loader: Native Android SDK
+    detail: Embed ASAPP messaging into an Android app (deep links, notifications, auth).
+  - name: ASAPP iOS SDK
+    url: https://docs.asapp.com/agent-desk/integrations/ios-sdk
+    loader: Native iOS SDK
+    detail: Embed ASAPP messaging into an iOS app (push notifications, deep links, auth).
+- family: Chat entry points
+  components:
+  - name: Chat Instead
+    url: https://docs.asapp.com/agent-desk/integrations/chat-instead
+    loader: Web / Android / iOS entry component
+    detail: Deflect calls to messaging via an embeddable Chat Instead surface.
+- family: Agent workspace
+  components:
+  - name: Digital Agent Desk
+    url: https://docs.asapp.com/agent-desk/digital-agent-desk
+    loader: Hosted web application
+    detail: Prebuilt agent desktop UI (queues/routing, knowledge base, live agent summary).
+notes: Distinct from server-side SDKs; these are client-side/embeddable UI surfaces.

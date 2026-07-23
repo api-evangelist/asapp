@@ -1,0 +1,2733 @@
+openapi: 3.0.0
+info:
+  title: AutoSummary API
+  description: >
+    This is the AutoSummary API which can be used for summarizing conversations.
+    It offers two kind of summaries, structured UMR tags or generated free text.
+    In addition, it allows structured data about the conversation to be
+    retrieved. The usual usage flow consist on first publishing the content of
+    the conversation on Conversations API and, once it has finished, invoking
+    the corresponding summarization endpoint of this API. A single request
+    containing a reference to the conversation is received and a response
+    including the corresponding summary or structured data is returned.
+
+
+    By automating this activity, organizations decrease after-call work,
+    reducing agent time and effort, and produce consistent, structured summaries
+    and data well-suited for analytics.
+  version: 1.0.0
+tags:
+  - name: AutoSummary
+    description: Endpoints for summarizing conversations and retrieving structured data
+servers:
+  - url: https://api.sandbox.asapp.com
+security:
+  - API-ID: []
+    API-Secret: []
+paths:
+  /autosummary/v1/intent/{conversationId}:
+    parameters:
+      - name: conversationId
+        description: The identifier for a conversation.
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^[A-Z0-9]+$
+    get:
+      tags:
+        - AutoSummary
+      summary: Get conversation intent
+      description: >
+        Retrieves the primary intent of a conversation, represented by both an
+        intent code and a human-readable intent name. If no intent is detected,
+        "NO_INTENT" is returned.
+
+
+        This endpoint requires:
+
+        1. Intent support to be explicitly enabled for your account.
+
+        2. A valid conversationId, which is an ASAPP-generated identifier
+        created when using the ASAPP /conversations endpoint.
+
+
+        Use this endpoint to gain insights into the main purpose or topic of a
+        conversation.
+      operationId: getIntent
+      responses:
+        '200':
+          description: Successfully generated intent.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  conversationId:
+                    type: string
+                    description: The id of the conversation.
+                  intent:
+                    description: >
+                      An object containing the determined intent for the
+                      conversation.
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        description: >-
+                          The machine-readable code for the given conversation.
+                          If no intent was found, then "NO_INTENT" is returned.
+                      name:
+                        type: string
+                        description: >-
+                          The human-readable name of the intent for the given
+                          conversation.
+        '400':
+          description: 400 - Bad request
+          content:
+            application/json:
+              schema:
+                description: Bad request response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 400-01
+                      message: Bad request
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '401':
+          description: 401 - Unauthorized
+          content:
+            application/json:
+              schema:
+                description: Unauthorized response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 401-01
+                      message: Unauthorized
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '403':
+          description: 403 - Forbidden
+          content:
+            application/json:
+              schema:
+                description: Forbidden response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 403-01
+                      message: Forbidden Response
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '404':
+          description: 404 - Not Found
+          content:
+            application/json:
+              schema:
+                description: Not Found response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 404-01
+                      message: Not Found
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '409':
+          description: 409 - Conflict
+          content:
+            application/json:
+              schema:
+                description: Conflict response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 409-01
+                      message: Conflict
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '413':
+          description: 413 - Request Entity Too Large
+          content:
+            application/json:
+              schema:
+                description: Request Entity Too Large response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 413-01
+                      message: Request Entity Too Large
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '422':
+          description: 422 - Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                description: Unprocessable Entity response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 422-01
+                      message: Unprocessable Entity
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '429':
+          description: 429 - Too Many Requests
+          content:
+            application/json:
+              schema:
+                description: Too Many Requests response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 429-01
+                      message: Too Many Requests
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '503':
+          description: 503 - Service Unavailable
+          content:
+            application/json:
+              schema:
+                description: Service Unavailable response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 503-01
+                      message: Service Unavailable
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        default:
+          description: 500 - Internal Server Error
+          content:
+            application/json:
+              schema:
+                description: Default error response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 500-01
+                      message: Internal server error
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+  /autosummary/v1/intent:
+    post:
+      tags:
+        - AutoSummary
+      summary: Create conversation intent
+      description: >
+        Retrieves the primary intent of a conversation, represented by both an
+        intent code and a human-readable intent name. If no intent is detected,
+        "NO_INTENT" is returned.
+
+        This endpoint requires:
+
+        1. Intent support to be explicitly enabled for your account.
+
+        2. An id from ASAPP system (conversationId or IssueId) or your own id
+        (externalConversationId).
+
+        Use this endpoint to gain insights into the main purpose or topic of a
+        conversation.
+      operationId: createIntent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              oneOf:
+                - type: object
+                  properties:
+                    conversationId:
+                      type: string
+                      pattern: ^[A-Z0-9]+$
+                      description: The identifier of the conversation from ASAPP's system.
+                  required:
+                    - conversationId
+                - type: object
+                  properties:
+                    externalConversationId:
+                      type: string
+                      description: >-
+                        Your unique identifier for the conversation. This must
+                        match to the `externalConversationId` you used in the
+                        Conversations API.
+                  required:
+                    - externalConversationId
+                - type: object
+                  properties:
+                    issueId:
+                      type: string
+                      description: >-
+                        The identifier of the conversation from ASAPP's
+                        Messaging Platform.
+                  required:
+                    - issueId
+              example:
+                conversationId: 01GCS2AA9447BCQANJF2SXXVA0
+      responses:
+        '200':
+          description: Successfully generated intent.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  conversationId:
+                    type: string
+                    description: The id of the conversation.
+                  intent:
+                    description: >
+                      An object containing the determined intent for the
+                      conversation.
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        description: >-
+                          The machine-readable code for the given conversation.
+                          If no intent was found, then "NO_INTENT" is returned.
+                      name:
+                        type: string
+                        description: >-
+                          The human-readable name of the intent for the given
+                          conversation.
+        '400':
+          description: 400 - Bad request
+          content:
+            application/json:
+              schema:
+                description: Bad request response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 400-01
+                      message: Bad request
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '401':
+          description: 401 - Unauthorized
+          content:
+            application/json:
+              schema:
+                description: Unauthorized response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 401-01
+                      message: Unauthorized
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '403':
+          description: 403 - Forbidden
+          content:
+            application/json:
+              schema:
+                description: Forbidden response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 403-01
+                      message: Forbidden Response
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '404':
+          description: 404 - Not Found
+          content:
+            application/json:
+              schema:
+                description: Not Found response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 404-01
+                      message: Not Found
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '409':
+          description: 409 - Conflict
+          content:
+            application/json:
+              schema:
+                description: Conflict response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 409-01
+                      message: Conflict
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '413':
+          description: 413 - Request Entity Too Large
+          content:
+            application/json:
+              schema:
+                description: Request Entity Too Large response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 413-01
+                      message: Request Entity Too Large
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '422':
+          description: 422 - Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                description: Unprocessable Entity response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 422-01
+                      message: Unprocessable Entity
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '429':
+          description: 429 - Too Many Requests
+          content:
+            application/json:
+              schema:
+                description: Too Many Requests response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 429-01
+                      message: Too Many Requests
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '503':
+          description: 503 - Service Unavailable
+          content:
+            application/json:
+              schema:
+                description: Service Unavailable response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 503-01
+                      message: Service Unavailable
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        default:
+          description: 500 - Internal Server Error
+          content:
+            application/json:
+              schema:
+                description: Default error response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 500-01
+                      message: Internal server error
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+  /autosummary/v1/free-text-summaries/{conversationId}:
+    get:
+      deprecated: true
+      tags:
+        - AutoSummary
+      summary: Get free text summary
+      description: >
+        <Warning>
+
+        **Deprecated**
+
+
+        Replaced by [POST
+        /autosummary/v1/free-text-summaries](/apis/autosummary/retrieve-free-text-summary)
+
+        </Warning>
+
+        Generates a concise, human-readable summary of a conversation.
+
+        Provide an agentExternalId if you want to get the summary for a single
+        agent's involvment with a conversation.
+
+        Multilingual support: You can get summaries in languages different from
+        English by making use of the 'Accept-Language' header.
+      operationId: getFreeTextSummary
+      parameters:
+        - name: conversationId
+          description: The identifier for a conversation.
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: ^[A-Z0-9]+$
+        - name: agentExternalId
+          description: Your unique identifier for the agent.
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully generated summary.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  conversationId:
+                    type: string
+                    description: >-
+                      The unique identifier of the conversation for which the
+                      summary was generated.
+                  summaryId:
+                    type: string
+                    description: >
+                      A unique identifier for this specific summary.
+
+                      • Each summary request generates a new summary with a new
+                      `summaryId`, even for the same conversation.
+
+                      • The entire summary content is regenerated with each
+                      request.
+
+                      • Use this ID when providing feedback on the summary.
+                  summaryText:
+                    type: string
+                    description: |
+                      The generated free-text summary of the conversation.
+        '400':
+          description: 400 - Bad request
+          content:
+            application/json:
+              schema:
+                description: Bad request response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 400-01
+                      message: Bad request
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '401':
+          description: 401 - Unauthorized
+          content:
+            application/json:
+              schema:
+                description: Unauthorized response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 401-01
+                      message: Unauthorized
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '403':
+          description: 403 - Forbidden
+          content:
+            application/json:
+              schema:
+                description: Forbidden response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 403-01
+                      message: Forbidden Response
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '404':
+          description: 404 - Not Found
+          content:
+            application/json:
+              schema:
+                description: Not Found response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 404-01
+                      message: Not Found
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '409':
+          description: 409 - Conflict
+          content:
+            application/json:
+              schema:
+                description: Conflict response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 409-01
+                      message: Conflict
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '413':
+          description: 413 - Request Entity Too Large
+          content:
+            application/json:
+              schema:
+                description: Request Entity Too Large response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 413-01
+                      message: Request Entity Too Large
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '422':
+          description: 422 - Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                description: Unprocessable Entity response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 422-01
+                      message: Unprocessable Entity
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '429':
+          description: 429 - Too Many Requests
+          content:
+            application/json:
+              schema:
+                description: Too Many Requests response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 429-01
+                      message: Too Many Requests
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '503':
+          description: 503 - Service Unavailable
+          content:
+            application/json:
+              schema:
+                description: Service Unavailable response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 503-01
+                      message: Service Unavailable
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        default:
+          description: 500 - Internal Server Error
+          content:
+            application/json:
+              schema:
+                description: Default error response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 500-01
+                      message: Internal server error
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+  /autosummary/v1/feedback/free-text-summaries/{conversationId}:
+    parameters:
+      - name: conversationId
+        description: The identifier for a conversation.
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^[A-Z0-9]+$
+      - name: agentExternalId
+        description: Your unique identifier for the agent.
+        in: query
+        required: false
+        schema:
+          type: string
+    post:
+      tags:
+        - AutoSummary
+      summary: Provide feedback.
+      description: >
+        Create a feedback event with the full and updated summary. Each event is
+        associated with a specific summary id. 
+
+
+        The event must contain the final summary, in the form of text.        
+      operationId: createFeedbackEvent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: >
+                Information regarding the updated free-text summary. It must
+                contain the full updated summary as a string.
+              properties:
+                externalConversationId:
+                  description: >
+                    Your unique identifier for the conversation. This must match
+                    to the `externalConversationId` you used in the
+                    Conversations API.
+                  type: string
+                summaryId:
+                  description: |
+                    The identifier of the summary you are providing feedback on.
+                  type: string
+                summaryText:
+                  description: The full text of the final summary.
+                  type: string
+              required:
+                - summaryId
+                - summaryText
+              example:
+                externalConversationId: 01GCS2XA9447BCQANJF2SXXVA0
+                summaryId: 0083d936-ff70-49fc-ac19-74f1246d8b27
+                summaryText: |
+                  The customer has issues with his symmetric internet service.
+                  The customer explained the service has not enough bandwidth.
+                  The customer explained the service has not enough bandwidth.
+                  The agent explained how to run a diagnosis.
+                  The customer ran the diagnosis.
+      responses:
+        '202':
+          description: Successfully accepted a feedback event for the summary.
+        '400':
+          description: 400 - Bad request
+          content:
+            application/json:
+              schema:
+                description: Bad request response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 400-01
+                      message: Bad request
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '401':
+          description: 401 - Unauthorized
+          content:
+            application/json:
+              schema:
+                description: Unauthorized response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 401-01
+                      message: Unauthorized
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '403':
+          description: 403 - Forbidden
+          content:
+            application/json:
+              schema:
+                description: Forbidden response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 403-01
+                      message: Forbidden Response
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '404':
+          description: 404 - Not Found
+          content:
+            application/json:
+              schema:
+                description: Not Found response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 404-01
+                      message: Not Found
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '409':
+          description: 409 - Conflict
+          content:
+            application/json:
+              schema:
+                description: Conflict response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 409-01
+                      message: Conflict
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '413':
+          description: 413 - Request Entity Too Large
+          content:
+            application/json:
+              schema:
+                description: Request Entity Too Large response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 413-01
+                      message: Request Entity Too Large
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '422':
+          description: 422 - Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                description: Unprocessable Entity response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 422-01
+                      message: Unprocessable Entity
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '429':
+          description: 429 - Too Many Requests
+          content:
+            application/json:
+              schema:
+                description: Too Many Requests response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 429-01
+                      message: Too Many Requests
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '503':
+          description: 503 - Service Unavailable
+          content:
+            application/json:
+              schema:
+                description: Service Unavailable response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 503-01
+                      message: Service Unavailable
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        default:
+          description: 500 - Internal Server Error
+          content:
+            application/json:
+              schema:
+                description: Default error response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 500-01
+                      message: Internal server error
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+  /autosummary/v1/free-text-summaries:
+    post:
+      tags:
+        - AutoSummary
+      summary: Retrieve free text summary
+      description: >
+        Retrieves a concise, human-readable summary of a conversation.
+
+
+        Provide an agentExternalId if you want to get the summary for a single
+        agent's involvement with a conversation.
+
+
+        You can use the id from ASAPP's system (conversationId or IssueId) or
+        your own id (externalConversationId).
+
+
+        Multilingual support: You can get summaries in languages different from
+        English by making use of the 'Accept-Language' header.
+      operationId: retrieveFreeTextSummary
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              oneOf:
+                - type: object
+                  properties:
+                    conversationId:
+                      type: string
+                      pattern: ^[A-Z0-9]+$
+                      description: The identifier of the conversation from ASAPP's system.
+                    agentExternalId:
+                      type: string
+                      description: Your unique identifier for the agent.
+                  required:
+                    - conversationId
+                - type: object
+                  properties:
+                    externalConversationId:
+                      type: string
+                      description: >-
+                        Your unique identifier for the conversation. This must
+                        match to the `externalConversationId` you used in the
+                        Conversations API.
+                    agentExternalId:
+                      type: string
+                      description: Your unique identifier for the agent.
+                  required:
+                    - externalConversationId
+                - type: object
+                  properties:
+                    issueId:
+                      type: string
+                      description: >-
+                        The identifier of the conversation from ASAPP's
+                        Messaging Platform.
+                    agentExternalId:
+                      type: string
+                      description: Your unique identifier for the agent.
+                  required:
+                    - issueId
+              example:
+                conversationId: 01GCS2AA9447BCQANJF2SXXVA0
+                agentExternalId: agent-111
+      responses:
+        '200':
+          description: Successfully retrieved free text summary.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  conversationId:
+                    type: string
+                    description: >-
+                      The unique identifier of the conversation for which the
+                      summary was generated.
+                  summaryId:
+                    type: string
+                    description: >
+                      A unique identifier for this specific summary.
+
+                      • Each summary request generates a new summary with a new
+                      `summaryId`, even for the same conversation.
+
+                      • The entire summary content is regenerated with each
+                      request.
+
+                      • Use this ID when providing feedback on the summary.
+                  summaryText:
+                    type: string
+                    description: |
+                      The generated free-text summary of the conversation.
+        '400':
+          description: 400 - Bad request
+          content:
+            application/json:
+              schema:
+                description: Bad request response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 400-01
+                      message: Bad request
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '401':
+          description: 401 - Unauthorized
+          content:
+            application/json:
+              schema:
+                description: Unauthorized response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 401-01
+                      message: Unauthorized
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '403':
+          description: 403 - Forbidden
+          content:
+            application/json:
+              schema:
+                description: Forbidden response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 403-01
+                      message: Forbidden Response
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '404':
+          description: 404 - Not Found
+          content:
+            application/json:
+              schema:
+                description: Not Found response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 404-01
+                      message: Not Found
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '409':
+          description: 409 - Conflict
+          content:
+            application/json:
+              schema:
+                description: Conflict response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 409-01
+                      message: Conflict
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '413':
+          description: 413 - Request Entity Too Large
+          content:
+            application/json:
+              schema:
+                description: Request Entity Too Large response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 413-01
+                      message: Request Entity Too Large
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '422':
+          description: 422 - Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                description: Unprocessable Entity response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 422-01
+                      message: Unprocessable Entity
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '429':
+          description: 429 - Too Many Requests
+          content:
+            application/json:
+              schema:
+                description: Too Many Requests response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 429-01
+                      message: Too Many Requests
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '503':
+          description: 503 - Service Unavailable
+          content:
+            application/json:
+              schema:
+                description: Service Unavailable response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 503-01
+                      message: Service Unavailable
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        default:
+          description: 500 - Internal Server Error
+          content:
+            application/json:
+              schema:
+                description: Default error response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 500-01
+                      message: Internal server error
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+  /autosummary/v1/structured-data:
+    post:
+      tags:
+        - AutoSummary
+      summary: Retrieve structured data
+      description: >
+        Retrieves a set of structured data about a conversation that is already
+        known to ASAPP.
+
+
+        You can use the id from ASAPP's system (conversationId or IssueId) or
+        your own id (externalConversationId).
+
+
+        Provide an agentExternalId if you want to get the structured data for a
+        single agent's involvement with a conversation.
+      operationId: retrieveStructuredData
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              oneOf:
+                - type: object
+                  properties:
+                    conversationId:
+                      type: string
+                      pattern: ^[A-Z0-9]+$
+                      description: The identifier of the conversation from ASAPP's system.
+                    agentExternalId:
+                      type: string
+                      description: >
+                        Your agent identifier. When provided, retrieval is
+                        limited to conversation segments involving the specified
+                        agent.
+                  required:
+                    - conversationId
+                - type: object
+                  properties:
+                    externalConversationId:
+                      type: string
+                      description: >-
+                        Your unique identifier for the conversation. This must
+                        match to the `externalConversationId` you used in the
+                        Conversations API.
+                    agentExternalId:
+                      type: string
+                      description: >
+                        Your agent identifier. When provided, retrieval is
+                        limited to conversation segments involving the specified
+                        agent.
+                  required:
+                    - externalConversationId
+                - type: object
+                  properties:
+                    issueId:
+                      type: string
+                      description: >-
+                        The identifier of the conversation from ASAPP's
+                        Messaging Platform.
+                    agentExternalId:
+                      type: string
+                      description: >
+                        Your agent identifier. When provided, retrieval is
+                        limited to conversation segments involving the specified
+                        agent.
+                  required:
+                    - issueId
+              example:
+                conversationId: 01GCS2XA9446BCQANJF2SXXVA0
+                agentExternalId: agent-111
+      responses:
+        '200':
+          description: Successfully retrieved structured data.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  conversationId:
+                    type: string
+                    description: The id of the conversation.
+                  id:
+                    type: string
+                    description: >
+                      A unique identifier for this specific structured data.
+
+                      • Each structured data request generates a new set with a
+                      new `id`, even for the same conversation.
+
+                      • The entire structured data content is regenerated with
+                      each request.
+
+                      • Use this ID when providing feedback on the structured
+                      data.
+                  structuredDataMetrics:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: >
+                            A unique code assigned to this structured data
+                            field.
+                        name:
+                          type: string
+                          description: >
+                            The human readable name of this structured data
+                            field
+                        value:
+                          type: string
+                          description: |
+                            The value of this structured data field
+                    description: >-
+                      The result of the structured data, which is a list of
+                      field values.
+                example:
+                  conversationId: 01GCS2XA9447BCQANJF2SXXVA0
+                  id: 0083d936-ff70-49fc-ac19-74f1246d8b27
+                  structuredDataMetrics:
+                    - id: q_abc_123
+                      name: Issue Resolved
+                      value: 'Yes'
+                    - id: q_xyz_123
+                      name: Issue Escalated
+                      value: 'No'
+                    - id: q_abc_124
+                      name: Sales Made
+                      value: 'No'
+                    - id: e_abc_123
+                      name: Account Number
+                      value: 8999246118
+        '400':
+          description: 400 - Bad request
+          content:
+            application/json:
+              schema:
+                description: Bad request response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 400-01
+                      message: Bad request
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '401':
+          description: 401 - Unauthorized
+          content:
+            application/json:
+              schema:
+                description: Unauthorized response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 401-01
+                      message: Unauthorized
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '403':
+          description: 403 - Forbidden
+          content:
+            application/json:
+              schema:
+                description: Forbidden response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 403-01
+                      message: Forbidden Response
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '404':
+          description: 404 - Not Found
+          content:
+            application/json:
+              schema:
+                description: Not Found response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 404-01
+                      message: Not Found
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '409':
+          description: 409 - Conflict
+          content:
+            application/json:
+              schema:
+                description: Conflict response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 409-01
+                      message: Conflict
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '413':
+          description: 413 - Request Entity Too Large
+          content:
+            application/json:
+              schema:
+                description: Request Entity Too Large response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 413-01
+                      message: Request Entity Too Large
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '422':
+          description: 422 - Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                description: Unprocessable Entity response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 422-01
+                      message: Unprocessable Entity
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '429':
+          description: 429 - Too Many Requests
+          content:
+            application/json:
+              schema:
+                description: Too Many Requests response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 429-01
+                      message: Too Many Requests
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        '503':
+          description: 503 - Service Unavailable
+          content:
+            application/json:
+              schema:
+                description: Service Unavailable response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 503-01
+                      message: Service Unavailable
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+        default:
+          description: 500 - Internal Server Error
+          content:
+            application/json:
+              schema:
+                description: Default error response
+                type: object
+                properties:
+                  error:
+                    example:
+                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                      code: 500-01
+                      message: Internal server error
+                    description: Error details
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        description: Unique ID of the failing request
+                      message:
+                        type: string
+                        description: Error message
+                      code:
+                        type: string
+                        description: Error code
+                    required:
+                      - requestId
+                      - message
+components:
+  responses:
+    BadRequest:
+      description: 400 - Bad request
+      content:
+        application/json:
+          schema:
+            description: Bad request response
+            type: object
+            properties:
+              error:
+                example:
+                  requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                  code: 400-01
+                  message: Bad request
+                description: Error details
+                type: object
+                properties:
+                  requestId:
+                    type: string
+                    description: Unique ID of the failing request
+                  message:
+                    type: string
+                    description: Error message
+                  code:
+                    type: string
+                    description: Error code
+                required:
+                  - requestId
+                  - message
+    DefaultError:
+      description: 500 - Internal Server Error
+      content:
+        application/json:
+          schema:
+            description: Default error response
+            type: object
+            properties:
+              error:
+                example:
+                  requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                  code: 500-01
+                  message: Internal server error
+                description: Error details
+                type: object
+                properties:
+                  requestId:
+                    type: string
+                    description: Unique ID of the failing request
+                  message:
+                    type: string
+                    description: Error message
+                  code:
+                    type: string
+                    description: Error code
+                required:
+                  - requestId
+                  - message
+    Unauthorized:
+      description: 401 - Unauthorized
+      content:
+        application/json:
+          schema:
+            description: Unauthorized response
+            type: object
+            properties:
+              error:
+                example:
+                  requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                  code: 401-01
+                  message: Unauthorized
+                description: Error details
+                type: object
+                properties:
+                  requestId:
+                    type: string
+                    description: Unique ID of the failing request
+                  message:
+                    type: string
+                    description: Error message
+                  code:
+                    type: string
+                    description: Error code
+                required:
+                  - requestId
+                  - message
+    Forbidden:
+      description: 403 - Forbidden
+      content:
+        application/json:
+          schema:
+            description: Forbidden response
+            type: object
+            properties:
+              error:
+                example:
+                  requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                  code: 403-01
+                  message: Forbidden Response
+                description: Error details
+                type: object
+                properties:
+                  requestId:
+                    type: string
+                    description: Unique ID of the failing request
+                  message:
+                    type: string
+                    description: Error message
+                  code:
+                    type: string
+                    description: Error code
+                required:
+                  - requestId
+                  - message
+    NotFound:
+      description: 404 - Not Found
+      content:
+        application/json:
+          schema:
+            description: Not Found response
+            type: object
+            properties:
+              error:
+                example:
+                  requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                  code: 404-01
+                  message: Not Found
+                description: Error details
+                type: object
+                properties:
+                  requestId:
+                    type: string
+                    description: Unique ID of the failing request
+                  message:
+                    type: string
+                    description: Error message
+                  code:
+                    type: string
+                    description: Error code
+                required:
+                  - requestId
+                  - message
+    Conflict:
+      description: 409 - Conflict
+      content:
+        application/json:
+          schema:
+            description: Conflict response
+            type: object
+            properties:
+              error:
+                example:
+                  requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                  code: 409-01
+                  message: Conflict
+                description: Error details
+                type: object
+                properties:
+                  requestId:
+                    type: string
+                    description: Unique ID of the failing request
+                  message:
+                    type: string
+                    description: Error message
+                  code:
+                    type: string
+                    description: Error code
+                required:
+                  - requestId
+                  - message
+    RequestEntityTooLarge:
+      description: 413 - Request Entity Too Large
+      content:
+        application/json:
+          schema:
+            description: Request Entity Too Large response
+            type: object
+            properties:
+              error:
+                example:
+                  requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                  code: 413-01
+                  message: Request Entity Too Large
+                description: Error details
+                type: object
+                properties:
+                  requestId:
+                    type: string
+                    description: Unique ID of the failing request
+                  message:
+                    type: string
+                    description: Error message
+                  code:
+                    type: string
+                    description: Error code
+                required:
+                  - requestId
+                  - message
+    UnprocessableEntity:
+      description: 422 - Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            description: Unprocessable Entity response
+            type: object
+            properties:
+              error:
+                example:
+                  requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                  code: 422-01
+                  message: Unprocessable Entity
+                description: Error details
+                type: object
+                properties:
+                  requestId:
+                    type: string
+                    description: Unique ID of the failing request
+                  message:
+                    type: string
+                    description: Error message
+                  code:
+                    type: string
+                    description: Error code
+                required:
+                  - requestId
+                  - message
+    TooManyRequests:
+      description: 429 - Too Many Requests
+      content:
+        application/json:
+          schema:
+            description: Too Many Requests response
+            type: object
+            properties:
+              error:
+                example:
+                  requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                  code: 429-01
+                  message: Too Many Requests
+                description: Error details
+                type: object
+                properties:
+                  requestId:
+                    type: string
+                    description: Unique ID of the failing request
+                  message:
+                    type: string
+                    description: Error message
+                  code:
+                    type: string
+                    description: Error code
+                required:
+                  - requestId
+                  - message
+    ServiceUnavailable:
+      description: 503 - Service Unavailable
+      content:
+        application/json:
+          schema:
+            description: Service Unavailable response
+            type: object
+            properties:
+              error:
+                example:
+                  requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+                  code: 503-01
+                  message: Service Unavailable
+                description: Error details
+                type: object
+                properties:
+                  requestId:
+                    type: string
+                    description: Unique ID of the failing request
+                  message:
+                    type: string
+                    description: Error message
+                  code:
+                    type: string
+                    description: Error code
+                required:
+                  - requestId
+                  - message
+  securitySchemes:
+    API-ID:
+      type: apiKey
+      in: header
+      name: asapp-api-id
+    API-Secret:
+      type: apiKey
+      in: header
+      name: asapp-api-secret
+  schemas:
+    FreeTextSummaryRequest:
+      type: object
+      oneOf:
+        - type: object
+          properties:
+            conversationId:
+              type: string
+              pattern: ^[A-Z0-9]+$
+              description: The identifier of the conversation from ASAPP's system.
+            agentExternalId:
+              type: string
+              description: Your unique identifier for the agent.
+          required:
+            - conversationId
+        - type: object
+          properties:
+            externalConversationId:
+              type: string
+              description: >-
+                Your unique identifier for the conversation. This must match to
+                the `externalConversationId` you used in the Conversations API.
+            agentExternalId:
+              type: string
+              description: Your unique identifier for the agent.
+          required:
+            - externalConversationId
+        - type: object
+          properties:
+            issueId:
+              type: string
+              description: >-
+                The identifier of the conversation from ASAPP's Messaging
+                Platform.
+            agentExternalId:
+              type: string
+              description: Your unique identifier for the agent.
+          required:
+            - issueId
+      example:
+        conversationId: 01GCS2AA9447BCQANJF2SXXVA0
+        agentExternalId: agent-111
+    FreeTextSummaryResponse:
+      type: object
+      properties:
+        conversationId:
+          type: string
+          description: >-
+            The unique identifier of the conversation for which the summary was
+            generated.
+        summaryId:
+          type: string
+          description: >
+            A unique identifier for this specific summary.
+
+            • Each summary request generates a new summary with a new
+            `summaryId`, even for the same conversation.
+
+            • The entire summary content is regenerated with each request.
+
+            • Use this ID when providing feedback on the summary.
+        summaryText:
+          type: string
+          description: |
+            The generated free-text summary of the conversation.
+    StructuredDataRequest:
+      type: object
+      oneOf:
+        - type: object
+          properties:
+            conversationId:
+              type: string
+              pattern: ^[A-Z0-9]+$
+              description: The identifier of the conversation from ASAPP's system.
+            agentExternalId:
+              type: string
+              description: >
+                Your agent identifier. When provided, retrieval is limited to
+                conversation segments involving the specified agent.
+          required:
+            - conversationId
+        - type: object
+          properties:
+            externalConversationId:
+              type: string
+              description: >-
+                Your unique identifier for the conversation. This must match to
+                the `externalConversationId` you used in the Conversations API.
+            agentExternalId:
+              type: string
+              description: >
+                Your agent identifier. When provided, retrieval is limited to
+                conversation segments involving the specified agent.
+          required:
+            - externalConversationId
+        - type: object
+          properties:
+            issueId:
+              type: string
+              description: >-
+                The identifier of the conversation from ASAPP's Messaging
+                Platform.
+            agentExternalId:
+              type: string
+              description: >
+                Your agent identifier. When provided, retrieval is limited to
+                conversation segments involving the specified agent.
+          required:
+            - issueId
+      example:
+        conversationId: 01GCS2XA9446BCQANJF2SXXVA0
+        agentExternalId: agent-111
+    StructuredDataResponse:
+      type: object
+      properties:
+        conversationId:
+          type: string
+          description: The id of the conversation.
+        id:
+          type: string
+          description: >
+            A unique identifier for this specific structured data.
+
+            • Each structured data request generates a new set with a new `id`,
+            even for the same conversation.
+
+            • The entire structured data content is regenerated with each
+            request.
+
+            • Use this ID when providing feedback on the structured data.
+        structuredDataMetrics:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: |
+                  A unique code assigned to this structured data field.
+              name:
+                type: string
+                description: |
+                  The human readable name of this structured data field
+              value:
+                type: string
+                description: |
+                  The value of this structured data field
+          description: The result of the structured data, which is a list of field values.
+      example:
+        conversationId: 01GCS2XA9447BCQANJF2SXXVA0
+        id: 0083d936-ff70-49fc-ac19-74f1246d8b27
+        structuredDataMetrics:
+          - id: q_abc_123
+            name: Issue Resolved
+            value: 'Yes'
+          - id: q_xyz_123
+            name: Issue Escalated
+            value: 'No'
+          - id: q_abc_124
+            name: Sales Made
+            value: 'No'
+          - id: e_abc_123
+            name: Account Number
+            value: 8999246118
+    IntentResult:
+      type: object
+      properties:
+        code:
+          type: string
+          description: >-
+            The machine-readable code for the given conversation. If no intent
+            was found, then "NO_INTENT" is returned.
+        name:
+          type: string
+          description: The human-readable name of the intent for the given conversation.
+    IntentResponse:
+      type: object
+      properties:
+        conversationId:
+          type: string
+          description: The id of the conversation.
+        intent:
+          description: |
+            An object containing the determined intent for the conversation.
+          type: object
+          properties:
+            code:
+              type: string
+              description: >-
+                The machine-readable code for the given conversation. If no
+                intent was found, then "NO_INTENT" is returned.
+            name:
+              type: string
+              description: >-
+                The human-readable name of the intent for the given
+                conversation.
+    FreeTextSummaryFeedback:
+      type: object
+      description: >
+        Information regarding the updated free-text summary. It must contain the
+        full updated summary as a string.
+      properties:
+        externalConversationId:
+          description: >
+            Your unique identifier for the conversation. This must match to the
+            `externalConversationId` you used in the Conversations API.
+          type: string
+        summaryId:
+          description: |
+            The identifier of the summary you are providing feedback on.
+          type: string
+        summaryText:
+          description: The full text of the final summary.
+          type: string
+      required:
+        - summaryId
+        - summaryText
+      example:
+        externalConversationId: 01GCS2XA9447BCQANJF2SXXVA0
+        summaryId: 0083d936-ff70-49fc-ac19-74f1246d8b27
+        summaryText: |
+          The customer has issues with his symmetric internet service.
+          The customer explained the service has not enough bandwidth.
+          The customer explained the service has not enough bandwidth.
+          The agent explained how to run a diagnosis.
+          The customer ran the diagnosis.
+  parameters:
+    agentExternalId:
+      name: agentExternalId
+      description: Your unique identifier for the agent.
+      in: query
+      required: false
+      schema:
+        type: string

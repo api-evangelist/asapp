@@ -1,0 +1,39 @@
+generated: '2026-07-18'
+method: searched
+source: >-
+  https://trust.asapp.com/, https://trust.asapp.com/ai,
+  https://docs.asapp.com/security,
+  + derived from openapi/* security schemes and conventions
+standards:
+- id: soc2
+  conforms: true
+  evidence: SOC 2 listed on the ASAPP Trust portal (trust.asapp.com).
+- id: pci-dss
+  conforms: true
+  evidence: PCI DSS listed on Trust portal; Voice Payment Collection keeps card data in a PCI-secure zone.
+- id: hipaa
+  conforms: true
+  evidence: HIPAA listed on the ASAPP Trust portal.
+- id: gdpr
+  conforms: true
+  evidence: GDPR listed on the ASAPP Trust portal.
+- id: oauth2
+  conforms: false
+  evidence: No OAuth2 security schemes; API Id + API Secret header auth only.
+- id: oidc
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use a custom '{error:{requestId,message,code}}' envelope, not application/problem+json.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No documented Sunset/Deprecation header support.
+- id: mtls
+  conforms: true
+  evidence: Real-Time Event API webhook delivery is secured with mutual TLS.
+- id: cursor-pagination
+  conforms: true
+  evidence: List endpoints use cursor + limit (and pageToken for feeds).
+compliance_program:
+  url: https://trust.asapp.com/
+  certifications: [SOC 2, PCI DSS, HIPAA, GDPR]

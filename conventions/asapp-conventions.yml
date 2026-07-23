@@ -1,0 +1,64 @@
+generated: '2026-07-18'
+method: searched
+source: >-
+  https://docs.asapp.com/apis/overview,
+  https://docs.asapp.com/getting-started/developers,
+  https://docs.asapp.com/getting-started/developers/error-handling,
+  https://docs.asapp.com/getting-started/developers/rate-limits
+  + derived from openapi/*
+api_style: REST, resource-oriented, JSON request/response bodies.
+base_urls:
+  production: https://api.asapp.com
+  sandbox: https://api.sandbox.asapp.com
+authentication:
+  style: api-key-pair
+  headers: [asapp-api-id, asapp-api-secret]
+  detail: authentication/asapp-authentication.yml
+idempotency:
+  key_header: null
+  supported: partial
+  detail: >-
+    ASAPP does not document a generic Idempotency-Key header. Idempotent upsert
+    is available on specific resources via a client-supplied externalId
+    (e.g. createOrUpdateConversation creates-or-updates by externalId). Retry
+    guidance notes a 409 Conflict means the entity was already persisted, so a
+    409 on retry should be treated as success rather than re-created.
+pagination:
+  styles: [cursor, page-token]
+  params: [cursor, limit, pageToken]
+  detail: >-
+    List endpoints paginate with a cursor plus limit; some feeds/exports use a
+    pageToken. Response bodies carry the next cursor/pageToken when more results
+    exist.
+request_tracing:
+  field: error.requestId
+  detail: >-
+    Every error response includes error.requestId, a unique per-request id to
+    quote to ASAPP support when reporting a failing call.
+error_envelope:
+  shape: '{ "error": { "requestId": string, "message": string, "code": string } }'
+  code_format: HTTP_STATUS_CODE-ERROR_SUBCODE (e.g. 400-03)
+  detail: errors/asapp-problem-types.yml
+rate_limiting:
+  spike_arrest: 100 requests/second
+  daily_limit: true
+  exhausted_status: 429
+  retry_after_header: null
+  retry_guidance:
+    on_429: [1s, 2s, 4s]
+    on_5xx: [250ms, 500ms, 1000ms]
+    on_other_4xx: do-not-retry
+  detail: >-
+    A spike-arrest limit of 100 req/s protects the platform; exceeding daily
+    limits returns 429 for the remainder of the day. No X-RateLimit response
+    headers are documented.
+versioning:
+  scheme: uri-path
+  detail: >-
+    Endpoints are versioned in the URL path (e.g. /conversation/v1/...). Per-API
+    OpenAPI info.version values range v0.x to v1.0. See lifecycle/asapp-lifecycle.yml.
+cross_links:
+  errors: errors/asapp-problem-types.yml
+  lifecycle: lifecycle/asapp-lifecycle.yml
+  authentication: authentication/asapp-authentication.yml
+  webhooks: asyncapi/asapp-realtime-events-webhooks.yml

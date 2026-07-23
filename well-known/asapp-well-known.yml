@@ -1,0 +1,31 @@
+generated: '2026-07-18'
+method: searched
+source: live probes of /.well-known/* on ASAPP hosts
+hosts:
+- host: https://api.asapp.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://www.asapp.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://docs.asapp.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+result: none
+notes: >-
+  No /.well-known/ discovery documents are published on ASAPP's API, marketing,
+  or docs hosts. ASAPP uses API Id + API Secret header auth (no OAuth/OIDC), so
+  no openid-configuration or oauth-authorization-server is expected. Recorded as
+  a valid empty result.

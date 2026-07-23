@@ -1,0 +1,36 @@
+generated: '2026-07-18'
+method: searched
+source: >-
+  https://docs.asapp.com/apis/overview,
+  https://docs.asapp.com/getting-started/developers,
+  https://docs.asapp.com/releases/overview,
+  https://status.asapp.com
+versioning:
+  scheme: uri-path
+  detail: >-
+    APIs are versioned in the URL path (e.g. /conversation/v1/...). Individual
+    ASAPP API modules carry their own OpenAPI info.version (v0.x - v1.0).
+  per_api:
+  - {api: conversations, version: '0.1'}
+  - {api: generativeagent, version: '0.1'}
+  - {api: autosummary, version: '1.0.0'}
+  - {api: autocompose, version: '0.0.3'}
+  - {api: autotranscribe, version: '0.0.3'}
+  - {api: knowledge-base, version: '1.0'}
+  - {api: metadata-ingestion, version: '1.0.0'}
+  - {api: file-exporter, version: '1.0.0'}
+  - {api: partner-configuration, version: '1.0.0'}
+  - {api: health-check, version: '0.1'}
+deprecation:
+  policy_url: null
+  sunset_header: false
+  detail: >-
+    ASAPP publishes dated monthly release notes but no formal versioned
+    deprecation/sunset policy or RFC 8594 Sunset header support was found.
+  deprecated_operations: []
+status_page: https://status.asapp.com
+changelog: https://docs.asapp.com/releases/overview
+sla:
+  url: https://trust.asapp.com/
+  uptime_target: null
+  detail: SLA/uptime commitments are handled through enterprise contracts and the Trust portal; no public numeric target published.

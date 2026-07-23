@@ -1,0 +1,20 @@
+generated: '2026-07-18'
+method: generated
+source: grounded in ASAPP OpenAPI operationIds (openapi/*) + conventions/ + errors/
+skills:
+- file: asapp-generativeagent-respond.md
+  name: Run GenerativeAgent on a conversation
+  api: openapi/asapp-generativeagent-openapi.yml
+  operations: [createOrUpdateConversation, createMessage, postAnalyze, postStreams, getState]
+- file: asapp-summarize-conversation.md
+  name: Summarize a conversation with AI Summary
+  api: openapi/asapp-autosummary-openapi.yml
+  operations: [getFreeTextSummary, retrieveFreeTextSummary, retrieveStructuredData, createIntent, createFeedbackEvent]
+- file: asapp-autocompose-suggest.md
+  name: Get agent reply suggestions with AutoCompose
+  api: openapi/asapp-autocompose-openapi.yml
+  operations: [getSuggestions, getSpellingCorrection, getEvaluation]
+- file: asapp-knowledge-base-submit.md
+  name: Add knowledge base content via API
+  api: openapi/asapp-knowledge-base-openapi.yml
+  operations: [createSubmission, getSubmission, getArticle]

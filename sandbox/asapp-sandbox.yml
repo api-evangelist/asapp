@@ -1,0 +1,39 @@
+generated: '2026-07-18'
+method: searched
+source: >-
+  https://docs.asapp.com/apis/overview,
+  https://docs.asapp.com/getting-started/developers,
+  https://docs.asapp.com/ai-productivity/ai-summary/sandbox
+environments:
+- name: sandbox
+  base_url: https://api.sandbox.asapp.com
+  purpose: Default development/testing environment; example server in every ASAPP OpenAPI spec.
+- name: test
+  base_url: https://api.test.asapp.com
+  purpose: Additional test host used by some modules (e.g. Knowledge Base API).
+- name: production
+  base_url: https://api.asapp.com
+  purpose: Live environment.
+credentials:
+  model: >-
+    Separate API Id + API Secret pairs are issued per environment; there is no
+    key-prefix convention (keys are opaque). Point requests at the sandbox base
+    URL and use the sandbox key pair to test.
+test_tooling:
+- name: AI Summary Sandbox
+  url: https://docs.asapp.com/ai-productivity/ai-summary/sandbox
+  detail: Interactive sandbox to test and validate AI Summary generation against sample conversations.
+- name: Mock API Connections
+  url: https://docs.asapp.com/generativeagent/configuring/tasks-and-functions/mock-api
+  detail: Mock GenerativeAgent API Connections for testing tasks/functions without a live backend.
+- name: Mock API Users
+  url: https://docs.asapp.com/generativeagent/configuring/connect-apis/mock-apis
+  detail: Mock API users for testing and development of API Connections.
+- name: Functional Testing / Test Scenarios / Previewer
+  url: https://docs.asapp.com/generativeagent/configuring/functional-testing
+  detail: Author test scenarios and preview GenerativeAgent behavior before production launch.
+notes: >-
+  ASAPP publishes no synthetic test card numbers or magic identifiers (it is not
+  a payments acquirer); sandbox testing is environment-based (sandbox/test hosts
+  + per-environment keys) plus product-level mock/preview tooling. No test values
+  were fabricated.

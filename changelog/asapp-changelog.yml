@@ -1,0 +1,51 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.asapp.com/releases/overview
+scheme: dated-monthly
+current_version: rolling (continuous release; monthly release-note digests)
+entries:
+- date: '2026-07'
+  highlights:
+  - Redesigned GenerativeAgent Conversations interface (Summary/Flags, Analysis, Conversation data sections; Display Settings for model actions).
+  breaking: false
+- date: '2026-06'
+  highlights:
+  - Insights Agent - continuously analyzes interactions to surface patterns, risks, and opportunities.
+  - Voice Payment Collection - securely collect payment info during voice interactions (PCI-secure zone).
+  - Conversation Context in API Connections - connections read task names and variables directly.
+  breaking: false
+- date: '2026-05'
+  highlights:
+  - Audit Logs now track Conversation Recordings (Access Recording events).
+  - Expanded Conversations filter criteria (Category, Channel, State, Customer Authenticated, Duration).
+  - Unified Web SDK supports the full conversation lifecycle (GenerativeAgent + human agent).
+  breaking: false
+- date: '2026-04'
+  highlights:
+  - Azure Communication Services integration for inbound PSTN calls.
+  - Recite Message Function for verbatim phrase delivery.
+  breaking: false
+- date: '2026-03'
+  highlights:
+  - Multiple Language Support for Chat and Voice.
+  - Create Conversation Intent API (POST) for programmatic intent retrieval.
+  - Metadata-Based Summary Routing for AI Summary.
+  breaking: false
+- date: '2026-02'
+  highlights:
+  - Dynamic Queue Transfer Options.
+  - API Connection Duplication.
+  - Multi-Lingual Support (Spanish, French) for AI Compose.
+  - Adapters for Custom KB Connectors (Salesforce, ServiceNow, Slack).
+  breaking: false
+- date: '2026-01'
+  highlights:
+  - Omni-channel Tooling Optimization (OCTO) - single task across voice and chat.
+  - MCP Server Integration - connect GenerativeAgent to Model Context Protocol servers.
+  - Segments Tooling for structured data extraction.
+  breaking: false
+- date: '2025-12'
+  highlights:
+  - Structured Data Dashboard for entity/targeted extraction.
+  - Bricks - reusable, synchronized prompt content.
+  breaking: false

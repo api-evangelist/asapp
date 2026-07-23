@@ -1,0 +1,251 @@
+# Candidate MCP tool surface derived from ASAPP OpenAPI operations.
+generated: '2026-07-18'
+method: derived
+status: candidate
+source: derived from ASAPP OpenAPI operations (no first-party hosted MCP server published as of probe;
+  ASAPP docs describe consuming external MCP servers from GenerativeAgent, not providing one).
+server:
+  name: asapp
+  transport: http
+  url: null
+tools:
+- name: getSuggestions
+  description: Generate suggestions
+  source_operation: openapi/asapp-autocompose-openapi.yml#getSuggestions
+- name: getEvaluation
+  description: Evaluate profanity
+  source_operation: openapi/asapp-autocompose-openapi.yml#getEvaluation
+- name: getSpellingCorrection
+  description: Check for spelling mistakes
+  source_operation: openapi/asapp-autocompose-openapi.yml#getSpellingCorrection
+- name: createMessageSentEvent
+  description: Create a MessageSent analytics event
+  source_operation: openapi/asapp-autocompose-openapi.yml#createMessageSentEvent
+- name: createMessageAnalyticEvent
+  description: Create a message analytic event
+  source_operation: openapi/asapp-autocompose-openapi.yml#createMessageAnalyticEvent
+- name: getSettings
+  description: Get settings for AutoCompose clients
+  source_operation: openapi/asapp-autocompose-openapi.yml#getSettings
+- name: getGlobalResponses
+  description: List the global responses
+  source_operation: openapi/asapp-autocompose-openapi.yml#getGlobalResponses
+- name: getCustomResponseCollection
+  description: Get custom responses
+  source_operation: openapi/asapp-autocompose-openapi.yml#getCustomResponseCollection
+- name: addCustomResponseFolder
+  description: Create a response folder
+  source_operation: openapi/asapp-autocompose-openapi.yml#addCustomResponseFolder
+- name: addCustomResponse
+  description: Create a custom response
+  source_operation: openapi/asapp-autocompose-openapi.yml#addCustomResponse
+- name: updateCustomResponse
+  description: Update a custom response
+  source_operation: openapi/asapp-autocompose-openapi.yml#updateCustomResponse
+- name: deleteCustomResponse
+  description: Delete a custom response
+  source_operation: openapi/asapp-autocompose-openapi.yml#deleteCustomResponse
+- name: updateFolder
+  description: Update a response folder
+  source_operation: openapi/asapp-autocompose-openapi.yml#updateFolder
+- name: deleteFolder
+  description: Delete a response folder
+  source_operation: openapi/asapp-autocompose-openapi.yml#deleteFolder
+- name: getAutopilotGreetings
+  description: Get autopilot greetings
+  source_operation: openapi/asapp-autocompose-openapi.yml#getAutopilotGreetings
+- name: updateAutopilotGreetings
+  description: Update autopilot greetings
+  source_operation: openapi/asapp-autocompose-openapi.yml#updateAutopilotGreetings
+- name: getAutopilotGreetingsStatus
+  description: Get autopilot greetings status
+  source_operation: openapi/asapp-autocompose-openapi.yml#getAutopilotGreetingsStatus
+- name: updateAutopilotGreetingsStatus
+  description: Update autopilot greetings status
+  source_operation: openapi/asapp-autocompose-openapi.yml#updateAutopilotGreetingsStatus
+- name: getIntent
+  description: Get conversation intent
+  source_operation: openapi/asapp-autosummary-openapi.yml#getIntent
+- name: createIntent
+  description: Create conversation intent
+  source_operation: openapi/asapp-autosummary-openapi.yml#createIntent
+- name: getFreeTextSummary
+  description: Get free text summary
+  source_operation: openapi/asapp-autosummary-openapi.yml#getFreeTextSummary
+- name: createFeedbackEvent
+  description: Provide feedback.
+  source_operation: openapi/asapp-autosummary-openapi.yml#createFeedbackEvent
+- name: retrieveFreeTextSummary
+  description: Retrieve free text summary
+  source_operation: openapi/asapp-autosummary-openapi.yml#retrieveFreeTextSummary
+- name: retrieveStructuredData
+  description: Retrieve structured data
+  source_operation: openapi/asapp-autosummary-openapi.yml#retrieveStructuredData
+- name: getStreamingUrl
+  description: Get streaming URL
+  source_operation: openapi/asapp-autotranscribe-openapi.yml#getStreamingUrl
+- name: createOrUpdateConversation
+  description: Create or update a conversation
+  source_operation: openapi/asapp-conversations-openapi.yml#createOrUpdateConversation
+- name: getConversations
+  description: List conversations
+  source_operation: openapi/asapp-conversations-openapi.yml#getConversations
+- name: getConversation
+  description: Retrieve a conversation
+  source_operation: openapi/asapp-conversations-openapi.yml#getConversation
+- name: createMessage
+  description: Create a message
+  source_operation: openapi/asapp-conversations-openapi.yml#createMessage
+- name: getMessages
+  description: List messages
+  source_operation: openapi/asapp-conversations-openapi.yml#getMessages
+- name: getMessage
+  description: Retrieve a message
+  source_operation: openapi/asapp-conversations-openapi.yml#getMessage
+- name: createBatchMessages
+  description: Create multiple messages
+  source_operation: openapi/asapp-conversations-openapi.yml#createBatchMessages
+- name: getMessagesByExternalId
+  description: List messages with an externalId
+  source_operation: openapi/asapp-conversations-openapi.yml#getMessagesByExternalId
+- name: postAuthenticate
+  description: Authenticate a user in a conversation
+  source_operation: openapi/asapp-conversations-openapi.yml#postAuthenticate
+- name: listFeeds
+  description: List feeds
+  source_operation: openapi/asapp-fileexporter-openapi.yml#listFeeds
+- name: listFeedVersions
+  description: List feed versions
+  source_operation: openapi/asapp-fileexporter-openapi.yml#listFeedVersions
+- name: listFeedFormats
+  description: List feed formats
+  source_operation: openapi/asapp-fileexporter-openapi.yml#listFeedFormats
+- name: listFeedDates
+  description: List feed dates
+  source_operation: openapi/asapp-fileexporter-openapi.yml#listFeedDates
+- name: listFeedIntervals
+  description: List feed intervals
+  source_operation: openapi/asapp-fileexporter-openapi.yml#listFeedIntervals
+- name: listFeedFiles
+  description: List feed files
+  source_operation: openapi/asapp-fileexporter-openapi.yml#listFeedFiles
+- name: listFeedFile
+  description: Retrieve a feed file
+  source_operation: openapi/asapp-fileexporter-openapi.yml#listFeedFile
+- name: postAnalyze
+  description: Analyze conversation
+  source_operation: openapi/asapp-generativeagent-openapi.yml#postAnalyze
+- name: postStreams
+  description: Create stream URL
+  source_operation: openapi/asapp-generativeagent-openapi.yml#postStreams
+- name: getState
+  description: Get GenerativeAgent state
+  source_operation: openapi/asapp-generativeagent-openapi.yml#getState
+- name: createCallTransfer
+  description: Create Call Transfer
+  source_operation: openapi/asapp-generativeagent-openapi.yml#createCallTransfer
+- name: getCallTransfer
+  description: Get Call Transfer
+  source_operation: openapi/asapp-generativeagent-openapi.yml#getCallTransfer
+- name: lookupCallTransfer
+  description: Lookup Call Transfer with phone number and retrieve variables
+  source_operation: openapi/asapp-generativeagent-openapi.yml#lookupCallTransfer
+- name: completeCallTransfer
+  description: Complete Call Transfer with phone number.
+  source_operation: openapi/asapp-generativeagent-openapi.yml#completeCallTransfer
+- name: createSubmission
+  description: Create a submission
+  source_operation: openapi/asapp-knowledge-base-openapi.yml#createSubmission
+- name: getSubmission
+  description: Retrieve a submission
+  source_operation: openapi/asapp-knowledge-base-openapi.yml#getSubmission
+- name: getArticle
+  description: Retrieve an article
+  source_operation: openapi/asapp-knowledge-base-openapi.yml#getArticle
+- name: singleAgentMetadata
+  description: Add an agent metadata
+  source_operation: openapi/asapp-metadata-ingestion-openapi.yml#singleAgentMetadata
+- name: manyAgentMetadata
+  description: Add multiple agent metadata
+  source_operation: openapi/asapp-metadata-ingestion-openapi.yml#manyAgentMetadata
+- name: singleConvoMetadata
+  description: Add a conversation metadata
+  source_operation: openapi/asapp-metadata-ingestion-openapi.yml#singleConvoMetadata
+- name: manyConversationMetadata
+  description: Add multiple conversation metadata
+  source_operation: openapi/asapp-metadata-ingestion-openapi.yml#manyConversationMetadata
+- name: singleCustomerMetadata
+  description: Add a customer metadata
+  source_operation: openapi/asapp-metadata-ingestion-openapi.yml#singleCustomerMetadata
+- name: manyCustomerMetadata
+  description: Add multiple customer metadata
+  source_operation: openapi/asapp-metadata-ingestion-openapi.yml#manyCustomerMetadata
+- name: startStreaming
+  description: Start streaming
+  source_operation: openapi/asapp-mg-autotranscribe-openapi.yml#startStreaming
+- name: stopStreaming
+  description: Stop streaming
+  source_operation: openapi/asapp-mg-autotranscribe-openapi.yml#stopStreaming
+- name: getTwilioMediaStreams
+  description: Get Twilio media stream url
+  source_operation: openapi/asapp-mg-autotranscribe-openapi.yml#getTwilioMediaStreams
+- name: engage
+  description: Engage Genagent in a conversation.
+  source_operation: openapi/asapp-mg-genagent-openapi.yml#engage
+- name: disengage
+  description: Disengage Genagent from conversation.
+  source_operation: openapi/asapp-mg-genagent-openapi.yml#disengage
+- name: getTwilioMediaStreams
+  description: Get Twilio media stream url
+  source_operation: openapi/asapp-mg-genagent-openapi.yml#getTwilioMediaStreams
+- name: getCustomVocabularyConfigurations
+  description: List custom vocabularies
+  source_operation: openapi/asapp-partner-configuration-openapi.yml#getCustomVocabularyConfigurations
+- name: postCustomVocabularyConfiguration
+  description: Create a custom vocabulary
+  source_operation: openapi/asapp-partner-configuration-openapi.yml#postCustomVocabularyConfiguration
+- name: getCustomVocabularyConfiguration
+  description: Retrieve a custom vocabulary
+  source_operation: openapi/asapp-partner-configuration-openapi.yml#getCustomVocabularyConfiguration
+- name: deleteCustomVocabularyConfiguration
+  description: Delete a custom vocabulary
+  source_operation: openapi/asapp-partner-configuration-openapi.yml#deleteCustomVocabularyConfiguration
+- name: listRedactionEntities
+  description: List redaction entities
+  source_operation: openapi/asapp-partner-configuration-openapi.yml#listRedactionEntities
+- name: getRedactionEntity
+  description: Retrieve a redaction entity
+  source_operation: openapi/asapp-partner-configuration-openapi.yml#getRedactionEntity
+- name: updateRedactionEntity
+  description: Update a redaction entity
+  source_operation: openapi/asapp-partner-configuration-openapi.yml#updateRedactionEntity
+- name: getStructuredDataFields
+  description: List structured data fields
+  source_operation: openapi/asapp-partner-configuration-openapi.yml#getStructuredDataFields
+- name: postStructuredDataField
+  description: Create a structured data field
+  source_operation: openapi/asapp-partner-configuration-openapi.yml#postStructuredDataField
+- name: getStructuredDataField
+  description: Retrieve a structured data field
+  source_operation: openapi/asapp-partner-configuration-openapi.yml#getStructuredDataField
+- name: putStructuredDataField
+  description: Update a structured data field
+  source_operation: openapi/asapp-partner-configuration-openapi.yml#putStructuredDataField
+- name: deleteStructuredDataField
+  description: Delete a structured data field
+  source_operation: openapi/asapp-partner-configuration-openapi.yml#deleteStructuredDataField
+- name: getSegments
+  description: List segments
+  source_operation: openapi/asapp-partner-configuration-openapi.yml#getSegments
+- name: postSegment
+  description: Create a segment
+  source_operation: openapi/asapp-partner-configuration-openapi.yml#postSegment
+- name: getSegment
+  description: Retrieve a segment
+  source_operation: openapi/asapp-partner-configuration-openapi.yml#getSegment
+- name: patchSegment
+  description: Partial update a segment
+  source_operation: openapi/asapp-partner-configuration-openapi.yml#patchSegment
+- name: deleteSegment
+  description: Delete a segment
+  source_operation: openapi/asapp-partner-configuration-openapi.yml#deleteSegment

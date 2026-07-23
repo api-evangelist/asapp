@@ -1,0 +1,27 @@
+generated: '2026-07-18'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.asapp.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 20 16:03:38 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: api.sandbox.asapp.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 17 06:12:02 2026 GMT
+  hsts: null
+- host: api.test.asapp.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 17 06:08:43 2026 GMT
+  hsts: null
+domains:
+- domain: asapp.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

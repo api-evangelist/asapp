@@ -1,0 +1,69 @@
+generated: '2026-07-18'
+method: derived
+source: >-
+  derived from openapi/asapp-conversations-openapi.yml,
+  openapi/asapp-generativeagent-openapi.yml,
+  openapi/asapp-autosummary-openapi.yml,
+  openapi/asapp-knowledge-base-openapi.yml,
+  openapi/asapp-metadata-ingestion-openapi.yml,
+  openapi/asapp-autocompose-openapi.yml
+  + docs.asapp.com object references
+entities:
+- name: Conversation
+  id_fields: [conversationId, externalId]
+  api: openapi/asapp-conversations-openapi.yml
+  detail: A customer interaction/issue; created or updated by externalId (idempotent upsert).
+- name: Message
+  id_fields: [messageId]
+  api: openapi/asapp-conversations-openapi.yml
+  detail: A single message within a conversation.
+- name: Customer
+  id_fields: [customerId, externalId]
+  api: openapi/asapp-metadata-ingestion-openapi.yml
+- name: Agent
+  id_fields: [agentId]
+  api: openapi/asapp-metadata-ingestion-openapi.yml
+- name: Metadata
+  id_fields: []
+  api: openapi/asapp-metadata-ingestion-openapi.yml
+  detail: Key/value attributes attached to a conversation, customer, or agent.
+- name: Summary
+  id_fields: [summaryId]
+  api: openapi/asapp-autosummary-openapi.yml
+  detail: Free-text or structured summary of a conversation; supports feedback events.
+- name: Intent
+  id_fields: [intentCode]
+  api: openapi/asapp-autosummary-openapi.yml
+- name: CallTransfer
+  id_fields: [callTransferId]
+  api: openapi/asapp-generativeagent-openapi.yml
+- name: KnowledgeBaseArticle
+  id_fields: [articleId, submissionId]
+  api: openapi/asapp-knowledge-base-openapi.yml
+  detail: Article created via an approved submission.
+- name: CustomResponse
+  id_fields: [responseId, folderId]
+  api: openapi/asapp-autocompose-openapi.yml
+- name: StructuredDataField
+  id_fields: [id]
+  api: openapi/asapp-openapi-openapi.yml
+- name: Segment
+  id_fields: [id]
+  api: openapi/asapp-openapi-openapi.yml
+- name: CustomVocabulary
+  id_fields: [id]
+  api: openapi/asapp-openapi-openapi.yml
+- name: RedactionEntity
+  id_fields: [entityId]
+  api: openapi/asapp-openapi-openapi.yml
+relationships:
+- {from: Message, type: belongs_to, to: Conversation, via: conversationId}
+- {from: Conversation, type: has_many, to: Message, via: conversationId}
+- {from: Summary, type: belongs_to, to: Conversation, via: conversationId}
+- {from: Intent, type: belongs_to, to: Conversation, via: conversationId}
+- {from: CallTransfer, type: belongs_to, to: Conversation, via: conversationId}
+- {from: Metadata, type: belongs_to, to: Conversation, via: conversationId}
+- {from: Metadata, type: belongs_to, to: Customer, via: customerId}
+- {from: Metadata, type: belongs_to, to: Agent, via: agentId}
+- {from: KnowledgeBaseArticle, type: belongs_to, to: Submission, via: submissionId}
+- {from: CustomResponse, type: belongs_to, to: Folder, via: folderId}
