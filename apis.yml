@@ -193,6 +193,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/asapp-autosummary-overlay.yaml
 - type: DeveloperPortal
   url: https://docs.asapp.com
 - type: Documentation
