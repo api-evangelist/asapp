@@ -1,4 +1,3 @@
-# Candidate MCP tool surface derived from ASAPP OpenAPI operations.
 generated: '2026-07-18'
 method: derived
 status: candidate
@@ -249,3 +248,9 @@ tools:
 - name: deleteSegment
   description: Delete a segment
   source_operation: openapi/asapp-partner-configuration-openapi.yml#deleteSegment
+deployment:
+  mode: none
+  verified: derived
+  tools: 80
+  checked: '2026-08-12'
+  source: catalog MCP census

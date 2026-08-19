@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AutoCompose AutoTranscribe Media Gateway API",
+    "version": "0.0.3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "asapp-api-id",
+      "value": "{{asapp-api-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AutoTranscribe Media Gateway",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Start streaming",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/mg-autotranscribe/v1/start-streaming",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This starts the transcription of the audio stream.\n\nUse in conjunction with the [stop-streaming](/apis/media-gateway/stop-streaming-audio) endpoint to control when transcription occurs for a given call. This allow you to prevent transcription of sensitive parts of a conversation, such as entering PCI data.\n"
+        },
+        {
+          "info": {
+            "name": "Stop streaming",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/mg-autotranscribe/v1/stop-streaming",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This stops the transcription of the audio stream.\n\nUse in conjunction with the [start-streaming](/apis/media-gateway/start-streaming-audio) endpoint to control when transcription occurs for a given call. This allow you to prevent transcription of sensitive parts of a conversation, such as entering PCI data.\n"
+        },
+        {
+          "info": {
+            "name": "Get Twilio media stream url",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/mg-autotranscribe/v1/twilio-media-stream-url"
+          },
+          "docs": "Returns url where [Twilio media stream](/autotranscribe/deploying-autotranscribe-for-twilio) should be sent to."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,4095 @@
+{
+  "item": [
+    {
+      "id": "b1135b4e-a60e-4a4f-aee8-7925aa1c4371",
+      "name": "File Exporter",
+      "description": {
+        "content": "API to get client exports",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9217fd23-2d74-4364-b7af-ec09afdaee51",
+          "name": "List feeds",
+          "request": {
+            "name": "List feeds",
+            "description": {
+              "content": "Lists feed names for a company\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fileexporter",
+                "v1",
+                "static",
+                "listfeeds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d10d2d89-3c6e-4b95-802a-0e5335064846",
+              "name": "Successfully requested feed names",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"feeds\": [\n    \"feed_1\",\n    \"feed_2\",\n    \"feed_3\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8daa612-1eb0-4cd3-a5c9-7ce240afd4fd",
+              "name": "422 - Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"422-01\",\n    \"message\": \"Unprocessable Entity\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2418877c-e8b0-42d9-aa6f-5bcc88dd64a0",
+              "name": "500 - Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"500-01\",\n    \"message\": \"Internal server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6dac49bb-5995-42fd-ae0a-68c2fd4ca796",
+          "name": "List feed versions",
+          "request": {
+            "name": "List feed versions",
+            "description": {
+              "content": "Lists feed versions for a company\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fileexporter",
+                "v1",
+                "static",
+                "listfeedversions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"feed\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e2bb1bc5-4478-4cc5-a132-2d80ee6d0e41",
+              "name": "Successfully requested feed versions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedversions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"feed\": \"feed_test\",\n  \"versions\": [\n    \"1\",\n    \"2\",\n    \"3\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "579f3852-18e9-4a3a-be7f-73d2751800a3",
+              "name": "400 - Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedversions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"400-01\",\n    \"message\": \"Bad request\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84471dc0-edd2-4baf-9df7-a65ca51fb344",
+              "name": "401 - Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedversions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"401-01\",\n    \"message\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3d8a81a-38c1-48b8-bbad-3285a83326f1",
+              "name": "403 - Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedversions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"403-01\",\n    \"message\": \"Forbidden Response\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eae806ec-fc60-4f12-80a2-3bbc66dcd4cb",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedversions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"404-01\",\n    \"message\": \"Not Found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6181b53-46c8-4526-af5c-fb52f3236a16",
+              "name": "409 - Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedversions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"409-01\",\n    \"message\": \"Conflict\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c86a966-e973-43be-84a3-3e0ff3d8c174",
+              "name": "413 - Request Entity Too Large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedversions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"413-01\",\n    \"message\": \"Request Entity Too Large\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1b5b4a0-f0fa-4a5a-b049-4f2a1bdca1ea",
+              "name": "422 - Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedversions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"422-01\",\n    \"message\": \"Unprocessable Entity\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dbe18492-2202-4041-bbb5-ee4ae650c350",
+              "name": "429 - Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedversions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"429-01\",\n    \"message\": \"Too Many Requests\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28d1636e-74c0-4327-b2f2-41fcf37d1072",
+              "name": "503 - Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedversions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"503-01\",\n    \"message\": \"Service Unavailable\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "efc1db94-8699-42de-b793-b30407a3a518",
+              "name": "500 - Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedversions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"500-01\",\n    \"message\": \"Internal server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6df256ab-78d6-4f9a-b706-4204d1e8406e",
+          "name": "List feed formats",
+          "request": {
+            "name": "List feed formats",
+            "description": {
+              "content": "Lists feed formats for a company feed/version/\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fileexporter",
+                "v1",
+                "static",
+                "listfeedformats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"feed\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "196ea36b-a9bc-4805-ab87-03fb26dcf939",
+              "name": "Successfully requested feed formats",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedformats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"formats\": [\n    \"jsonl\",\n    \"csv\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c960dc9e-5e15-4b5e-9cab-00f765bdce53",
+              "name": "400 - Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedformats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"400-01\",\n    \"message\": \"Bad request\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "459ab6a1-9021-42a0-90e7-11af746d7d6f",
+              "name": "401 - Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedformats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"401-01\",\n    \"message\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e59d4388-bf6b-48a7-921d-38ae974aeca2",
+              "name": "403 - Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedformats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"403-01\",\n    \"message\": \"Forbidden Response\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3204fae-59be-4f42-b0a1-a68c4aa0aafc",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedformats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"404-01\",\n    \"message\": \"Not Found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8deb0cd5-a007-471d-be32-aa5ac29ef9ac",
+              "name": "409 - Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedformats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"409-01\",\n    \"message\": \"Conflict\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36659271-2e85-4d65-86b4-f4e25ded11b8",
+              "name": "413 - Request Entity Too Large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedformats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"413-01\",\n    \"message\": \"Request Entity Too Large\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a33c4dd-3ad1-4dda-8ca7-5d9a3644b0e4",
+              "name": "422 - Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedformats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"422-01\",\n    \"message\": \"Unprocessable Entity\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29edcf4c-4d43-48b8-8a64-b45e57bd6d1c",
+              "name": "429 - Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedformats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"429-01\",\n    \"message\": \"Too Many Requests\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cfd2ee6d-0178-4234-a9b0-9f23e37dd18d",
+              "name": "503 - Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedformats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"503-01\",\n    \"message\": \"Service Unavailable\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4fd10b9-4223-45a3-b26d-5b5d4b18bc4d",
+              "name": "500 - Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedformats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"500-01\",\n    \"message\": \"Internal server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "876c3306-cbe9-4cfc-940b-96dbfdd7b511",
+          "name": "List feed dates",
+          "request": {
+            "name": "List feed dates",
+            "description": {
+              "content": "Lists dates for a company feed/version/format\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fileexporter",
+                "v1",
+                "static",
+                "listfeeddates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"feed\": \"<string>\",\n  \"version\": \"<string>\",\n  \"format\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ed1f9134-5f94-45bc-8c56-718fe8dcd7bb",
+              "name": "Successfully requested feed dates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeeddates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"format=jsonl\",\n  \"dates\": [\n    \"2022-06-27\",\n    \"2022-05-20\",\n    \"2022-05-21\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b97f51b8-76f2-403a-bf0a-ba2e79f4a324",
+              "name": "400 - Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeeddates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"400-01\",\n    \"message\": \"Bad request\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c10ff5b-1e94-496d-af54-a99e008c23d2",
+              "name": "401 - Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeeddates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"401-01\",\n    \"message\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b99c66d-af95-484f-9d63-009988e2b9a1",
+              "name": "403 - Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeeddates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"403-01\",\n    \"message\": \"Forbidden Response\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3dceed5c-f3b1-4470-83a8-0075c69d7b56",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeeddates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"404-01\",\n    \"message\": \"Not Found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e57b8e81-a89f-4621-b35f-56080de48b35",
+              "name": "409 - Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeeddates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"409-01\",\n    \"message\": \"Conflict\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "537218e6-bb83-4dbe-9d6e-80c1c9d1dfbb",
+              "name": "413 - Request Entity Too Large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeeddates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"413-01\",\n    \"message\": \"Request Entity Too Large\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26bb9d41-f7a6-4149-b851-bce5387dccac",
+              "name": "422 - Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeeddates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"422-01\",\n    \"message\": \"Unprocessable Entity\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff93a181-a3d0-40d7-af30-caa102496e7f",
+              "name": "429 - Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeeddates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"429-01\",\n    \"message\": \"Too Many Requests\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ab4e254-f4ae-43ca-a41a-478ceac9006d",
+              "name": "503 - Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeeddates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"503-01\",\n    \"message\": \"Service Unavailable\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d9aff1e-023b-4b32-92e6-b1759e84054e",
+              "name": "500 - Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeeddates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"500-01\",\n    \"message\": \"Internal server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c96e67c3-63b7-4f82-a2b6-3c8c59c0c8d9",
+          "name": "List feed intervals",
+          "request": {
+            "name": "List feed intervals",
+            "description": {
+              "content": "Lists intervals for a company feed/version/format/date\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fileexporter",
+                "v1",
+                "static",
+                "listfeedintervals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"feed\": \"<string>\",\n  \"version\": \"<string>\",\n  \"format\": \"<string>\",\n  \"date\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b8afef6f-2169-41e6-b83a-31a640a6980b",
+              "name": "Successfully requested feed intervals",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedintervals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"intervals\": [\n    \"hr=01/mi=01\",\n    \"hr=01/mi=02\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd76f0cb-cc07-430e-a55e-fa14944d92bf",
+              "name": "400 - Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedintervals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"400-01\",\n    \"message\": \"Bad request\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1aea6cca-51fd-4906-8de4-96f1e28ed88b",
+              "name": "401 - Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedintervals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"401-01\",\n    \"message\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "905d8580-5f9a-4825-99e0-f2b09035bed5",
+              "name": "403 - Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedintervals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"403-01\",\n    \"message\": \"Forbidden Response\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9d2f4e5-536b-4163-9285-4d60aef3df5f",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedintervals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"404-01\",\n    \"message\": \"Not Found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "235c58bf-101b-4c37-a6fa-6a61bd5365f3",
+              "name": "409 - Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedintervals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"409-01\",\n    \"message\": \"Conflict\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec65d71c-adea-4c73-b30a-f5f497ce9e1f",
+              "name": "413 - Request Entity Too Large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedintervals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"413-01\",\n    \"message\": \"Request Entity Too Large\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba922750-7926-4cab-a04e-b77d6a24ed84",
+              "name": "422 - Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedintervals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"422-01\",\n    \"message\": \"Unprocessable Entity\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d2e5ff6-b5c4-4315-8c35-9e7c3b54f25c",
+              "name": "429 - Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedintervals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"429-01\",\n    \"message\": \"Too Many Requests\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98cc8887-2aeb-4d93-b52c-7d9138699a6b",
+              "name": "503 - Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedintervals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"503-01\",\n    \"message\": \"Service Unavailable\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1636313-0e8a-4160-b0a6-63f714eedb0c",
+              "name": "500 - Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedintervals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"500-01\",\n    \"message\": \"Internal server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28cea072-39f1-4f67-b923-c1f66fbabfef",
+          "name": "List feed files",
+          "request": {
+            "name": "List feed files",
+            "description": {
+              "content": "Lists files for a company feed/version/format/date/interval\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fileexporter",
+                "v1",
+                "static",
+                "listfeedfiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"feed\": \"<string>\",\n  \"version\": \"<string>\",\n  \"format\": \"<string>\",\n  \"date\": \"<string>\",\n  \"interval\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "db1481c5-8b85-4d09-a5a3-136caf843d2a",
+              "name": "Successfully requested feed files",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedfiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\",\n  \"files\": [\n    \"file1.jsonl\",\n    \"file2.json1\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6bb658e9-a426-411d-8c7d-54da75999f32",
+              "name": "400 - Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedfiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"400-01\",\n    \"message\": \"Bad request\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3275163-8657-4295-8ee4-2c4fc2c46f27",
+              "name": "401 - Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedfiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"401-01\",\n    \"message\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ef5d49b-d382-4922-9fe7-08b450d3ec4a",
+              "name": "403 - Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedfiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"403-01\",\n    \"message\": \"Forbidden Response\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "efeb83ac-c503-44b3-9fd8-523b59474bb2",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedfiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"404-01\",\n    \"message\": \"Not Found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e71d9801-8f3e-4100-8e5c-a2a68dc30fbf",
+              "name": "409 - Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedfiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"409-01\",\n    \"message\": \"Conflict\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ae03602-3a7c-482c-a3e6-89456b582cd6",
+              "name": "413 - Request Entity Too Large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedfiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"413-01\",\n    \"message\": \"Request Entity Too Large\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50851ce5-0584-4d0e-894d-7e857eb4dbe4",
+              "name": "422 - Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedfiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"422-01\",\n    \"message\": \"Unprocessable Entity\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40284ed9-5760-4560-8530-32b49048dda7",
+              "name": "429 - Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedfiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"429-01\",\n    \"message\": \"Too Many Requests\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "880ebe83-0c51-4034-8c80-d8feebd0fb99",
+              "name": "503 - Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedfiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"503-01\",\n    \"message\": \"Service Unavailable\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8e13f8c-863a-4f72-b298-5325b4b6c99f",
+              "name": "500 - Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "listfeedfiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"500-01\",\n    \"message\": \"Internal server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2cdcc926-99b1-434b-9508-ae250ea4c52b",
+          "name": "Retrieve a feed file",
+          "request": {
+            "name": "Retrieve a feed file",
+            "description": {
+              "content": "Retrieves a feed file URL for a company feed/version/format/date/interval/file\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fileexporter",
+                "v1",
+                "static",
+                "getfeedfile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"feed\": \"<string>\",\n  \"version\": \"<string>\",\n  \"format\": \"<string>\",\n  \"date\": \"<string>\",\n  \"fileName\": \"<string>\",\n  \"interval\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "af408cc3-9227-492b-864d-264eae700dad",
+              "name": "Successfully requested feed file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "getfeedfile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\",\n  \"fileName\": \"file1.jsonl\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\",\n  \"fileName\": \"file1.json1\",\n  \"url\": \"www.example.com/12381273972817312/file1.json1\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27a2b761-b692-428c-a394-240a5251d523",
+              "name": "400 - Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "getfeedfile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\",\n  \"fileName\": \"file1.jsonl\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"400-01\",\n    \"message\": \"Bad request\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c39f3902-df8d-4e39-93cd-7df808f3414e",
+              "name": "401 - Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "getfeedfile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\",\n  \"fileName\": \"file1.jsonl\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"401-01\",\n    \"message\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8251c3f-b956-4678-8a8c-3cd87d8fdff4",
+              "name": "403 - Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "getfeedfile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\",\n  \"fileName\": \"file1.jsonl\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"403-01\",\n    \"message\": \"Forbidden Response\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0224357c-6bc8-4ae8-8e45-dd9b44a06128",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "getfeedfile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\",\n  \"fileName\": \"file1.jsonl\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"404-01\",\n    \"message\": \"Not Found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f86a92d8-1587-4b38-b2ca-0dac6f97c7ec",
+              "name": "409 - Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "getfeedfile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\",\n  \"fileName\": \"file1.jsonl\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"409-01\",\n    \"message\": \"Conflict\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "696372de-b1ee-42f4-ad25-930635ccf995",
+              "name": "413 - Request Entity Too Large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "getfeedfile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\",\n  \"fileName\": \"file1.jsonl\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"413-01\",\n    \"message\": \"Request Entity Too Large\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b4a1361-25de-442c-bc6c-06749f19990e",
+              "name": "422 - Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "getfeedfile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\",\n  \"fileName\": \"file1.jsonl\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"422-01\",\n    \"message\": \"Unprocessable Entity\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b8ed071-9f02-4841-85ff-b2e354b52ebe",
+              "name": "429 - Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "getfeedfile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\",\n  \"fileName\": \"file1.jsonl\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"429-01\",\n    \"message\": \"Too Many Requests\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16f013d8-e826-4169-9046-9dd98be5e776",
+              "name": "503 - Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "getfeedfile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\",\n  \"fileName\": \"file1.jsonl\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"503-01\",\n    \"message\": \"Service Unavailable\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0677474f-4f8c-4706-ba01-74394424c496",
+              "name": "500 - Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fileexporter",
+                    "v1",
+                    "static",
+                    "getfeedfile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feed\": \"feed_test\",\n  \"version\": \"1\",\n  \"format\": \"jsonl\",\n  \"date\": \"2022-06-27\",\n  \"interval\": \"hr=23\",\n  \"fileName\": \"file1.jsonl\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"500-01\",\n    \"message\": \"Internal server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.asapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "asapp-api-id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "698d662f-7eef-48cf-bd39-0704ce9dafc9",
+    "name": "AutoCompose File Exporter API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Autocompose API to suggest the next agent message.\nSuggestions are based on the conversation history, conversation metadata, and\nthe in-progress message text the agent has already typed into the composer.\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AutoCompose GenerativeAgent API",
+    "version": "0.0.3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "asapp-api-id",
+      "value": "{{asapp-api-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GenerativeAgent",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Analyze conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/generativeagent/v1/analyze",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Call this API to trigger GenerativeAgent to analyze and respond to a conversation.\n\nThis API should be called after a customer sends a message while not speaking with a live agent. The Bot replies will not be returned on this request; they will be delivered asynchronously via the webhook callback.\n\nThis API also adds an optional **message** field to create a message for a given conversation before triggering the bot replies. The message object is the exact same message used in the conversations "
+        },
+        {
+          "info": {
+            "name": "Create stream URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/generativeagent/v1/streams",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API creates a generative agent event streaming URL to start a streaming connection (SSE).\n\nThis API should be called when the client boots-up to request a streaming_url, before it calls endpoints whose responses are delivered asynchronously (and most likely before calling any other endpoint).\n\nProvide the streamId to reconnect to a previous stream.\n"
+        },
+        {
+          "info": {
+            "name": "Get GenerativeAgent state",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/generativeagent/v1/state",
+            "params": [
+              {
+                "name": "criteria",
+                "value": "",
+                "type": "query",
+                "description": "Search criteria"
+              }
+            ]
+          },
+          "docs": "This API provides the current state of the generative agent for a given conversation.\n"
+        },
+        {
+          "info": {
+            "name": "Create Call Transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/generativeagent/v1/call-transfers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Call Transfer resource that represents an attempt to transfer a call from your IVR or CCaaS to ASAPP.\n\nThe `type` indicates the type of call transfer:\n- `PHONE_NUMBER`: A temporary phone number is assigned for the transfer.\n- `SIP`: Session Initiation Protocol (SIP) transfer.\n\nYou can optionally provide `inputContext` to provide context for the conversation. This is passed to GenerativeAgent.\n"
+        },
+        {
+          "info": {
+            "name": "Get Call Transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/generativeagent/v1/call-transfers/:callTransferId",
+            "params": [
+              {
+                "name": "callTransferId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the call transfer."
+              }
+            ]
+          },
+          "docs": "Get Call Transfer resource by ID.\n"
+        },
+        {
+          "info": {
+            "name": "Lookup Call Transfer with phone number and retrieve variables",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/generativeagent/v1/lookup-transfer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Lookup Call Transfer with phone number and retrieve variables.\n\nUsed by ASAPP to match the phone number with a call transfer.\n"
+        },
+        {
+          "info": {
+            "name": "Complete Call Transfer with phone number.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/generativeagent/v1/complete-transfer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Complete Call Transfer with phone number.\n\nUsed by ASAPP to release phone number back to the pool and update Call Transfer resource status.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

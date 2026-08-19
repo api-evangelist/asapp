@@ -1,0 +1,682 @@
+{
+  "item": [
+    {
+      "id": "e49ac157-58be-462c-b9fd-a1d3f1b0429a",
+      "name": "AutoTranscribe",
+      "description": {
+        "content": "Get streaming URL to transcribe audio",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "557f8f3f-8a97-4dd0-8085-833c6e96475d",
+          "name": "Get streaming URL",
+          "request": {
+            "name": "Get streaming URL",
+            "description": {
+              "content": "Get [websocket streaming URL](/autotranscribe/deploying-autotranscribe-via-websocket) to transcribe audio in real time. This websocket is used to send audio to ASAPP's transcription service and receive transcription results.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autotranscribe",
+                "v1",
+                "streaming-url"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"externalId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b42437e4-f077-4b2e-81d9-2b7c66b4378b",
+              "name": "Successfully generated the URL for streaming",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autotranscribe",
+                    "v1",
+                    "streaming-url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalId\": \"8560333f-7e53-4e9f-80f3-3409a396506e\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"streamingUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f36c9fe-9067-41ae-b986-184afc6e6c7c",
+              "name": "400 - Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autotranscribe",
+                    "v1",
+                    "streaming-url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalId\": \"8560333f-7e53-4e9f-80f3-3409a396506e\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"400-01\",\n    \"message\": \"Bad request\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25bf2c95-fce2-4704-93fa-5d4293acc1b4",
+              "name": "401 - Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autotranscribe",
+                    "v1",
+                    "streaming-url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalId\": \"8560333f-7e53-4e9f-80f3-3409a396506e\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"401-01\",\n    \"message\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98bcea4e-ee36-4330-b62b-64326ae28f6b",
+              "name": "403 - Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autotranscribe",
+                    "v1",
+                    "streaming-url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalId\": \"8560333f-7e53-4e9f-80f3-3409a396506e\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"403-01\",\n    \"message\": \"Forbidden Response\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6494977b-0c26-4f69-a8e3-185f4eca7df5",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autotranscribe",
+                    "v1",
+                    "streaming-url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalId\": \"8560333f-7e53-4e9f-80f3-3409a396506e\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"404-01\",\n    \"message\": \"Not Found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b40abf78-d25a-4e69-b0d6-6159a9db3e6c",
+              "name": "409 - Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autotranscribe",
+                    "v1",
+                    "streaming-url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalId\": \"8560333f-7e53-4e9f-80f3-3409a396506e\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"409-01\",\n    \"message\": \"Conflict\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66f97fd2-a259-46e6-a82d-efd915239401",
+              "name": "413 - Request Entity Too Large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autotranscribe",
+                    "v1",
+                    "streaming-url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalId\": \"8560333f-7e53-4e9f-80f3-3409a396506e\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"413-01\",\n    \"message\": \"Request Entity Too Large\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a61cac37-85a4-4601-abff-95236a67f1e3",
+              "name": "422 - Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autotranscribe",
+                    "v1",
+                    "streaming-url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalId\": \"8560333f-7e53-4e9f-80f3-3409a396506e\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"422-01\",\n    \"message\": \"Unprocessable Entity\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8add4b84-41d7-42c3-8a92-1dc9c34150f1",
+              "name": "429 - Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autotranscribe",
+                    "v1",
+                    "streaming-url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalId\": \"8560333f-7e53-4e9f-80f3-3409a396506e\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"429-01\",\n    \"message\": \"Too Many Requests\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c93d71b-aeac-44c3-acf8-1def86133720",
+              "name": "503 - Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autotranscribe",
+                    "v1",
+                    "streaming-url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalId\": \"8560333f-7e53-4e9f-80f3-3409a396506e\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"503-01\",\n    \"message\": \"Service Unavailable\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40ad6b10-b1be-42f1-b8de-922710bdf4db",
+              "name": "500 - Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autotranscribe",
+                    "v1",
+                    "streaming-url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalId\": \"8560333f-7e53-4e9f-80f3-3409a396506e\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"500-01\",\n    \"message\": \"Internal server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.asapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "asapp-api-id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "336cc05d-f0e0-495c-8961-f7c72cf82935",
+    "name": "AutoCompose AutoTranscribe API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Autocompose API to suggest the next agent message.\nSuggestions are based on the conversation history, conversation metadata, and\nthe in-progress message text the agent has already typed into the composer.\n",
+      "type": "text/plain"
+    }
+  }
+}

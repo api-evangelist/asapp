@@ -1,0 +1,678 @@
+{
+  "item": [
+    {
+      "id": "55568a4b-70ac-4f3f-ac65-e1d9969e0f8c",
+      "name": "Disengage",
+      "description": {
+        "content": "end the connection of a call with GenAgent",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "88ebed88-3d8c-4e48-9df7-4bd3f93cb097",
+          "name": "Disengage Genagent from conversation.",
+          "request": {
+            "name": "Disengage Genagent from conversation.",
+            "description": {
+              "content": "Disengage Genagent from conversation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mg-genagent",
+                "v1",
+                "disengage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"namespace\": \"<string>\",\n  \"guid\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "390155fe-0fcc-4be1-bdaf-53c8beabda8a",
+              "name": "Router processed the request, details are in the response body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mg-genagent",
+                    "v1",
+                    "disengage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"amazonconnect\",\n  \"guid\": \"704848f2-96c3-47cc-96d3-47ce6e1d8391\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e12f4d5e-5ecb-49f2-b494-873c206e5f1f",
+              "name": "400 - Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mg-genagent",
+                    "v1",
+                    "disengage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"amazonconnect\",\n  \"guid\": \"704848f2-96c3-47cc-96d3-47ce6e1d8391\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"400-01\",\n    \"message\": \"Bad request\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c7c3742-e9ce-4e8c-a076-e3cc03b6c582",
+              "name": "401 - Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mg-genagent",
+                    "v1",
+                    "disengage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"amazonconnect\",\n  \"guid\": \"704848f2-96c3-47cc-96d3-47ce6e1d8391\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"401-01\",\n    \"message\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6fe9a0ec-0f83-4d77-a234-f419d557f63a",
+              "name": "403 - Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mg-genagent",
+                    "v1",
+                    "disengage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"amazonconnect\",\n  \"guid\": \"704848f2-96c3-47cc-96d3-47ce6e1d8391\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"403-01\",\n    \"message\": \"Forbidden Response\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5f24ea1-fcc1-4a24-a7b3-9dc2ba5d4ecc",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mg-genagent",
+                    "v1",
+                    "disengage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"amazonconnect\",\n  \"guid\": \"704848f2-96c3-47cc-96d3-47ce6e1d8391\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"404-01\",\n    \"message\": \"Not Found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ad64a4b-8957-4b55-b902-24318b8911a8",
+              "name": "409 - Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mg-genagent",
+                    "v1",
+                    "disengage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"amazonconnect\",\n  \"guid\": \"704848f2-96c3-47cc-96d3-47ce6e1d8391\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"409-01\",\n    \"message\": \"Conflict\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c953980-d51c-4ded-8489-a6c21e47f5e2",
+              "name": "413 - Request Entity Too Large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mg-genagent",
+                    "v1",
+                    "disengage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"amazonconnect\",\n  \"guid\": \"704848f2-96c3-47cc-96d3-47ce6e1d8391\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"413-01\",\n    \"message\": \"Request Entity Too Large\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65f53d8b-846e-480a-a5c6-01435bfab38f",
+              "name": "422 - Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mg-genagent",
+                    "v1",
+                    "disengage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"amazonconnect\",\n  \"guid\": \"704848f2-96c3-47cc-96d3-47ce6e1d8391\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"422-01\",\n    \"message\": \"Unprocessable Entity\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96d2b609-4092-4dd6-b0f0-2458ecf558f7",
+              "name": "429 - Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mg-genagent",
+                    "v1",
+                    "disengage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"amazonconnect\",\n  \"guid\": \"704848f2-96c3-47cc-96d3-47ce6e1d8391\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"429-01\",\n    \"message\": \"Too Many Requests\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4168ddb-8b11-432f-87ba-327e24ea0066",
+              "name": "503 - Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mg-genagent",
+                    "v1",
+                    "disengage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"amazonconnect\",\n  \"guid\": \"704848f2-96c3-47cc-96d3-47ce6e1d8391\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"503-01\",\n    \"message\": \"Service Unavailable\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "426f656d-3c73-4257-ad4a-fb5d31b7e868",
+              "name": "500 - Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mg-genagent",
+                    "v1",
+                    "disengage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"amazonconnect\",\n  \"guid\": \"704848f2-96c3-47cc-96d3-47ce6e1d8391\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"500-01\",\n    \"message\": \"Internal server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.asapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "asapp-api-id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "011fc868-50dc-4b04-b8ff-597729643993",
+    "name": "AutoCompose Disengage API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Autocompose API to suggest the next agent message.\nSuggestions are based on the conversation history, conversation metadata, and\nthe in-progress message text the agent has already typed into the composer.\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AutoCompose Disengage API",
+    "version": "0.0.3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "asapp-api-id",
+      "value": "{{asapp-api-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Disengage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Disengage Genagent from conversation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/mg-genagent/v1/disengage",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Disengage Genagent from conversation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

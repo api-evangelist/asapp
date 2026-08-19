@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AutoCompose AutoTranscribe API",
+    "version": "0.0.3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "asapp-api-id",
+      "value": "{{asapp-api-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AutoTranscribe",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get streaming URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/autotranscribe/v1/streaming-url",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get [websocket streaming URL](/autotranscribe/deploying-autotranscribe-via-websocket) to transcribe audio in real time. This websocket is used to send audio to ASAPP's transcription service and receive transcription results.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

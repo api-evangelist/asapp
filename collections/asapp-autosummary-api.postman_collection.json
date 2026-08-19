@@ -1,0 +1,4101 @@
+{
+  "item": [
+    {
+      "id": "5282fb46-66e0-4b6b-bd18-c38aad824e56",
+      "name": "AutoSummary",
+      "description": {
+        "content": "Endpoints for summarizing conversations and retrieving structured data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f90982ad-2fcf-4895-9d88-958ec76097b2",
+          "name": "Get conversation intent",
+          "request": {
+            "name": "Get conversation intent",
+            "description": {
+              "content": "Retrieves the primary intent of a conversation, represented by both an intent code and a human-readable intent name. If no intent is detected, \"NO_INTENT\" is returned.\n\nThis endpoint requires:\n1. Intent support to be explicitly enabled for your account.\n2. A valid conversationId, which is an ASAPP-generated identifier created when using the ASAPP /conversations endpoint.\n\nUse this endpoint to gain insights into the main purpose or topic of a conversation.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autosummary",
+                "v1",
+                "intent",
+                ":conversationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The identifier for a conversation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8e03b296-136a-4c3b-b0a1-acae15e1ed4e",
+              "name": "Successfully generated intent.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "intent",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"conversationId\": \"string\",\n  \"intent\": {\n    \"code\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "460a1478-904f-4c45-bce5-1d18b9ecdfaa",
+              "name": "400 - Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "intent",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"400-01\",\n    \"message\": \"Bad request\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62cd2266-d062-4fea-9f79-cec75d086c24",
+              "name": "401 - Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "intent",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"401-01\",\n    \"message\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7fc34b58-95a5-4a68-996b-846e4c2bc5d7",
+              "name": "403 - Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "intent",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"403-01\",\n    \"message\": \"Forbidden Response\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f7fef2d-200a-47c3-9522-100a9095e9e5",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "intent",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"404-01\",\n    \"message\": \"Not Found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b590457-582f-4503-861a-481b7f8780f4",
+              "name": "409 - Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "intent",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"409-01\",\n    \"message\": \"Conflict\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bcf11594-410e-4d54-8a98-f2b33dd29b8d",
+              "name": "413 - Request Entity Too Large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "intent",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"413-01\",\n    \"message\": \"Request Entity Too Large\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5559f8a8-1310-49a3-9fca-c9e0e1f9783f",
+              "name": "422 - Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "intent",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"422-01\",\n    \"message\": \"Unprocessable Entity\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ecdfdde-994f-4974-b5fd-1e09e22dfec7",
+              "name": "429 - Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "intent",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"429-01\",\n    \"message\": \"Too Many Requests\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99e1e0f1-6706-4b65-8a93-a3b9d248e2e1",
+              "name": "503 - Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "intent",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"503-01\",\n    \"message\": \"Service Unavailable\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8562e0bb-95a2-4e55-b5be-a533f3e6e437",
+              "name": "500 - Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "intent",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"500-01\",\n    \"message\": \"Internal server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92a40ba1-e42f-48a4-99f0-c32efa733fb9",
+          "name": "Create conversation intent",
+          "request": {
+            "name": "Create conversation intent",
+            "description": {
+              "content": "Retrieves the primary intent of a conversation, represented by both an intent code and a human-readable intent name. If no intent is detected, \"NO_INTENT\" is returned.\nThis endpoint requires:\n1. Intent support to be explicitly enabled for your account.\n2. An id from ASAPP system (conversationId or IssueId) or your own id (externalConversationId).\nUse this endpoint to gain insights into the main purpose or topic of a conversation.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autosummary",
+                "v1",
+                "intent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"conversationId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "caef4d40-0771-4bde-aaa1-0f205c031418",
+              "name": "Successfully generated intent.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "intent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"conversationId\": \"string\",\n  \"intent\": {\n    \"code\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c1f3e05-37f9-42c9-a643-e7f7e8e8b051",
+              "name": "400 - Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "intent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"400-01\",\n    \"message\": \"Bad request\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23ee0baf-756b-448b-8cab-99ad0d63a639",
+              "name": "401 - Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "intent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"401-01\",\n    \"message\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bdfa8cea-27e6-4c22-ae45-7838f0a36c94",
+              "name": "403 - Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "intent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"403-01\",\n    \"message\": \"Forbidden Response\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb62cda2-35e8-4870-a8a3-b2113198f30f",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "intent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"404-01\",\n    \"message\": \"Not Found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5ec1a00-8505-45c8-ad15-a85cc76312b2",
+              "name": "409 - Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "intent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"409-01\",\n    \"message\": \"Conflict\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "003d0e28-2ef9-46c3-ab6e-ea26f1c50be4",
+              "name": "413 - Request Entity Too Large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "intent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"413-01\",\n    \"message\": \"Request Entity Too Large\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0745859-ba86-4132-a1d9-1e2e0f1a1721",
+              "name": "422 - Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "intent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"422-01\",\n    \"message\": \"Unprocessable Entity\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78ab0df6-4cd1-4ced-a262-cd8dac47263a",
+              "name": "429 - Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "intent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"429-01\",\n    \"message\": \"Too Many Requests\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "077e1063-baae-4538-8413-72fa6ca7363b",
+              "name": "503 - Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "intent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"503-01\",\n    \"message\": \"Service Unavailable\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94666586-efce-4217-9008-464ab2db996a",
+              "name": "500 - Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "intent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"500-01\",\n    \"message\": \"Internal server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c240fabf-3c00-4ac4-9dd1-93b0ce7212a1",
+          "name": "Get free text summary",
+          "request": {
+            "name": "Get free text summary",
+            "description": {
+              "content": "<Warning>\n**Deprecated**\n\nReplaced by [POST /autosummary/v1/free-text-summaries](/apis/autosummary/retrieve-free-text-summary)\n</Warning>\nGenerates a concise, human-readable summary of a conversation.\nProvide an agentExternalId if you want to get the summary for a single agent's involvment with a conversation.\nMultilingual support: You can get summaries in languages different from English by making use of the 'Accept-Language' header.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autosummary",
+                "v1",
+                "free-text-summaries",
+                ":conversationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "agentExternalId",
+                  "value": "<string>",
+                  "description": "Your unique identifier for the agent."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The identifier for a conversation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "65417407-ce4f-4ae7-8ae4-fc0508b6150c",
+              "name": "Successfully generated summary.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "free-text-summaries",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentExternalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"conversationId\": \"string\",\n  \"summaryId\": \"string\",\n  \"summaryText\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8248768c-da59-4937-b9f3-5513687bfb4b",
+              "name": "400 - Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "free-text-summaries",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentExternalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"400-01\",\n    \"message\": \"Bad request\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69c53cdb-d221-4ba8-a785-be87d798160b",
+              "name": "401 - Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "free-text-summaries",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentExternalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"401-01\",\n    \"message\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bbb43690-78f1-443f-92ab-b88a08bd3f17",
+              "name": "403 - Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "free-text-summaries",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentExternalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"403-01\",\n    \"message\": \"Forbidden Response\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18cf46c5-2eb2-4c2a-ab81-088510f5bb1c",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "free-text-summaries",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentExternalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"404-01\",\n    \"message\": \"Not Found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "713103fc-29de-4e86-8a81-20760f597fda",
+              "name": "409 - Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "free-text-summaries",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentExternalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"409-01\",\n    \"message\": \"Conflict\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "592a36d7-0e86-44d2-9e36-ed18d834380b",
+              "name": "413 - Request Entity Too Large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "free-text-summaries",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentExternalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"413-01\",\n    \"message\": \"Request Entity Too Large\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3e4ee3e-4080-4a2a-a988-b79bde21b581",
+              "name": "422 - Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "free-text-summaries",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentExternalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"422-01\",\n    \"message\": \"Unprocessable Entity\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3421a321-e515-4048-8fb4-cfc457e340cf",
+              "name": "429 - Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "free-text-summaries",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentExternalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"429-01\",\n    \"message\": \"Too Many Requests\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a993858-9517-4e6e-9110-de32c8a40006",
+              "name": "503 - Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "free-text-summaries",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentExternalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"503-01\",\n    \"message\": \"Service Unavailable\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c4c63e5-00f1-49cd-a3f0-4029adbc1d26",
+              "name": "500 - Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "free-text-summaries",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentExternalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"500-01\",\n    \"message\": \"Internal server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d713b574-9215-447e-b117-29c677e76770",
+          "name": "Provide feedback.",
+          "request": {
+            "name": "Provide feedback.",
+            "description": {
+              "content": "Create a feedback event with the full and updated summary. Each event is associated with a specific summary id. \n\nThe event must contain the final summary, in the form of text.        \n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autosummary",
+                "v1",
+                "feedback",
+                "free-text-summaries",
+                ":conversationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "agentExternalId",
+                  "value": "<string>",
+                  "description": "Your unique identifier for the agent."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The identifier for a conversation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"summaryId\": \"<string>\",\n  \"summaryText\": \"<string>\",\n  \"externalConversationId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b46f7145-05cd-4383-9b3b-d2729eea120a",
+              "name": "Successfully accepted a feedback event for the summary.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "feedback",
+                    "free-text-summaries",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentExternalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalConversationId\": \"01GCS2XA9447BCQANJF2SXXVA0\",\n  \"summaryId\": \"0083d936-ff70-49fc-ac19-74f1246d8b27\",\n  \"summaryText\": \"The customer has issues with his symmetric internet service.\\nThe customer explained the service has not enough bandwidth.\\nThe customer explained the service has not enough bandwidth.\\nThe agent explained how to run a diagnosis.\\nThe customer ran the diagnosis.\\n\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cea33766-e273-4580-af00-fa14885300b4",
+              "name": "400 - Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "feedback",
+                    "free-text-summaries",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentExternalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalConversationId\": \"01GCS2XA9447BCQANJF2SXXVA0\",\n  \"summaryId\": \"0083d936-ff70-49fc-ac19-74f1246d8b27\",\n  \"summaryText\": \"The customer has issues with his symmetric internet service.\\nThe customer explained the service has not enough bandwidth.\\nThe customer explained the service has not enough bandwidth.\\nThe agent explained how to run a diagnosis.\\nThe customer ran the diagnosis.\\n\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"400-01\",\n    \"message\": \"Bad request\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "19748e7a-fd50-4360-b43b-644a374e2c90",
+              "name": "401 - Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "feedback",
+                    "free-text-summaries",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentExternalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalConversationId\": \"01GCS2XA9447BCQANJF2SXXVA0\",\n  \"summaryId\": \"0083d936-ff70-49fc-ac19-74f1246d8b27\",\n  \"summaryText\": \"The customer has issues with his symmetric internet service.\\nThe customer explained the service has not enough bandwidth.\\nThe customer explained the service has not enough bandwidth.\\nThe agent explained how to run a diagnosis.\\nThe customer ran the diagnosis.\\n\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"401-01\",\n    \"message\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a964947-9168-4023-b87f-0a791cf46793",
+              "name": "403 - Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "feedback",
+                    "free-text-summaries",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentExternalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalConversationId\": \"01GCS2XA9447BCQANJF2SXXVA0\",\n  \"summaryId\": \"0083d936-ff70-49fc-ac19-74f1246d8b27\",\n  \"summaryText\": \"The customer has issues with his symmetric internet service.\\nThe customer explained the service has not enough bandwidth.\\nThe customer explained the service has not enough bandwidth.\\nThe agent explained how to run a diagnosis.\\nThe customer ran the diagnosis.\\n\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"403-01\",\n    \"message\": \"Forbidden Response\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f485caa7-1421-4db6-87a1-bcaaa963a1de",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "feedback",
+                    "free-text-summaries",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentExternalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalConversationId\": \"01GCS2XA9447BCQANJF2SXXVA0\",\n  \"summaryId\": \"0083d936-ff70-49fc-ac19-74f1246d8b27\",\n  \"summaryText\": \"The customer has issues with his symmetric internet service.\\nThe customer explained the service has not enough bandwidth.\\nThe customer explained the service has not enough bandwidth.\\nThe agent explained how to run a diagnosis.\\nThe customer ran the diagnosis.\\n\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"404-01\",\n    \"message\": \"Not Found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c42fdecf-f4f6-47b3-9ae6-461f6070c573",
+              "name": "409 - Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "feedback",
+                    "free-text-summaries",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentExternalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalConversationId\": \"01GCS2XA9447BCQANJF2SXXVA0\",\n  \"summaryId\": \"0083d936-ff70-49fc-ac19-74f1246d8b27\",\n  \"summaryText\": \"The customer has issues with his symmetric internet service.\\nThe customer explained the service has not enough bandwidth.\\nThe customer explained the service has not enough bandwidth.\\nThe agent explained how to run a diagnosis.\\nThe customer ran the diagnosis.\\n\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"409-01\",\n    \"message\": \"Conflict\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d17e2ac-05ee-4090-83ca-85cae47dcf4f",
+              "name": "413 - Request Entity Too Large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "feedback",
+                    "free-text-summaries",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentExternalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalConversationId\": \"01GCS2XA9447BCQANJF2SXXVA0\",\n  \"summaryId\": \"0083d936-ff70-49fc-ac19-74f1246d8b27\",\n  \"summaryText\": \"The customer has issues with his symmetric internet service.\\nThe customer explained the service has not enough bandwidth.\\nThe customer explained the service has not enough bandwidth.\\nThe agent explained how to run a diagnosis.\\nThe customer ran the diagnosis.\\n\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"413-01\",\n    \"message\": \"Request Entity Too Large\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "817a4265-7972-417e-b30f-eac25a2d0bad",
+              "name": "422 - Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "feedback",
+                    "free-text-summaries",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentExternalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalConversationId\": \"01GCS2XA9447BCQANJF2SXXVA0\",\n  \"summaryId\": \"0083d936-ff70-49fc-ac19-74f1246d8b27\",\n  \"summaryText\": \"The customer has issues with his symmetric internet service.\\nThe customer explained the service has not enough bandwidth.\\nThe customer explained the service has not enough bandwidth.\\nThe agent explained how to run a diagnosis.\\nThe customer ran the diagnosis.\\n\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"422-01\",\n    \"message\": \"Unprocessable Entity\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9142bac-1128-4a45-bee5-ff20960ace9e",
+              "name": "429 - Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "feedback",
+                    "free-text-summaries",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentExternalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalConversationId\": \"01GCS2XA9447BCQANJF2SXXVA0\",\n  \"summaryId\": \"0083d936-ff70-49fc-ac19-74f1246d8b27\",\n  \"summaryText\": \"The customer has issues with his symmetric internet service.\\nThe customer explained the service has not enough bandwidth.\\nThe customer explained the service has not enough bandwidth.\\nThe agent explained how to run a diagnosis.\\nThe customer ran the diagnosis.\\n\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"429-01\",\n    \"message\": \"Too Many Requests\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43c52f09-6b7b-4907-bb28-766b2aced8d1",
+              "name": "503 - Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "feedback",
+                    "free-text-summaries",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentExternalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalConversationId\": \"01GCS2XA9447BCQANJF2SXXVA0\",\n  \"summaryId\": \"0083d936-ff70-49fc-ac19-74f1246d8b27\",\n  \"summaryText\": \"The customer has issues with his symmetric internet service.\\nThe customer explained the service has not enough bandwidth.\\nThe customer explained the service has not enough bandwidth.\\nThe agent explained how to run a diagnosis.\\nThe customer ran the diagnosis.\\n\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"503-01\",\n    \"message\": \"Service Unavailable\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66b44552-1540-4923-b629-6125fb655807",
+              "name": "500 - Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "feedback",
+                    "free-text-summaries",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentExternalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The identifier for a conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalConversationId\": \"01GCS2XA9447BCQANJF2SXXVA0\",\n  \"summaryId\": \"0083d936-ff70-49fc-ac19-74f1246d8b27\",\n  \"summaryText\": \"The customer has issues with his symmetric internet service.\\nThe customer explained the service has not enough bandwidth.\\nThe customer explained the service has not enough bandwidth.\\nThe agent explained how to run a diagnosis.\\nThe customer ran the diagnosis.\\n\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"500-01\",\n    \"message\": \"Internal server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c87cf20-f3a3-4e38-847b-91b797e29496",
+          "name": "Retrieve free text summary",
+          "request": {
+            "name": "Retrieve free text summary",
+            "description": {
+              "content": "Retrieves a concise, human-readable summary of a conversation.\n\nProvide an agentExternalId if you want to get the summary for a single agent's involvement with a conversation.\n\nYou can use the id from ASAPP's system (conversationId or IssueId) or your own id (externalConversationId).\n\nMultilingual support: You can get summaries in languages different from English by making use of the 'Accept-Language' header.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autosummary",
+                "v1",
+                "free-text-summaries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9311cb2b-aa4e-43ba-80dc-0bc50c877e9b",
+              "name": "Successfully retrieved free text summary.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "free-text-summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"conversationId\": \"string\",\n  \"summaryId\": \"string\",\n  \"summaryText\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38d06b37-9f3b-4d77-9702-376df7b86e1f",
+              "name": "400 - Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "free-text-summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"400-01\",\n    \"message\": \"Bad request\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "745e72f6-cc7e-415f-b415-b75d00d3432d",
+              "name": "401 - Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "free-text-summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"401-01\",\n    \"message\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5687c7b3-1f8a-4537-961d-f3de8f991d79",
+              "name": "403 - Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "free-text-summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"403-01\",\n    \"message\": \"Forbidden Response\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9375162b-2c6d-47f1-a2a7-ed1ea1d69ccc",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "free-text-summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"404-01\",\n    \"message\": \"Not Found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01ce915b-b03f-44b5-ac73-03f6a217b2f0",
+              "name": "409 - Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "free-text-summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"409-01\",\n    \"message\": \"Conflict\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ac09814-6d2f-454f-883e-c4c79b1dafea",
+              "name": "413 - Request Entity Too Large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "free-text-summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"413-01\",\n    \"message\": \"Request Entity Too Large\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f126737b-606c-4516-991d-cc5e68c0ebb5",
+              "name": "422 - Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "free-text-summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"422-01\",\n    \"message\": \"Unprocessable Entity\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57e87134-1e07-4eb8-9ffc-4973b53e22a8",
+              "name": "429 - Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "free-text-summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"429-01\",\n    \"message\": \"Too Many Requests\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c352ea9b-eadf-4313-81aa-348ed8486c30",
+              "name": "503 - Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "free-text-summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"503-01\",\n    \"message\": \"Service Unavailable\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0d7aa35-1ede-4dca-96ff-bef59135b78d",
+              "name": "500 - Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "free-text-summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"500-01\",\n    \"message\": \"Internal server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11dae12f-02e4-4e2f-a3fa-a0e8a644e838",
+          "name": "Retrieve structured data",
+          "request": {
+            "name": "Retrieve structured data",
+            "description": {
+              "content": "Retrieves a set of structured data about a conversation that is already known to ASAPP.\n\nYou can use the id from ASAPP's system (conversationId or IssueId) or your own id (externalConversationId).\n\nProvide an agentExternalId if you want to get the structured data for a single agent's involvement with a conversation.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autosummary",
+                "v1",
+                "structured-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "53f3923d-7478-4af2-ae7a-2bb93773d644",
+              "name": "Successfully retrieved structured data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "structured-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"conversationId\": \"string\",\n  \"id\": \"string\",\n  \"structuredDataMetrics\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"value\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5b79b25-9e3e-47e8-96da-707394f97082",
+              "name": "400 - Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "structured-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"400-01\",\n    \"message\": \"Bad request\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8803af33-e806-41b6-babe-b2d9f8d95fb4",
+              "name": "401 - Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "structured-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"401-01\",\n    \"message\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9277aec3-5a92-443e-a890-d8ddd665f995",
+              "name": "403 - Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "structured-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"403-01\",\n    \"message\": \"Forbidden Response\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed18d523-9666-4fbf-adf4-7903697ad3e1",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "structured-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"404-01\",\n    \"message\": \"Not Found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5fb19f3-35e7-4013-9ead-31152155117e",
+              "name": "409 - Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "structured-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"409-01\",\n    \"message\": \"Conflict\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "273acd91-fb90-4359-a6a9-b94e58297343",
+              "name": "413 - Request Entity Too Large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "structured-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"413-01\",\n    \"message\": \"Request Entity Too Large\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2004a23a-fdb4-4a32-b763-4e8238d2ec02",
+              "name": "422 - Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "structured-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"422-01\",\n    \"message\": \"Unprocessable Entity\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf213d08-81d1-44d8-a27b-303edaf57c06",
+              "name": "429 - Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "structured-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"429-01\",\n    \"message\": \"Too Many Requests\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0656b40a-88e0-4705-a09b-be70b93bf5cf",
+              "name": "503 - Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "structured-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"503-01\",\n    \"message\": \"Service Unavailable\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6d72fd7-75e0-48e4-9991-24ba892bbf24",
+              "name": "500 - Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autosummary",
+                    "v1",
+                    "structured-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversationId\": \"<string>\",\n  \"agentExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"500-01\",\n    \"message\": \"Internal server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.asapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "asapp-api-id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "afb2a531-518f-4bb8-9421-63e98d351ed4",
+    "name": "AutoCompose AutoSummary API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Autocompose API to suggest the next agent message.\nSuggestions are based on the conversation history, conversation metadata, and\nthe in-progress message text the agent has already typed into the composer.\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AutoCompose Metadata API",
+    "version": "0.0.3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "asapp-api-id",
+      "value": "{{asapp-api-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add an agent metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/metadata-ingestion/v1/single-agent-metadata",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add metadata attributes of one agent\n"
+        },
+        {
+          "info": {
+            "name": "Add multiple agent metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/metadata-ingestion/v1/many-agent-metadata",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add multiple agent metadata items; submit items in a batch in one request\n"
+        },
+        {
+          "info": {
+            "name": "Add a conversation metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/metadata-ingestion/v1/single-convo-metadata",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add metadata attributes of one issue/conversation\n"
+        },
+        {
+          "info": {
+            "name": "Add multiple conversation metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/metadata-ingestion/v1/many-convo-metadata",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add multiple issue/conversation metadata items; submit items in a batch in one request\n"
+        },
+        {
+          "info": {
+            "name": "Add a customer metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/metadata-ingestion/v1/single-customer-metadata",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add metadata attributes of one customer\n"
+        },
+        {
+          "info": {
+            "name": "Add multiple customer metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/metadata-ingestion/v1/many-customer-metadata",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add multiple customer metadata items; submit items in a batch in one request\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

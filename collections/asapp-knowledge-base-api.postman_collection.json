@@ -1,0 +1,1532 @@
+{
+  "item": [
+    {
+      "id": "6be6098d-671e-4d53-8ad6-a36ab324ddfc",
+      "name": "Knowledge Base",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cf58232d-551c-4fad-96aa-1c6d0b9c65be",
+          "name": "Create a submission",
+          "request": {
+            "name": "Create a submission",
+            "description": {
+              "content": "Initiate a request to add a new article or update an existing one. The provided title and content will be processed to create the final version of the submission.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge-base",
+                "v1",
+                "submissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"articleId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"content\": \"<string>\",\n  \"url\": \"<string>\",\n  \"metadata\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"queryExamples\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"additionalInstructions\": [\n    {\n      \"clarificationInstruction\": \"<string>\",\n      \"exampleResponse\": \"<string>\"\n    },\n    {\n      \"clarificationInstruction\": \"<string>\",\n      \"exampleResponse\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9d573174-a419-4fbb-b67d-0f8bcaba3f34",
+              "name": "Submission successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "submissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"articleId\": \"8f8dcc09-22d7-4aed-acae-fddd060c3a88\",\n  \"title\": \"5G Data Plan\",\n  \"content\": \"Our 5G data plans offer lightning-fast speeds and generous data allowances. The Basic 5G plan includes 50GB of data per month, while our Unlimited 5G plan offers truly unlimited data with no speed caps. Both plans include unlimited calls and texts within the country. International roaming can be added for an additional fee.\",\n  \"url\": \"https://example.com/5g-data-plans\",\n  \"metadata\": [\n    {\n      \"key\": \"department\",\n      \"value\": \"Customer experience\"\n    }\n  ],\n  \"queryExamples\": [\n    \"What 5G plans do you offer?\",\n    \"Is there an unlimited 5G plan?\"\n  ],\n  \"additionalInstructions\": [\n    {\n      \"clarificationInstruction\": \"Emphasize that 5G coverage may vary by location\",\n      \"exampleResponse\": \"Our 5G plans offer great speeds and data allowances, but please note that 5G coverage may vary depending on your location. You can check coverage in your area on our website.\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"fddd060c-22d7-4aed-acae-8f8dcc093a88\",\n  \"articleId\": \"8f8dcc09-22d7-4aed-acae-fddd060c3a88\",\n  \"submittedAt\": \"2024-12-12T00:00:00\",\n  \"title\": \"5G Data Plan\",\n  \"content\": \"Our 5G data plans offer lightning-fast speeds and generous data allowances. The Basic 5G plan includes 50GB of data per month, while our Unlimited 5G plan offers truly unlimited data with no speed caps. Both plans include unlimited calls and texts within the country. International roaming can be added for an additional fee.\",\n  \"url\": \"https://example.com/5g-data-plans\",\n  \"metadata\": [\n    {\n      \"key\": \"department\",\n      \"value\": \"Customer experience\"\n    }\n  ],\n  \"queryExamples\": [\n    \"What 5G plans do you offer?\",\n    \"Is there an unlimited 5G plan?\"\n  ],\n  \"additionalInstructions\": [\n    {\n      \"clarificationInstruction\": \"Emphasize that 5G coverage may vary by location\",\n      \"exampleResponse\": \"Our 5G plans offer great speeds and data allowances, but please note that 5G coverage may vary depending on your location. You can check coverage in your area on our website.\"\n    }\n  ],\n  \"status\": \"PENDING_REVIEW\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7746818-6ea0-4dec-9002-8b49de420ae7",
+              "name": "400 - Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "submissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"articleId\": \"8f8dcc09-22d7-4aed-acae-fddd060c3a88\",\n  \"title\": \"5G Data Plan\",\n  \"content\": \"Our 5G data plans offer lightning-fast speeds and generous data allowances. The Basic 5G plan includes 50GB of data per month, while our Unlimited 5G plan offers truly unlimited data with no speed caps. Both plans include unlimited calls and texts within the country. International roaming can be added for an additional fee.\",\n  \"url\": \"https://example.com/5g-data-plans\",\n  \"metadata\": [\n    {\n      \"key\": \"department\",\n      \"value\": \"Customer experience\"\n    }\n  ],\n  \"queryExamples\": [\n    \"What 5G plans do you offer?\",\n    \"Is there an unlimited 5G plan?\"\n  ],\n  \"additionalInstructions\": [\n    {\n      \"clarificationInstruction\": \"Emphasize that 5G coverage may vary by location\",\n      \"exampleResponse\": \"Our 5G plans offer great speeds and data allowances, but please note that 5G coverage may vary depending on your location. You can check coverage in your area on our website.\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"400-01\",\n    \"message\": \"Bad request\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ab67a1b-4103-4cb0-8d87-940e99aba807",
+              "name": "401 - Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "submissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"articleId\": \"8f8dcc09-22d7-4aed-acae-fddd060c3a88\",\n  \"title\": \"5G Data Plan\",\n  \"content\": \"Our 5G data plans offer lightning-fast speeds and generous data allowances. The Basic 5G plan includes 50GB of data per month, while our Unlimited 5G plan offers truly unlimited data with no speed caps. Both plans include unlimited calls and texts within the country. International roaming can be added for an additional fee.\",\n  \"url\": \"https://example.com/5g-data-plans\",\n  \"metadata\": [\n    {\n      \"key\": \"department\",\n      \"value\": \"Customer experience\"\n    }\n  ],\n  \"queryExamples\": [\n    \"What 5G plans do you offer?\",\n    \"Is there an unlimited 5G plan?\"\n  ],\n  \"additionalInstructions\": [\n    {\n      \"clarificationInstruction\": \"Emphasize that 5G coverage may vary by location\",\n      \"exampleResponse\": \"Our 5G plans offer great speeds and data allowances, but please note that 5G coverage may vary depending on your location. You can check coverage in your area on our website.\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"401-01\",\n    \"message\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf567a99-32f6-4f50-bae7-e928462d5a8b",
+              "name": "403 - Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "submissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"articleId\": \"8f8dcc09-22d7-4aed-acae-fddd060c3a88\",\n  \"title\": \"5G Data Plan\",\n  \"content\": \"Our 5G data plans offer lightning-fast speeds and generous data allowances. The Basic 5G plan includes 50GB of data per month, while our Unlimited 5G plan offers truly unlimited data with no speed caps. Both plans include unlimited calls and texts within the country. International roaming can be added for an additional fee.\",\n  \"url\": \"https://example.com/5g-data-plans\",\n  \"metadata\": [\n    {\n      \"key\": \"department\",\n      \"value\": \"Customer experience\"\n    }\n  ],\n  \"queryExamples\": [\n    \"What 5G plans do you offer?\",\n    \"Is there an unlimited 5G plan?\"\n  ],\n  \"additionalInstructions\": [\n    {\n      \"clarificationInstruction\": \"Emphasize that 5G coverage may vary by location\",\n      \"exampleResponse\": \"Our 5G plans offer great speeds and data allowances, but please note that 5G coverage may vary depending on your location. You can check coverage in your area on our website.\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"403-01\",\n    \"message\": \"Forbidden Response\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8b63b68-e0af-46e9-8298-a33e4b0a7063",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "submissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"articleId\": \"8f8dcc09-22d7-4aed-acae-fddd060c3a88\",\n  \"title\": \"5G Data Plan\",\n  \"content\": \"Our 5G data plans offer lightning-fast speeds and generous data allowances. The Basic 5G plan includes 50GB of data per month, while our Unlimited 5G plan offers truly unlimited data with no speed caps. Both plans include unlimited calls and texts within the country. International roaming can be added for an additional fee.\",\n  \"url\": \"https://example.com/5g-data-plans\",\n  \"metadata\": [\n    {\n      \"key\": \"department\",\n      \"value\": \"Customer experience\"\n    }\n  ],\n  \"queryExamples\": [\n    \"What 5G plans do you offer?\",\n    \"Is there an unlimited 5G plan?\"\n  ],\n  \"additionalInstructions\": [\n    {\n      \"clarificationInstruction\": \"Emphasize that 5G coverage may vary by location\",\n      \"exampleResponse\": \"Our 5G plans offer great speeds and data allowances, but please note that 5G coverage may vary depending on your location. You can check coverage in your area on our website.\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"404-01\",\n    \"message\": \"Not Found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a56fcd5c-554c-4406-9bdf-7c88bee97078",
+              "name": "413 - Request Entity Too Large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "submissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"articleId\": \"8f8dcc09-22d7-4aed-acae-fddd060c3a88\",\n  \"title\": \"5G Data Plan\",\n  \"content\": \"Our 5G data plans offer lightning-fast speeds and generous data allowances. The Basic 5G plan includes 50GB of data per month, while our Unlimited 5G plan offers truly unlimited data with no speed caps. Both plans include unlimited calls and texts within the country. International roaming can be added for an additional fee.\",\n  \"url\": \"https://example.com/5g-data-plans\",\n  \"metadata\": [\n    {\n      \"key\": \"department\",\n      \"value\": \"Customer experience\"\n    }\n  ],\n  \"queryExamples\": [\n    \"What 5G plans do you offer?\",\n    \"Is there an unlimited 5G plan?\"\n  ],\n  \"additionalInstructions\": [\n    {\n      \"clarificationInstruction\": \"Emphasize that 5G coverage may vary by location\",\n      \"exampleResponse\": \"Our 5G plans offer great speeds and data allowances, but please note that 5G coverage may vary depending on your location. You can check coverage in your area on our website.\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"413-01\",\n    \"message\": \"Request Entity Too Large\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e338e61-3d9c-40d0-8dc1-eb9924dfe245",
+              "name": "429 - Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "submissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"articleId\": \"8f8dcc09-22d7-4aed-acae-fddd060c3a88\",\n  \"title\": \"5G Data Plan\",\n  \"content\": \"Our 5G data plans offer lightning-fast speeds and generous data allowances. The Basic 5G plan includes 50GB of data per month, while our Unlimited 5G plan offers truly unlimited data with no speed caps. Both plans include unlimited calls and texts within the country. International roaming can be added for an additional fee.\",\n  \"url\": \"https://example.com/5g-data-plans\",\n  \"metadata\": [\n    {\n      \"key\": \"department\",\n      \"value\": \"Customer experience\"\n    }\n  ],\n  \"queryExamples\": [\n    \"What 5G plans do you offer?\",\n    \"Is there an unlimited 5G plan?\"\n  ],\n  \"additionalInstructions\": [\n    {\n      \"clarificationInstruction\": \"Emphasize that 5G coverage may vary by location\",\n      \"exampleResponse\": \"Our 5G plans offer great speeds and data allowances, but please note that 5G coverage may vary depending on your location. You can check coverage in your area on our website.\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"429-01\",\n    \"message\": \"Too Many Requests\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ba5c6ea-783d-452b-86a0-4b68068452f6",
+              "name": "503 - Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "submissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"articleId\": \"8f8dcc09-22d7-4aed-acae-fddd060c3a88\",\n  \"title\": \"5G Data Plan\",\n  \"content\": \"Our 5G data plans offer lightning-fast speeds and generous data allowances. The Basic 5G plan includes 50GB of data per month, while our Unlimited 5G plan offers truly unlimited data with no speed caps. Both plans include unlimited calls and texts within the country. International roaming can be added for an additional fee.\",\n  \"url\": \"https://example.com/5g-data-plans\",\n  \"metadata\": [\n    {\n      \"key\": \"department\",\n      \"value\": \"Customer experience\"\n    }\n  ],\n  \"queryExamples\": [\n    \"What 5G plans do you offer?\",\n    \"Is there an unlimited 5G plan?\"\n  ],\n  \"additionalInstructions\": [\n    {\n      \"clarificationInstruction\": \"Emphasize that 5G coverage may vary by location\",\n      \"exampleResponse\": \"Our 5G plans offer great speeds and data allowances, but please note that 5G coverage may vary depending on your location. You can check coverage in your area on our website.\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"503-01\",\n    \"message\": \"Service Unavailable\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cdb60055-62a5-4665-abc4-4005fa6728e8",
+              "name": "500 - Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "submissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"articleId\": \"8f8dcc09-22d7-4aed-acae-fddd060c3a88\",\n  \"title\": \"5G Data Plan\",\n  \"content\": \"Our 5G data plans offer lightning-fast speeds and generous data allowances. The Basic 5G plan includes 50GB of data per month, while our Unlimited 5G plan offers truly unlimited data with no speed caps. Both plans include unlimited calls and texts within the country. International roaming can be added for an additional fee.\",\n  \"url\": \"https://example.com/5g-data-plans\",\n  \"metadata\": [\n    {\n      \"key\": \"department\",\n      \"value\": \"Customer experience\"\n    }\n  ],\n  \"queryExamples\": [\n    \"What 5G plans do you offer?\",\n    \"Is there an unlimited 5G plan?\"\n  ],\n  \"additionalInstructions\": [\n    {\n      \"clarificationInstruction\": \"Emphasize that 5G coverage may vary by location\",\n      \"exampleResponse\": \"Our 5G plans offer great speeds and data allowances, but please note that 5G coverage may vary depending on your location. You can check coverage in your area on our website.\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"500-01\",\n    \"message\": \"Internal server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b87c575-e090-4580-8c57-cbbe5993da60",
+          "name": "Retrieve a submission",
+          "request": {
+            "name": "Retrieve a submission",
+            "description": {
+              "content": "Obtain the details of a specific submission using its unique identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge-base",
+                "v1",
+                "submissions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier for the submission to be retrieved."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ab0397fc-cf95-4943-af8c-115d48bd0417",
+              "name": "Submission successfully retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "submissions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier for the submission to be retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"fddd060c-22d7-4aed-acae-8f8dcc093a88\",\n  \"articleId\": \"8f8dcc09-22d7-4aed-acae-fddd060c3a88\",\n  \"submittedAt\": \"2024-12-12T00:00:00Z\",\n  \"title\": \"5G Data Plan\",\n  \"content\": \"Our 5G data plans offer lightning-fast speeds and generous data allowances. The Basic 5G plan includes 50GB of data per month, while our Unlimited 5G plan offers truly unlimited data with no speed caps. Both plans include unlimited calls and texts within the country. International roaming can be added for an additional fee.\",\n  \"url\": \"https://example.com/5g-data-plans\",\n  \"metadata\": [\n    {\n      \"key\": \"department\",\n      \"value\": \"Customer experience\"\n    }\n  ],\n  \"queryExamples\": [\n    \"What 5G plans do you offer?\",\n    \"Is there an unlimited 5G plan?\"\n  ],\n  \"additionalInstructions\": [\n    {\n      \"clarificationInstruction\": \"Emphasize that 5G coverage may vary by location\",\n      \"exampleResponse\": \"Our 5G plans offer great speeds and data allowances, but please note that 5G coverage may vary depending on your location. You can check coverage in your area on our website.\"\n    }\n  ],\n  \"status\": \"PENDING_REVIEW\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc1ee98c-8bb6-4136-93ed-cde83c7c9260",
+              "name": "400 - Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "submissions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier for the submission to be retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"400-01\",\n    \"message\": \"Bad request\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "256e8457-bd1b-41cd-b85b-448c6e7f2d7a",
+              "name": "401 - Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "submissions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier for the submission to be retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"401-01\",\n    \"message\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99bd4c32-a344-46d1-aa5a-c3cd9585b051",
+              "name": "403 - Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "submissions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier for the submission to be retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"403-01\",\n    \"message\": \"Forbidden Response\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a83d7b5c-25a7-409e-9661-3cf7ef814892",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "submissions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier for the submission to be retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"404-01\",\n    \"message\": \"Not Found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "428c09ed-2bc0-4510-9347-b950c027cd9b",
+              "name": "429 - Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "submissions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier for the submission to be retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"429-01\",\n    \"message\": \"Too Many Requests\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1de9aca-f822-4e57-924c-9f2af9fc2445",
+              "name": "503 - Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "submissions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier for the submission to be retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"503-01\",\n    \"message\": \"Service Unavailable\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "791480e2-00b1-49b1-b5c6-0ef7bd13a06f",
+              "name": "500 - Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "submissions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier for the submission to be retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"500-01\",\n    \"message\": \"Internal server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "300173a5-3016-4d96-aa7b-950e85a488f2",
+          "name": "Retrieve an article",
+          "request": {
+            "name": "Retrieve an article",
+            "description": {
+              "content": "Fetch a specific article by its unique identifier. If the article has not been created because the associated submission was not approved, a 404 status will be returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge-base",
+                "v1",
+                "articles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier for the article to be retrieved."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "44e15b75-77ef-445a-ac91-483b518e3daa",
+              "name": "Article successfully retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "articles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier for the article to be retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"updatedAt\": \"2024-12-12T00:00:00\",\n  \"updatedBy\": \"user@company.com\",\n  \"title\": \"5G Data Plan Overview\",\n  \"content\": \"Our 5G data plans includes 75GB of data per month, while the Unlimited 5G plan offers unlimited data with no speed caps. Both plans include unlimited calls and texts within the country. International roaming is available for an additional fee.\",\n  \"url\": \"https://example.com/5g-data-plans\",\n  \"metadata\": [\n    {\n      \"key\": \"department\",\n      \"value\": \"Customer experience\"\n    }\n  ],\n  \"originalContent\": \"Our 5G data plans offer lightning-fast speeds and generous data allowances. The Basic 5G plan now includes 75GB of data per month, while our Unlimited 5G plan offers truly unlimited data with no speed caps. Both plans include unlimited calls and texts within the country. International roaming can be added for an additional fee.\",\n  \"originalTitle\": \"5G Data Plan\",\n  \"queryExamples\": [\n    \"What 5G plans do you offer?\",\n    \"Is there a family plan for 5G?\"\n  ],\n  \"additionalInstructions\": [\n    {\n      \"clarificationInstruction\": \"Emphasize that 5G coverage may vary by location and mention the new Family Plan option\",\n      \"exampleResponse\": \"Our 5G plans offer great speeds and data allowances, including our new Family Plan. Please note that 5G coverage may vary depending on your location. You can check coverage in your area on our website.\"\n    }\n  ],\n  \"pendingSubmissionId\": \"86ba487a-6d58-4b4c-82de-9d422f1166ae\",\n  \"currentVersion\": \"v1\",\n  \"deploymentStatus\": \"DRAFT\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55da694a-1c9c-430b-be09-81ef8857a8ea",
+              "name": "400 - Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "articles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier for the article to be retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"400-01\",\n    \"message\": \"Bad request\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc416cbb-f9df-477b-8df1-61959fb48d79",
+              "name": "401 - Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "articles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier for the article to be retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"401-01\",\n    \"message\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "038ad1e5-b8d8-43cf-a4a2-08878575b110",
+              "name": "403 - Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "articles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier for the article to be retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"403-01\",\n    \"message\": \"Forbidden Response\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc85c12f-a56a-4dbd-9dd8-2670a81b2bc2",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "articles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier for the article to be retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"404-01\",\n    \"message\": \"Not Found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "972fb5f2-8c9f-4610-9a76-298caf21f9e2",
+              "name": "429 - Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "articles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier for the article to be retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"429-01\",\n    \"message\": \"Too Many Requests\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d3ce5e8-22fc-45e3-af74-8460209ce322",
+              "name": "503 - Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "articles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier for the article to be retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"503-01\",\n    \"message\": \"Service Unavailable\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40445928-2473-4162-98dc-145379fccb5d",
+              "name": "500 - Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge-base",
+                    "v1",
+                    "articles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier for the article to be retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"500-01\",\n    \"message\": \"Internal server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.asapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "asapp-api-id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a39aa3bb-6331-4d33-adc9-18f2bfddacff",
+    "name": "AutoCompose Knowledge Base API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Autocompose API to suggest the next agent message.\nSuggestions are based on the conversation history, conversation metadata, and\nthe in-progress message text the agent has already typed into the composer.\n",
+      "type": "text/plain"
+    }
+  }
+}

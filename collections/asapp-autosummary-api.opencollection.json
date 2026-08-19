@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AutoCompose AutoSummary API",
+    "version": "0.0.3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "asapp-api-id",
+      "value": "{{asapp-api-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AutoSummary",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get conversation intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/autosummary/v1/intent/:conversationId",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for a conversation."
+              }
+            ]
+          },
+          "docs": "Retrieves the primary intent of a conversation, represented by both an intent code and a human-readable intent name. If no intent is detected, \"NO_INTENT\" is returned.\n\nThis endpoint requires:\n1. Intent support to be explicitly enabled for your account.\n2. A valid conversationId, which is an ASAPP-generated identifier created when using the ASAPP /conversations endpoint.\n\nUse this endpoint to gain insights into the main purpose or topic of a conversation.\n"
+        },
+        {
+          "info": {
+            "name": "Create conversation intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/autosummary/v1/intent",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves the primary intent of a conversation, represented by both an intent code and a human-readable intent name. If no intent is detected, \"NO_INTENT\" is returned.\nThis endpoint requires:\n1. Intent support to be explicitly enabled for your account.\n2. An id from ASAPP system (conversationId or IssueId) or your own id (externalConversationId).\nUse this endpoint to gain insights into the main purpose or topic of a conversation.\n"
+        },
+        {
+          "info": {
+            "name": "Get free text summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/autosummary/v1/free-text-summaries/:conversationId",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for a conversation."
+              },
+              {
+                "name": "agentExternalId",
+                "value": "",
+                "type": "query",
+                "description": "Your unique identifier for the agent."
+              }
+            ]
+          },
+          "docs": "<Warning>\n**Deprecated**\n\nReplaced by [POST /autosummary/v1/free-text-summaries](/apis/autosummary/retrieve-free-text-summary)\n</Warning>\nGenerates a concise, human-readable summary of a conversation.\nProvide an agentExternalId if you want to get the summary for a single agent's involvment with a conversation.\nMultilingual support: You can get summaries in languages different from English by making use of the 'Accept-Language' header.\n"
+        },
+        {
+          "info": {
+            "name": "Provide feedback.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/autosummary/v1/feedback/free-text-summaries/:conversationId",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for a conversation."
+              },
+              {
+                "name": "agentExternalId",
+                "value": "",
+                "type": "query",
+                "description": "Your unique identifier for the agent."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a feedback event with the full and updated summary. Each event is associated with a specific summary id. \n\nThe event must contain the final summary, in the form of text.        \n"
+        },
+        {
+          "info": {
+            "name": "Retrieve free text summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/autosummary/v1/free-text-summaries",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves a concise, human-readable summary of a conversation.\n\nProvide an agentExternalId if you want to get the summary for a single agent's involvement with a conversation.\n\nYou can use the id from ASAPP's system (conversationId or IssueId) or your own id (externalConversationId).\n\nMultilingual support: You can get summaries in languages different from English by making use of the 'Accept-Language' header.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve structured data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/autosummary/v1/structured-data",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves a set of structured data about a conversation that is already known to ASAPP.\n\nYou can use the id from ASAPP's system (conversationId or IssueId) or your own id (externalConversationId).\n\nProvide an agentExternalId if you want to get the structured data for a single agent's involvement with a conversation.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

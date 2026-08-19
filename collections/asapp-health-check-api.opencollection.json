@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AutoCompose Health Check API",
+    "version": "0.0.3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "asapp-api-id",
+      "value": "{{asapp-api-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Health Check",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check ASAPP's API's health.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/v1/health"
+          },
+          "docs": "The API Health check endpoint enables you to check the operational status of our API platform.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

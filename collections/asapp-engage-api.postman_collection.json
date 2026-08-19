@@ -1,0 +1,678 @@
+{
+  "item": [
+    {
+      "id": "313cfc0a-7a20-4847-b6e5-d23356a7065e",
+      "name": "Engage",
+      "description": {
+        "content": "establish the connection of a call with GenAgent",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0dc83eda-e62c-421d-b08d-6f728f365397",
+          "name": "Engage Genagent in a conversation.",
+          "request": {
+            "name": "Engage Genagent in a conversation.",
+            "description": {
+              "content": "Engage Genagent in a conversation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mg-genagent",
+                "v1",
+                "engage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"namespace\": \"<string>\",\n  \"guid\": \"<string>\",\n  \"customerId\": \"<string>\",\n  \"language\": \"<string>\",\n  \"inputVariables\": \"<object>\",\n  \"amazonConnectParams\": {\n    \"streamArn\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d8dba662-3fdd-4ca7-af98-84bf1abc7dd0",
+              "name": "Router processed the request, details are in the response body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mg-genagent",
+                    "v1",
+                    "engage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"amazonconnect\",\n  \"guid\": \"704848f2-96c3-47cc-96d3-47ce6e1d8391\",\n  \"customerId\": \"mycustomerid\",\n  \"language\": \"en-US\",\n  \"amazonConnectParams\": {\n    \"streamArn\": \"arn:aws:kinesisvideo:us-east-1:<AWS account>:stream/streamtest-connect-asappconnect-contact-79270e2e-4b5e-4e37-8f28-43133f1b7b07/1696492311026\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "20dacc96-8970-433e-a799-374605ae97f3",
+              "name": "400 - Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mg-genagent",
+                    "v1",
+                    "engage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"amazonconnect\",\n  \"guid\": \"704848f2-96c3-47cc-96d3-47ce6e1d8391\",\n  \"customerId\": \"mycustomerid\",\n  \"language\": \"en-US\",\n  \"amazonConnectParams\": {\n    \"streamArn\": \"arn:aws:kinesisvideo:us-east-1:<AWS account>:stream/streamtest-connect-asappconnect-contact-79270e2e-4b5e-4e37-8f28-43133f1b7b07/1696492311026\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"400-01\",\n    \"message\": \"Bad request\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "438aad21-5529-4dba-b220-f815f71eb938",
+              "name": "401 - Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mg-genagent",
+                    "v1",
+                    "engage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"amazonconnect\",\n  \"guid\": \"704848f2-96c3-47cc-96d3-47ce6e1d8391\",\n  \"customerId\": \"mycustomerid\",\n  \"language\": \"en-US\",\n  \"amazonConnectParams\": {\n    \"streamArn\": \"arn:aws:kinesisvideo:us-east-1:<AWS account>:stream/streamtest-connect-asappconnect-contact-79270e2e-4b5e-4e37-8f28-43133f1b7b07/1696492311026\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"401-01\",\n    \"message\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "977bc164-cab3-46c1-aaee-356bcce1bead",
+              "name": "403 - Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mg-genagent",
+                    "v1",
+                    "engage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"amazonconnect\",\n  \"guid\": \"704848f2-96c3-47cc-96d3-47ce6e1d8391\",\n  \"customerId\": \"mycustomerid\",\n  \"language\": \"en-US\",\n  \"amazonConnectParams\": {\n    \"streamArn\": \"arn:aws:kinesisvideo:us-east-1:<AWS account>:stream/streamtest-connect-asappconnect-contact-79270e2e-4b5e-4e37-8f28-43133f1b7b07/1696492311026\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"403-01\",\n    \"message\": \"Forbidden Response\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b37bbbe-d4ce-4784-92a1-0a3ec980e8d3",
+              "name": "404 - Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mg-genagent",
+                    "v1",
+                    "engage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"amazonconnect\",\n  \"guid\": \"704848f2-96c3-47cc-96d3-47ce6e1d8391\",\n  \"customerId\": \"mycustomerid\",\n  \"language\": \"en-US\",\n  \"amazonConnectParams\": {\n    \"streamArn\": \"arn:aws:kinesisvideo:us-east-1:<AWS account>:stream/streamtest-connect-asappconnect-contact-79270e2e-4b5e-4e37-8f28-43133f1b7b07/1696492311026\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"404-01\",\n    \"message\": \"Not Found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0fd13a4-d514-45de-8451-4c9ea2fa4181",
+              "name": "409 - Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mg-genagent",
+                    "v1",
+                    "engage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"amazonconnect\",\n  \"guid\": \"704848f2-96c3-47cc-96d3-47ce6e1d8391\",\n  \"customerId\": \"mycustomerid\",\n  \"language\": \"en-US\",\n  \"amazonConnectParams\": {\n    \"streamArn\": \"arn:aws:kinesisvideo:us-east-1:<AWS account>:stream/streamtest-connect-asappconnect-contact-79270e2e-4b5e-4e37-8f28-43133f1b7b07/1696492311026\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"409-01\",\n    \"message\": \"Conflict\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6fde42c-9ef6-467e-9717-de3b95b82ba7",
+              "name": "413 - Request Entity Too Large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mg-genagent",
+                    "v1",
+                    "engage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"amazonconnect\",\n  \"guid\": \"704848f2-96c3-47cc-96d3-47ce6e1d8391\",\n  \"customerId\": \"mycustomerid\",\n  \"language\": \"en-US\",\n  \"amazonConnectParams\": {\n    \"streamArn\": \"arn:aws:kinesisvideo:us-east-1:<AWS account>:stream/streamtest-connect-asappconnect-contact-79270e2e-4b5e-4e37-8f28-43133f1b7b07/1696492311026\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"413-01\",\n    \"message\": \"Request Entity Too Large\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f645a48-f4e1-46e8-a929-f50df5cf908a",
+              "name": "422 - Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mg-genagent",
+                    "v1",
+                    "engage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"amazonconnect\",\n  \"guid\": \"704848f2-96c3-47cc-96d3-47ce6e1d8391\",\n  \"customerId\": \"mycustomerid\",\n  \"language\": \"en-US\",\n  \"amazonConnectParams\": {\n    \"streamArn\": \"arn:aws:kinesisvideo:us-east-1:<AWS account>:stream/streamtest-connect-asappconnect-contact-79270e2e-4b5e-4e37-8f28-43133f1b7b07/1696492311026\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"422-01\",\n    \"message\": \"Unprocessable Entity\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c431aeb7-bc58-40ce-8e57-a16b20a6b768",
+              "name": "429 - Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mg-genagent",
+                    "v1",
+                    "engage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"amazonconnect\",\n  \"guid\": \"704848f2-96c3-47cc-96d3-47ce6e1d8391\",\n  \"customerId\": \"mycustomerid\",\n  \"language\": \"en-US\",\n  \"amazonConnectParams\": {\n    \"streamArn\": \"arn:aws:kinesisvideo:us-east-1:<AWS account>:stream/streamtest-connect-asappconnect-contact-79270e2e-4b5e-4e37-8f28-43133f1b7b07/1696492311026\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"429-01\",\n    \"message\": \"Too Many Requests\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea8bf05a-d7c9-4fc5-98c7-45a6484d4a75",
+              "name": "503 - Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mg-genagent",
+                    "v1",
+                    "engage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"amazonconnect\",\n  \"guid\": \"704848f2-96c3-47cc-96d3-47ce6e1d8391\",\n  \"customerId\": \"mycustomerid\",\n  \"language\": \"en-US\",\n  \"amazonConnectParams\": {\n    \"streamArn\": \"arn:aws:kinesisvideo:us-east-1:<AWS account>:stream/streamtest-connect-asappconnect-contact-79270e2e-4b5e-4e37-8f28-43133f1b7b07/1696492311026\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"503-01\",\n    \"message\": \"Service Unavailable\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c52a9cc-6a0a-45fd-b3e1-fbd0d59e0ba4",
+              "name": "500 - Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mg-genagent",
+                    "v1",
+                    "engage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "asapp-api-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"amazonconnect\",\n  \"guid\": \"704848f2-96c3-47cc-96d3-47ce6e1d8391\",\n  \"customerId\": \"mycustomerid\",\n  \"language\": \"en-US\",\n  \"amazonConnectParams\": {\n    \"streamArn\": \"arn:aws:kinesisvideo:us-east-1:<AWS account>:stream/streamtest-connect-asappconnect-contact-79270e2e-4b5e-4e37-8f28-43133f1b7b07/1696492311026\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"requestId\": \"8e033668-9f1a-11ec-b909-0242ac120002\",\n    \"code\": \"500-01\",\n    \"message\": \"Internal server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.asapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "asapp-api-id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3fb0ef01-f70d-4dab-9275-55b8ecbe00f0",
+    "name": "AutoCompose Engage API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Autocompose API to suggest the next agent message.\nSuggestions are based on the conversation history, conversation metadata, and\nthe in-progress message text the agent has already typed into the composer.\n",
+      "type": "text/plain"
+    }
+  }
+}

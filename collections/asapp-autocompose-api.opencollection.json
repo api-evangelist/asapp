@@ -1,0 +1,466 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AutoCompose API",
+    "version": "0.0.3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "asapp-api-id",
+      "value": "{{asapp-api-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AutoCompose",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate suggestions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/autocompose/v1/conversations/:conversationId/suggestions",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for a conversation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get suggestions for the next agent message in the conversation. \n\nThere are several times when this should be called:\n- when an agent joins the conversation,\n- after a message is sent by either the customer or the agent,\n- and as the agent is typing in the composer (to enable completing the agent's in-progress message).\n\nOptionally, add a message to the conversation.\n"
+        },
+        {
+          "info": {
+            "name": "Evaluate profanity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/autocompose/v1/profanity/evaluation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get an evaluation of a text to verify if it contains profanity, obscenity or other unwanted words. This service should be called before sending a message to prevent the agent from sending profanities in the chat.\n"
+        },
+        {
+          "info": {
+            "name": "Check for spelling mistakes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/autocompose/v1/spellcheck/correction",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get spelling correction for a message as it is being typed, if there is a misspelling. Only the current word\nwill be corrected, once it's fully typed (so it is recommended to call this endpoint after space characters).\n"
+        },
+        {
+          "info": {
+            "name": "Create a MessageSent analytics event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/autocompose/v1/analytics/message-sent",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a MessageSent analytics event describing the agent's usage of AutoCompose augmentation features\nwhile composing a message\n"
+        },
+        {
+          "info": {
+            "name": "Create a message analytic event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/autocompose/v1/conversations/:conversationId/message-analytic-events",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for a conversation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "To improve the performance of ASAPP suggestions, provide information about the actions performed by the agent while composing a message by creating `message-analytic-events`.\n\nThese analytic events indicate which AutoCompose functionality was used or not. This information along with the conversation itself is used to optimize our models, resulting in better results for the agents.\n\nWe track the following types of message analytic events:\n- suggestion-1-inserted: The agent selected the first of t"
+        },
+        {
+          "info": {
+            "name": "Get settings for AutoCompose clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/autocompose/v1/settings",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "query",
+                "description": "Identifier of the agent, data format is expected to be UUID"
+              }
+            ]
+          },
+          "docs": "Get settings for AutoCompose clients, such as whether any features should not be used.\nIt may be desirable to disable some features in high-latency scenarios.\n"
+        },
+        {
+          "info": {
+            "name": "List the global responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/autocompose/v1/responses/globals",
+            "params": [
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "query",
+                "description": "Optional identifier for the ID of the folder containing responses to be retrieved. If this is omitted, all global responses are returned.  Data format is expected to be UUID. The special value '__root' can also be used to retrieve top level folders/responses."
+              },
+              {
+                "name": "resourceType",
+                "value": "",
+                "type": "query",
+                "description": "Optional identifier for the ID of the type of responses to be retrieved. A value of 'folders' will return only folder information describing the way responses are organized. A value of 'responses' will return only responses. A value of 'all' will return a mix of folders and responses. Note that if the folderId parameter is specified as well, only the resource type identified here that exists within the specified folder will be returned. If this is omitted, all resources are returned."
+              },
+              {
+                "name": "searchTerm",
+                "value": "greetings",
+                "type": "query",
+                "description": "Search term to search for global responses. This will search for matching folder names, response text or both, depending on the resourceType parameter value."
+              },
+              {
+                "name": "pageToken",
+                "value": "3",
+                "type": "query",
+                "description": "This service responds with a set of global responses. These are divided into pages, with maxPerPage items in each page. This parameter is the page token returned in the call prior to this one. If this is the first call being made, this field should be omitted. The server will respond with global responses following the one previously sent."
+              },
+              {
+                "name": "maxPerPage",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of custom responses the client can handle within one page"
+              }
+            ]
+          },
+          "docs": "Get the global responses and folder organization for a company. Responses are sorted by text, and folders are sorted by name."
+        },
+        {
+          "info": {
+            "name": "Get custom responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/autocompose/v1/responses/customs",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "query",
+                "description": "Identifier of the agent, data format is expected to be UUID"
+              },
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "query",
+                "description": "Optional identifier for the ID of the folder containing responses to be retrieved. If this is omitted, all custom responses are returned.  Data format is expected to be UUID. The special value '__root' can also be used to retrieve top level folders/responses."
+              },
+              {
+                "name": "resourceType",
+                "value": "",
+                "type": "query",
+                "description": "Optional identifier for the ID of the type of responses to be retrieved. A value of 'folders' will return only folder information describing the way responses are organized. A value of 'responses' will return only responses. A value of 'all' will return a mix of folders and responses. Note that if the folderId parameter is specified as well, only the resource type identified here that exists within the specified folder will be returned. If this is omitted, all resources are returned."
+              },
+              {
+                "name": "searchTerm",
+                "value": "greetings",
+                "type": "query",
+                "description": "Search term to search for custom responses. This will search for matching folder names, response text or both, depending on the resourceType parameter value."
+              },
+              {
+                "name": "pageToken",
+                "value": "3",
+                "type": "query",
+                "description": "This service responds with a set of custom responses. These are divided into pages, with maxPerPage items in each page. This parameter is the page token returned in the call prior to this one. If this is the first call being made, this field should be omitted. The server will respond with custom responses following the one previously sent."
+              },
+              {
+                "name": "maxPerPage",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of custom responses the client can handle within one page"
+              }
+            ]
+          },
+          "docs": "Get custom responses for an agent. Responses are sorted by title, and folders are sorted by name."
+        },
+        {
+          "info": {
+            "name": "Create a response folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/autocompose/v1/responses/customs/folder",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "query",
+                "description": "Identifier of the agent, data format is expected to be UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a single folder for an agent"
+        },
+        {
+          "info": {
+            "name": "Create a custom response",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/autocompose/v1/responses/customs/response",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "query",
+                "description": "Identifier of the agent, data format is expected to be UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a single custom response for an agent"
+        },
+        {
+          "info": {
+            "name": "Update a custom response",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.sandbox.asapp.com/autocompose/v1/responses/customs/response/:responseId",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "query",
+                "description": "Identifier of the agent, data format is expected to be UUID"
+              },
+              {
+                "name": "responseId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the response, data format is expected to be UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a specific custom response for an agent"
+        },
+        {
+          "info": {
+            "name": "Delete a custom response",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.sandbox.asapp.com/autocompose/v1/responses/customs/response/:responseId",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "query",
+                "description": "Identifier of the agent, data format is expected to be UUID"
+              },
+              {
+                "name": "responseId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the response, data format is expected to be UUID"
+              }
+            ]
+          },
+          "docs": "Delete a specific custom response for an agent"
+        },
+        {
+          "info": {
+            "name": "Update a response folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.sandbox.asapp.com/autocompose/v1/responses/customs/folder/:folderId",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "query",
+                "description": "Identifier of the agent, data format is expected to be UUID"
+              },
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the folder, data format is expected to be UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a folder for an agent"
+        },
+        {
+          "info": {
+            "name": "Delete a response folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.sandbox.asapp.com/autocompose/v1/responses/customs/folder/:folderId",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "query",
+                "description": "Identifier of the agent, data format is expected to be UUID"
+              },
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the folder, data format is expected to be UUID"
+              }
+            ]
+          },
+          "docs": "Delete a folder for an agent"
+        },
+        {
+          "info": {
+            "name": "Get autopilot greetings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/autocompose/v1/autopilot/greetings",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "query",
+                "description": "Identifier of the agent, data format is expected to be UUID"
+              }
+            ]
+          },
+          "docs": "Get autopilot greetings for an agent"
+        },
+        {
+          "info": {
+            "name": "Update autopilot greetings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.sandbox.asapp.com/autocompose/v1/autopilot/greetings",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "query",
+                "description": "Identifier of the agent, data format is expected to be UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update autopilot greetings for an agent"
+        },
+        {
+          "info": {
+            "name": "Get autopilot greetings status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/autocompose/v1/autopilot/greetings/status",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "query",
+                "description": "Identifier of the agent, data format is expected to be UUID"
+              }
+            ]
+          },
+          "docs": "Get autopilot greetings status for an agent"
+        },
+        {
+          "info": {
+            "name": "Update autopilot greetings status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.sandbox.asapp.com/autocompose/v1/autopilot/greetings/status",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "query",
+                "description": "Identifier of the agent, data format is expected to be UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update autopilot greetings status for an agent"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

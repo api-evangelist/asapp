@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AutoCompose Twilio Media Stream API",
+    "version": "0.0.3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "asapp-api-id",
+      "value": "{{asapp-api-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Twilio Media Stream",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Twilio media stream url",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/mg-genagent/v1/twilio-media-stream-url",
+            "params": [
+              {
+                "name": "voiceAgentMode",
+                "value": "cascade",
+                "type": "query",
+                "description": "Optional voice agent mode"
+              }
+            ]
+          },
+          "docs": "Returns url where Twilio media stream should be sent to."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

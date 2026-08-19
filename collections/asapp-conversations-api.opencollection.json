@@ -1,0 +1,211 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AutoCompose Conversations API",
+    "version": "0.0.3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "asapp-api-id",
+      "value": "{{asapp-api-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Conversations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List conversations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/conversation/v1/conversations",
+            "params": [
+              {
+                "name": "externalId",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Your identifier for a conversation."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of conversation resources that match the specified criteria.\n\nYou must provide at least one search criterion in the query parameters.\n"
+        },
+        {
+          "info": {
+            "name": "Create or update a conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/conversation/v1/conversations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new conversation or updates an existing one based on the provided `externalId`.\n\nUse this endpoint when:\n- Starting a new conversation\n- Updating conversation details (e.g., reassigning to a different agent)\n\nIf the `externalId` is not found, a new conversation will be created. Otherwise, the existing conversation will be updated.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve a conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/conversation/v1/conversations/:conversationId",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for a conversation."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific conversation using its `conversationId`.\n\nThis endpoint returns detailed information about the conversation, including participants and metadata.\n"
+        },
+        {
+          "info": {
+            "name": "List messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/conversation/v1/conversations/:conversationId/messages",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for a conversation."
+              }
+            ]
+          },
+          "docs": "Lists all messages within a conversation.\n\nThis messages are returned in chronological order. \n"
+        },
+        {
+          "info": {
+            "name": "Create a message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/conversation/v1/conversations/:conversationId/messages",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for a conversation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a message object, adding it to an existing conversation.\n\nUse this endpoint to record each new message in the conversation.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve a message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/conversation/v1/conversations/:conversationId/messages/:messageId",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for a conversation."
+              },
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "path",
+                "description": "Internal message identifier from ASAPP"
+              }
+            ]
+          },
+          "docs": "Retrieve the details of a message from a conversation.\n"
+        },
+        {
+          "info": {
+            "name": "Create multiple messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/conversation/v1/conversations/:conversationId/messages/batch",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for a conversation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This creates multiple message objects at once, adding them to an existing conversation.\n\nUse this endpoint when you need to add several messages at once, such as when importing historical conversation data.\n"
+        },
+        {
+          "info": {
+            "name": "List messages with an externalId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/conversation/v1/conversation/messages",
+            "params": [
+              {
+                "name": "externalId",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Your identifier for a conversation."
+              }
+            ]
+          },
+          "docs": "Get all messages from a conversation.\n"
+        },
+        {
+          "info": {
+            "name": "Authenticate a user in a conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/conversation/v1/conversations/:conversationId/authenticate",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for a conversation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stores customer-specific authentication credentials for use in integrated flows.\n\n- Can be called at any point during a conversation\n- Commonly used at the start of a conversation or after mid-conversation authentication\n- May trigger additional actions, such as GenerativeAgent API signals to customer webhooks\n\n<Note>This API only accepts the customer-specific auth credentials; the customer is responsible for handling \nthe specific authentication mechanism.</Note>\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

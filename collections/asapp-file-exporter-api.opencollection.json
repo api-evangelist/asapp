@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AutoCompose File Exporter API",
+    "version": "0.0.3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "asapp-api-id",
+      "value": "{{asapp-api-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "File Exporter",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List feeds",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/fileexporter/v1/static/listfeeds"
+          },
+          "docs": "Lists feed names for a company\n"
+        },
+        {
+          "info": {
+            "name": "List feed versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/fileexporter/v1/static/listfeedversions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Lists feed versions for a company\n"
+        },
+        {
+          "info": {
+            "name": "List feed formats",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/fileexporter/v1/static/listfeedformats",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Lists feed formats for a company feed/version/\n"
+        },
+        {
+          "info": {
+            "name": "List feed dates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/fileexporter/v1/static/listfeeddates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Lists dates for a company feed/version/format\n"
+        },
+        {
+          "info": {
+            "name": "List feed intervals",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/fileexporter/v1/static/listfeedintervals",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Lists intervals for a company feed/version/format/date\n"
+        },
+        {
+          "info": {
+            "name": "List feed files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/fileexporter/v1/static/listfeedfiles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Lists files for a company feed/version/format/date/interval\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve a feed file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/fileexporter/v1/static/getfeedfile",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves a feed file URL for a company feed/version/format/date/interval/file\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

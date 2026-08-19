@@ -1,0 +1,379 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AutoCompose Configuration API",
+    "version": "0.0.3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "asapp-api-id",
+      "value": "{{asapp-api-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List custom vocabularies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/configuration/v1/custom-vocabularies",
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "The cursor pointing to the current position"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum amount of objects to retrieve"
+              }
+            ]
+          },
+          "docs": "Retrieves all custom vocabulary configurations.\n"
+        },
+        {
+          "info": {
+            "name": "Create a custom vocabulary",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/configuration/v1/custom-vocabularies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new custom vocabulary configuration to improve transcription accuracy.\n\nCustom vocabularies are used to enhance speech-to-text transcription by providing:\n- Specific phrases that are commonly used in your domain\n- Phonetic representations (\"sounds like\") to help the system recognize these phrases\n\nFor example, you might define:\n- Phrase: \"IEEE\"\n- Sounds Like: [\"I triple E\"]\n\nThis helps the system correctly transcribe technical terms, brand names, or industry-specific terminology.\n\nThe "
+        },
+        {
+          "info": {
+            "name": "Retrieve a custom vocabulary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/configuration/v1/custom-vocabularies/:customVocabularyId",
+            "params": [
+              {
+                "name": "customVocabularyId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the custom vocabulary"
+              }
+            ]
+          },
+          "docs": "Get a custom vocabulary configuration\n"
+        },
+        {
+          "info": {
+            "name": "Delete a custom vocabulary",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.sandbox.asapp.com/configuration/v1/custom-vocabularies/:customVocabularyId",
+            "params": [
+              {
+                "name": "customVocabularyId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the custom vocabulary"
+              }
+            ]
+          },
+          "docs": "Deletes a custom vocabulary configuration\n"
+        },
+        {
+          "info": {
+            "name": "List redaction entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/configuration/v1/redaction-entities",
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "The cursor pointing to the current position"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum amount of objects to retrieve"
+              }
+            ]
+          },
+          "docs": "Lists all available redaction entities and their current activation status across different policies.\n\nRedaction entities represent different types of sensitive information that can be automatically\nredacted from conversations. Each entity can be independently enabled or disabled for different\nredaction policies:\n- Customer Immediate: Redaction in real-time for customer-facing content\n- Customer Delayed: Redaction for stored customer-facing content\n- Agent Immediate: Real-time redaction for agen"
+        },
+        {
+          "info": {
+            "name": "Retrieve a redaction entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/configuration/v1/redaction-entities/:entityId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the entity"
+              }
+            ]
+          },
+          "docs": "Get a specific redaction entity with a entity id\n"
+        },
+        {
+          "info": {
+            "name": "Update a redaction entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.sandbox.asapp.com/configuration/v1/redaction-entities/:entityId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the entity"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the policies of a specific redaction entity. Only the policies field can be modified.\n"
+        },
+        {
+          "info": {
+            "name": "List structured data fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/configuration/v1/structured-data-fields",
+            "params": [
+              {
+                "name": "active",
+                "value": "",
+                "type": "query",
+                "description": "Filter by active or non active redaction entities"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "The cursor pointing to the current position"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum amount of objects to retrieve"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all configured structured data fields.\n"
+        },
+        {
+          "info": {
+            "name": "Create a structured data field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/configuration/v1/structured-data-fields",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new structured data field configuration that defines what information should be\nextracted from conversations.\n\nThis endpoint supports creating two types of structured data fields:\n1. QUESTION type: Defines specific questions to be answered about the conversation\n   Example: \"Did the agent offer the correct promotion?\"\n\n2. ENTITY type: Defines entities to be identified and extracted\n   Example: Product names mentioned in the conversation\n\nThese fields are used by the Structured Data API"
+        },
+        {
+          "info": {
+            "name": "Retrieve a structured data field",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/configuration/v1/structured-data-fields/:structuredDataFieldId",
+            "params": [
+              {
+                "name": "structuredDataFieldId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the structured data field"
+              }
+            ]
+          },
+          "docs": "Get a specific structured data field specifying the id\n"
+        },
+        {
+          "info": {
+            "name": "Update a structured data field",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.sandbox.asapp.com/configuration/v1/structured-data-fields/:structuredDataFieldId",
+            "params": [
+              {
+                "name": "structuredDataFieldId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the structured data field"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a specific structured data field specifying the id\n"
+        },
+        {
+          "info": {
+            "name": "Delete a structured data field",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.sandbox.asapp.com/configuration/v1/structured-data-fields/:structuredDataFieldId",
+            "params": [
+              {
+                "name": "structuredDataFieldId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the structured data field"
+              }
+            ]
+          },
+          "docs": "Delete a specific structured data field specifying the id\n"
+        },
+        {
+          "info": {
+            "name": "List segments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/configuration/v1/segments",
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "The cursor pointing to the current position"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum amount of objects to retrieve"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all segments.\n"
+        },
+        {
+          "info": {
+            "name": "Create a segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.asapp.com/configuration/v1/segments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new `segment` to organize structured data extraction based on conversation metadata.\n\nA segment consists of:\n1. Query logic that matches conversations based on metadata\n2. A set of structured data fields to extract from matching conversations\n\nFor example, you can create segments to:\n- Extract problem details from support conversations\n- Extract product and promotion info from sales conversations\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve a segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.asapp.com/configuration/v1/segments/:segmentId",
+            "params": [
+              {
+                "name": "segmentId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the segment"
+              }
+            ]
+          },
+          "docs": "Get a specific segment specifying the id\n"
+        },
+        {
+          "info": {
+            "name": "Partial update a segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.sandbox.asapp.com/configuration/v1/segments/:segmentId",
+            "params": [
+              {
+                "name": "segmentId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the segment"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a specific segment specifying the id"
+        },
+        {
+          "info": {
+            "name": "Delete a segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.sandbox.asapp.com/configuration/v1/segments/:segmentId",
+            "params": [
+              {
+                "name": "segmentId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the segment"
+              }
+            ]
+          },
+          "docs": "Delete a specific segment specifying the id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
