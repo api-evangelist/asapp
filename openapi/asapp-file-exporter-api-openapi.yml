@@ -1,19 +1,11 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: AutoCompose File Exporter API
-  description: 'Autocompose API to suggest the next agent message.
-
-    Suggestions are based on the conversation history, conversation metadata, and
-
-    the in-progress message text the agent has already typed into the composer.
-
-    '
-  version: 0.0.3
+  title: Asapp File Exporter API
+  version: '1.0'
+  description: 'Operations tagged File Exporter across 2 of this provider''s published API definitions: asapp-fileexporter-openapi.yml, asapp-openapi-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.sandbox.asapp.com
-security:
-- API-ID: []
-  API-Secret: []
+- url: https://api.test.asapp.com
 tags:
 - name: File Exporter
   description: API to get client exports
@@ -100,6 +92,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /fileexporter/v1/static/listfeedversions:
     post:
       tags:
@@ -424,6 +421,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /fileexporter/v1/static/listfeedformats:
     post:
       tags:
@@ -755,6 +757,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /fileexporter/v1/static/listfeeddates:
     post:
       tags:
@@ -1095,6 +1102,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /fileexporter/v1/static/listfeedintervals:
     post:
       tags:
@@ -1442,6 +1454,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /fileexporter/v1/static/listfeedfiles:
     post:
       tags:
@@ -1796,6 +1813,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /fileexporter/v1/static/getfeedfile:
     post:
       tags:
@@ -2154,7 +2176,468 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
 components:
+  schemas:
+    DefaultErrorResponse:
+      description: Default error response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 500-01
+            message: Internal server error
+    DefaultErrorDetails:
+      description: Error details
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Unique ID of the failing request
+        message:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+      required:
+      - requestId
+      - message
+    UnprocessableEntity:
+      description: Unprocessable Entity response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 422-01
+            message: Unprocessable Entity
+    ListFeedDatesRequest:
+      description: Get dates for a company feed/version/format
+      type: object
+      properties:
+        feed:
+          type: string
+          example: feed_test
+        version:
+          type: string
+          example: '1'
+        format:
+          type: string
+          example: jsonl
+      required:
+      - feed
+      - version
+      - format
+      example:
+        feed: feed_test
+        version: '1'
+        format: jsonl
+    ListFeedFilesRequest:
+      description: Get files for a company feed/version/format/date/interval
+      type: object
+      properties:
+        feed:
+          type: string
+          example: feed_test
+        version:
+          type: string
+          example: '1'
+        format:
+          type: string
+          example: jsonl
+        date:
+          type: string
+          example: '2022-06-27'
+        interval:
+          type: string
+          example: hr=23
+      required:
+      - feed
+      - version
+      - format
+      - date
+      example:
+        feed: feed_test
+        version: '1'
+        format: jsonl
+        date: '2022-06-27'
+        interval: hr=23
+    ListFeedIntervalsResponse:
+      description: Get Dates for a company feed/version/format
+      type: object
+      properties:
+        feed:
+          type: string
+          example: feed_test
+        version:
+          type: string
+          example: '1'
+        format:
+          type: string
+          example: jsonl
+        date:
+          type: string
+          example: '2022-06-27'
+        intervals:
+          type: array
+          items:
+            type: string
+          example:
+          - hr=01/mi=01
+          - hr=01/mi=02
+    ConflictResponse:
+      description: Conflict response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 409-01
+            message: Conflict
+    ListFeedVersionsRequest:
+      description: Get versions for a company feed
+      type: object
+      properties:
+        feed:
+          type: string
+          example: feed_test
+      required:
+      - feed
+      example:
+        feed: feed_test
+    ListFeedFilesResponse:
+      description: Get files for a company feed/version/format/date/interval
+      type: object
+      properties:
+        feed:
+          type: string
+          example: feed_test
+        version:
+          type: string
+          example: '1'
+        format:
+          type: string
+          example: jsonl
+        date:
+          type: string
+          example: '2022-06-27'
+        interval:
+          type: string
+          example: hr=23
+        files:
+          type: array
+          items:
+            type: string
+          example:
+          - file1.jsonl
+          - file2.json1
+    ListFeedFormatsResponse:
+      description: Get formats for a company feed
+      type: object
+      properties:
+        feed:
+          type: string
+          example: feed_test
+        version:
+          type: string
+          example: '1'
+        formats:
+          type: array
+          items:
+            type: string
+          example:
+          - jsonl
+          - csv
+    ForbiddenResponse:
+      description: Forbidden response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 403-01
+            message: Forbidden Response
+    ListFeedIntervalsRequest:
+      description: Get intervals for a company feed/version/format/date
+      type: object
+      properties:
+        feed:
+          type: string
+          example: feed_test
+        version:
+          type: string
+          example: '1'
+        format:
+          type: string
+          example: jsonl
+        date:
+          type: string
+          example: '2022-06-27'
+      required:
+      - feed
+      - version
+      - format
+      - date
+      example:
+        feed: feed_test
+        version: '1'
+        format: jsonl
+        date: '2022-06-27'
+    ListFeedsResponse:
+      description: Get feed names for a company
+      type: object
+      properties:
+        feeds:
+          type: array
+          items:
+            type: string
+          example:
+          - feed_1
+          - feed_2
+          - feed_3
+    GetFeedFileResponse:
+      description: Get a presigned url for a file
+      type: object
+      properties:
+        feed:
+          type: string
+          example: feed_test
+        version:
+          type: string
+          example: '1'
+        format:
+          type: string
+          example: jsonl
+        date:
+          type: string
+          example: '2022-06-27'
+        interval:
+          type: string
+          example: hr=23
+        fileName:
+          type: string
+          example: file1.json1
+        url:
+          type: string
+          example: www.example.com/12381273972817312/file1.json1
+    NotFoundResponse:
+      description: Not Found response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 404-01
+            message: Not Found
+    RequestEntityTooLargeResponse:
+      description: Request Entity Too Large response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 413-01
+            message: Request Entity Too Large
+    ListFeedDatesResponse:
+      description: Get Dates for a company feed/version/format
+      type: object
+      properties:
+        feed:
+          type: string
+          example: feed_test
+        version:
+          type: string
+          example: '1'
+        format:
+          type: string
+          example: format=jsonl
+        dates:
+          type: array
+          items:
+            type: string
+          example:
+          - '2022-06-27'
+          - '2022-05-20'
+          - '2022-05-21'
+    GetFeedFileRequest:
+      description: Get file for a company feed/version/format/interval/file
+      type: object
+      properties:
+        feed:
+          type: string
+          example: feed_test
+        version:
+          type: string
+          example: '1'
+        format:
+          type: string
+          example: jsonl
+        date:
+          type: string
+          example: '2022-06-27'
+        interval:
+          type: string
+          example: hr=23
+        fileName:
+          type: string
+          example: file1.jsonl
+      required:
+      - feed
+      - version
+      - format
+      - date
+      - fileName
+      example:
+        feed: feed_test
+        version: '1'
+        format: jsonl
+        date: '2022-06-27'
+        interval: hr=23
+        fileName: file1.jsonl
+    ListFeedFormatsRequest:
+      description: Get format for a company feed/version
+      type: object
+      properties:
+        feed:
+          type: string
+          example: feed_test
+        version:
+          type: string
+          example: '1'
+      required:
+      - feed
+      - version
+      example:
+        feed: feed_test
+        version: '1'
+    UnauthorizedResponse:
+      description: Unauthorized response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 401-01
+            message: Unauthorized
+    TooManyRequestsResponse:
+      description: Too Many Requests response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 429-01
+            message: Too Many Requests
+    ListFeedVersionsResponse:
+      description: Get versions for a company feed
+      type: object
+      properties:
+        feed:
+          type: string
+          example: feed_test
+        versions:
+          type: array
+          items:
+            type: string
+          example:
+          - '1'
+          - '2'
+          - '3'
+    BadRequestResponse:
+      description: Bad request response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 400-01
+            message: Bad request
+    ServiceUnavailableResponse:
+      description: Service Unavailable response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 503-01
+            message: Service Unavailable
+  responses:
+    Forbidden:
+      description: 403 - Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenResponse'
+    DefaultError:
+      description: 500 - Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DefaultErrorResponse'
+    UnprocessableEntity:
+      description: 422 - Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnprocessableEntity'
+    ServiceUnavailable:
+      description: 503 - Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ServiceUnavailableResponse'
+    NotFound:
+      description: 404 - Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+    RequestEntityTooLarge:
+      description: 413 - Request Entity Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RequestEntityTooLargeResponse'
+    TooManyRequests:
+      description: 429 - Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TooManyRequestsResponse'
+    Conflict:
+      description: 409 - Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConflictResponse'
+    BadRequest:
+      description: 400 - Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+    Unauthorized:
+      description: 401 - Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
   securitySchemes:
     API-ID:
       type: apiKey
@@ -2164,3 +2647,6 @@ components:
       type: apiKey
       in: header
       name: asapp-api-secret
+x-refined-from:
+- asapp-fileexporter-openapi.yml
+- asapp-openapi-openapi.yml

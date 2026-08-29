@@ -1,19 +1,11 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: AutoCompose AutoTranscribe Media Gateway API
-  description: 'Autocompose API to suggest the next agent message.
-
-    Suggestions are based on the conversation history, conversation metadata, and
-
-    the in-progress message text the agent has already typed into the composer.
-
-    '
-  version: 0.0.3
+  title: Asapp AutoTranscribe Media Gateway API
+  version: '1.0'
+  description: 'Operations tagged AutoTranscribe Media Gateway across 2 of this provider''s published API definitions: asapp-mg-autotranscribe-openapi.yml, asapp-openapi-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.sandbox.asapp.com
-security:
-- API-ID: []
-  API-Secret: []
+- url: https://api.test.asapp.com
 tags:
 - name: AutoTranscribe Media Gateway
   description: Operations for controlling AutoTranscribe Media Gateway transcription and streaming
@@ -505,6 +497,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /mg-autotranscribe/v1/stop-streaming:
     post:
       tags:
@@ -895,6 +892,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /mg-autotranscribe/v1/twilio-media-stream-url:
     get:
       tags:
@@ -1082,7 +1084,447 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
 components:
+  schemas:
+    DefaultErrorResponse:
+      description: Default error response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 500-01
+            message: Internal server error
+    DefaultErrorDetails:
+      description: Error details
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Unique ID of the failing request
+        message:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+      required:
+      - requestId
+      - message
+    StartStreamingAmazonConnectParams:
+      type: object
+      properties:
+        streamArn:
+          type: string
+          description: Amazon stream arn
+        startSelectorType:
+          type: string
+          description: Identifies the fragment on the Kinesis video stream where you want to start getting the data from
+          enum:
+          - NOW
+          - FRAGMENT_NUMBER
+        afterFragmentNumber:
+          type: string
+          description: Amazon fragment number from where you want to start returning the fragments - mandatory if startSelectorType is FRAGMENT_NUMBER
+      example:
+        streamArn: arn:aws:kinesisvideo:us-east-1:000000000000:stream/streamtest-connect-asappconnect-contact-1117e864-690f-4e1e-9dcf-6fbfcc288e41/1654194145007
+        startSelectorType: FRAGMENT_NUMBER
+        afterFragmentNumber: '91343852333181476958523476930058290730435475343'
+    StopStreamingAutotranscribeResponseDetails:
+      type: object
+      properties:
+        streamId:
+          type: string
+          example: 5ce2b755-3f38-11ed-b755-7aed4b5c38d5
+        status:
+          $ref: '#/components/schemas/AutotranscribeResponseStatus'
+        summary:
+          $ref: '#/components/schemas/StopStreamingResponseSummary'
+    UnprocessableEntity:
+      description: Unprocessable Entity response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 422-01
+            message: Unprocessable Entity
+    StopStreamingResponse:
+      type: object
+      properties:
+        autotranscribeResponse:
+          $ref: '#/components/schemas/StopStreamingAutotranscribeResponse'
+        isOk:
+          type: boolean
+        errorMessage:
+          type: string
+    TwilioTrackMap:
+      type: object
+      properties:
+        inbound:
+          type: string
+          description: The inbound twilio track
+          default: customer
+          enum:
+          - customer
+          - agent
+        outbound:
+          type: string
+          description: The outbound twilio track
+          default: agent
+          enum:
+          - customer
+          - agent
+    StopStreamingResponseSummary:
+      type: object
+      properties:
+        totalAudioBytes:
+          type: integer
+        audioDurationMs:
+          type: integer
+        streamingSeconds:
+          type: integer
+        transcripts:
+          type: integer
+      example:
+        totalAudioBytes: 1334720
+        audioDurationMs: 83420
+        streamingSeconds: 84
+        transcripts: 2
+    StartStreamingAutotranscribeResponse:
+      type: object
+      properties:
+        customer:
+          $ref: '#/components/schemas/StartStreamingAutotranscribeResponseDetails'
+        agent:
+          $ref: '#/components/schemas/StartStreamingAutotranscribeResponseDetails'
+    StartStreamingAutotranscribeResponseDetails:
+      type: object
+      properties:
+        streamId:
+          type: string
+          example: 5ce2b755-3f38-11ed-b755-7aed4b5c38d5
+        status:
+          $ref: '#/components/schemas/AutotranscribeResponseStatus'
+    ConflictResponse:
+      description: Conflict response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 409-01
+            message: Conflict
+    ForbiddenResponse:
+      description: Forbidden response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 403-01
+            message: Forbidden Response
+    StartStreamingSiprecParams:
+      type: object
+      properties:
+        mediaLineOrder:
+          $ref: '#/components/schemas/SiprecMediaLineOrder'
+    StartStreamingRequest:
+      type: object
+      properties:
+        namespace:
+          description: The media gateway platform or protocol you are using.
+          type: string
+          enum:
+          - siprec
+          - twilio
+          - amazonconnect
+          - genesysaudiohook
+        guid:
+          description: The globally unique Id for the call, also sometimes called Unique Call Id (UCID). Must be in decimal form.
+          type: string
+        autotranscribeParams:
+          $ref: '#/components/schemas/StartStreamingAutotranscribeParams'
+        siprecParams:
+          $ref: '#/components/schemas/StartStreamingSiprecParams'
+        twilioParams:
+          $ref: '#/components/schemas/StartStreamingTwilioParams'
+        amazonConnectParams:
+          $ref: '#/components/schemas/StartStreamingAmazonConnectParams'
+        customerId:
+          description: Id of the customer on the call. Usually taken from Call Center CTI information.
+          type: string
+        agentId:
+          description: The Id of the agent on the call. Usually taken from Call Center CTI information.
+          type: string
+      required:
+      - namespace
+      - guid
+      - customerId
+      - agentId
+      example:
+        namespace: siprec
+        guid: 0867617078-0032318833-2221801472-0002236962
+        customerId: customerId
+        agentId: agentId
+        autotranscribeParams:
+          language: en-US
+        siprecParams:
+          mediaLineOrder: CUSTOMER_FIRST
+    StartStreamingResponse:
+      type: object
+      properties:
+        autotranscribeResponse:
+          $ref: '#/components/schemas/StartStreamingAutotranscribeResponse'
+        isOk:
+          type: boolean
+        errorMessage:
+          type: string
+      example:
+        isOk: true
+        autotranscribeResponse:
+          customer:
+            streamId: 5ce2b755-3f38-11ed-b755-7aed4b5c38d5
+            status:
+              code: 1000
+              description: OK
+          agent:
+            streamId: cf31116-3f38-11ed-9116-7a0a36c763f1
+            status:
+              code: 1000
+              description: OK
+    SiprecMediaLineOrder:
+      description: 'Defines the mapping of media lines (m-lines) in SDP of SIPREC protocol.
+
+        - `CUSTOMER_FIRST` will map top audio m-line to customer side of conversation (usual for inbound calls to call center, default)
+
+        - `AGENT_FIRST` will map top audio m-line to agent side of the conversation (usual for outbound calls from call center)
+
+        '
+      type: string
+      default: CUSTOMER_FIRST
+      enum:
+      - CUSTOMER_FIRST
+      - AGENT_FIRST
+    NotFoundResponse:
+      description: Not Found response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 404-01
+            message: Not Found
+    RequestEntityTooLargeResponse:
+      description: Request Entity Too Large response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 413-01
+            message: Request Entity Too Large
+    StartStreamingTwilioParams:
+      type: object
+      properties:
+        trackMap:
+          $ref: '#/components/schemas/TwilioTrackMap'
+      example:
+        trackMap:
+          inbound: customer
+          outbound: agent
+    AutotranscribeResponseStatus:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 1000
+        description:
+          type: string
+          example: OK
+    TooManyRequestsResponse:
+      description: Too Many Requests response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 429-01
+            message: Too Many Requests
+    UnauthorizedResponse:
+      description: Unauthorized response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 401-01
+            message: Unauthorized
+    StopStreamingAutotranscribeResponse:
+      type: object
+      properties:
+        customer:
+          $ref: '#/components/schemas/StopStreamingAutotranscribeResponseDetails'
+        agent:
+          $ref: '#/components/schemas/StopStreamingAutotranscribeResponseDetails'
+    StartStreamingAutotranscribeParams:
+      type: object
+      properties:
+        language:
+          description: IETF language tag
+          type: string
+          default: en-US
+        detailedToken:
+          description: 'Determines whether AutoTranscribe outputs word-level details like word content, timestamp and word type
+
+            '
+          type: boolean
+          default: false
+        audioRecordingAllowed:
+          description: 'Determines whether ASAPP may record and store the audio for this conversation for the purposes of model training
+
+            '
+          type: boolean
+          default: false
+        redactionOutput:
+          description: 'Determines whether the transcription output is redacted.
+
+
+            If detailedToken is true, requests with value "redacted" or "redacted_and_unredacted" will be rejected.
+
+
+            If no redaction rules configured by the client for "redacted" or "redacted_and_unredacted", the request will be rejected.
+
+            '
+          type: string
+          default: redacted
+          enum:
+          - redacted
+          - unredacted
+          - redacted_and_unredacted
+      example:
+        language: en-US
+        detailedToken: false
+        audioRecordingAllowed: false
+        redactionOutput: redacted
+    BadRequestResponse:
+      description: Bad request response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 400-01
+            message: Bad request
+    ServiceUnavailableResponse:
+      description: Service Unavailable response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 503-01
+            message: Service Unavailable
+    GetTwilioMediaStreamsResponse:
+      type: object
+      properties:
+        streamingUrl:
+          description: The websocket URL you provide to Twilio for media streaming.
+          type: string
+          example: wss://localhost/mg-twilio-autotranscribe/twilio-media/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+    StopStreamingRequest:
+      type: object
+      properties:
+        namespace:
+          description: The media gateway platform or protocol you are using.
+          type: string
+          enum:
+          - siprec
+          - twilio
+          - amazonconnect
+          - genesysaudiohook
+        guid:
+          description: The globally unique Id for the call, also sometimes called Unique Call Id (UCID). Must be in decimal form.
+          type: string
+      example:
+        namespace: siprec
+        guid: 0867617078-0032318833-2221801472-0002236962
+  responses:
+    Forbidden:
+      description: 403 - Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenResponse'
+    DefaultError:
+      description: 500 - Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DefaultErrorResponse'
+    UnprocessableEntity:
+      description: 422 - Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnprocessableEntity'
+    ServiceUnavailable:
+      description: 503 - Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ServiceUnavailableResponse'
+    NotFound:
+      description: 404 - Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+    RequestEntityTooLarge:
+      description: 413 - Request Entity Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RequestEntityTooLargeResponse'
+    TooManyRequests:
+      description: 429 - Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TooManyRequestsResponse'
+    Conflict:
+      description: 409 - Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConflictResponse'
+    BadRequest:
+      description: 400 - Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+    Unauthorized:
+      description: 401 - Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
   securitySchemes:
     API-ID:
       type: apiKey
@@ -1092,3 +1534,6 @@ components:
       type: apiKey
       in: header
       name: asapp-api-secret
+x-refined-from:
+- asapp-mg-autotranscribe-openapi.yml
+- asapp-openapi-openapi.yml

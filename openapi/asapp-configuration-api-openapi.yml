@@ -1,14 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: AutoCompose Configuration API
-  description: 'Autocompose API to suggest the next agent message.
-
-    Suggestions are based on the conversation history, conversation metadata, and
-
-    the in-progress message text the agent has already typed into the composer.
-
-    '
-  version: 0.0.3
+  title: Partner Configuration API
+  description: "This is the Partner Configuration API which allows ASAPP partners to manage configurations. Currently we are offering:\n - Custom Vocabularies: API endpoints to create, delete, update, and retrieve custom vocabularies.\n - Redaction Entities: API endpoints to update and retrieve redaction entities.\n - Structured Data Fields: API endpoints to create, delete, update, and retrieve structured data fields.\n\nImportant Note: Custom Vocabularies and Redaction Entities do not support concurrent operations within the same category. You can perform updates, creations or deletes concurrently between Custom Vocabularies and Redaction Entities, but not within each one. Each operation may take up to 45 seconds to complete.\n"
+  version: 1.0.0
 servers:
 - url: https://api.sandbox.asapp.com
 security:
@@ -27,14 +21,16 @@ paths:
       - in: query
         name: cursor
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         description: The cursor pointing to the current position
       - in: query
         name: limit
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           minimum: 1
           maximum: 100
           default: 20
@@ -85,13 +81,15 @@ paths:
                             type: string
                             description: The id of the custom vocabulary
                   nextCursor:
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                     description: The next cursor to fetch
                     example: 6b29fc40-ca47-1067-b31d-00dd010662da
                   prevCursor:
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                     description: The previous cursor to fetch
                     example: 04719ebd-13e1-40e9-8b92-0941cd16a19c
                 required:
@@ -1366,14 +1364,16 @@ paths:
       - in: query
         name: cursor
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         description: The cursor pointing to the current position
       - in: query
         name: limit
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           minimum: 1
           maximum: 100
           default: 20
@@ -1460,13 +1460,15 @@ paths:
                           customerDelayed: false
                           agentImmediate: false
                   nextCursor:
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                     description: The next cursor to fetch
                     example: 6b29fc40-ca47-1067-b31d-00dd010662da
                   prevCursor:
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                     description: The previous cursor to fetch
                     example: 04719ebd-13e1-40e9-8b92-0941cd16a19c
                 required:
@@ -2496,20 +2498,23 @@ paths:
       - in: query
         name: active
         schema:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
         description: Filter by active or non active redaction entities
       - in: query
         name: cursor
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         description: The cursor pointing to the current position
       - in: query
         name: limit
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           minimum: 1
           maximum: 100
           default: 20
@@ -2675,13 +2680,15 @@ paths:
                             - Super Backpack
                           active: true
                   nextCursor:
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                     description: The next cursor to fetch
                     example: 6b29fc40-ca47-1067-b31d-00dd010662da
                   prevCursor:
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                     description: The previous cursor to fetch
                     example: 04719ebd-13e1-40e9-8b92-0941cd16a19c
                 required:
@@ -4882,14 +4889,16 @@ paths:
       - in: query
         name: cursor
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         description: The cursor pointing to the current position
       - in: query
         name: limit
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           minimum: 1
           maximum: 100
           default: 20
@@ -4945,13 +4954,15 @@ paths:
                           raw: 'TRUE'
                         structuredDataFieldIds: []
                   nextCursor:
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                     description: The next cursor to fetch
                     example: 6b29fc40-ca47-1067-b31d-00dd010662da
                   prevCursor:
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                     description: The previous cursor to fetch
                     example: 04719ebd-13e1-40e9-8b92-0941cd16a19c
                 required:

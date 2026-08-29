@@ -1,19 +1,11 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: AutoCompose Metadata API
-  description: 'Autocompose API to suggest the next agent message.
-
-    Suggestions are based on the conversation history, conversation metadata, and
-
-    the in-progress message text the agent has already typed into the composer.
-
-    '
-  version: 0.0.3
+  title: Asapp Metadata API
+  version: '1.0'
+  description: 'Operations tagged Metadata across 2 of this provider''s published API definitions: asapp-metadata-ingestion-openapi.yml, asapp-openapi-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.sandbox.asapp.com
-security:
-- API-ID: []
-  API-Secret: []
+- url: https://api.test.asapp.com
 tags:
 - name: Metadata
   description: API to submit entity's attributes to ASAPP
@@ -45,67 +37,77 @@ paths:
                   description: 'An event id used to track the submission; if none is provided, service will generate one
 
                     '
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 256
-                  nullable: true
                   example: eventId-158
                 startTs:
                   description: The date and time when the agent is hired in ISO-8601
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   format: date-time
-                  nullable: true
                   example: '2022-07-08T11:15:53.237517000Z'
                 lobId:
                   description: The line of business id
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 256
-                  nullable: true
                   example: '1038'
                 lobName:
                   description: The descriptive name of the line of business
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   maxLength: 256
-                  nullable: true
                   example: manufacturing
                 groupId:
                   description: The group id of which the agent belong to
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 256
-                  nullable: true
                   example: group5
                 groupName:
                   description: The descriptive name of the group
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   maxLength: 256
-                  nullable: true
                   example: XYZ
                 agentName:
                   description: The name of the agent
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   maxLength: 256
-                  nullable: true
                   example: Jane Doe
                 agentLocation:
                   description: The location (or address) of where the agent worked
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   maxLength: 256
-                  nullable: true
                   example: Northern-California
                 supervisorId:
                   description: The supervisor id of who the agent report to
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 256
-                  nullable: true
                   example: '3080'
                 supervisorName:
                   description: The name of the agent's supervisor
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   maxLength: 256
-                  nullable: true
                   example: Linda Lemon
                 languages:
                   description: 'A list of agent''s known language codes in ISO 639
@@ -113,75 +115,87 @@ paths:
                     e.g., English (United States) code = en-US
 
                     '
-                  type: array
+                  type:
+                  - array
+                  - 'null'
                   items:
                     type: string
                     pattern: '[a-zA-Z0-9\-]+'
                     maxLength: 16
-                  nullable: true
                   example:
                   - en-us
                   - zh-hans-hk
                 concurrency:
                   description: The number of issues that an agent can take at a time
-                  type: integer
-                  nullable: true
+                  type:
+                  - integer
+                  - 'null'
                   example: 3
                 categoryLabel:
                   description: The category label that indicates the types of workflows an agent have access to or problems they solved
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 256
-                  nullable: true
                   example: Tier-2-Escalation
                 accountAccessLevel:
                   description: The levels of mapping that an agent have access to make changes to customer accounts
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 256
-                  nullable: true
                   example: High-Profile
                 ranking:
                   description: Some numerical value indicating relative or absolute performance on a single scale
-                  type: integer
-                  nullable: true
+                  type:
+                  - integer
+                  - 'null'
                   example: 78
                 vendor:
                   description: Vendor or BPO (Business Process Outsourcing) that the agent is part of
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   maxLength: 256
-                  nullable: true
                   example: Contracting
                 jobTitle:
                   description: The agent's job title
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 256
-                  nullable: true
                   example: Booking-Manager
                 jobRole:
                   description: The agent's role
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 256
-                  nullable: true
                   example: booking
                 workShift:
                   description: The hours or shift name they work
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 256
-                  nullable: true
                   example: afternoon
                 emailAddress:
                   description: The agent's email address
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   format: email
-                  nullable: true
                   example: jdoe@example.com
                 attributes:
                   description: A map of key-value pairs for extra metadata attributes
-                  type: array
+                  type:
+                  - array
+                  - 'null'
                   items:
                     description: A key-value pair of additional metadata attributes
                     type: object
@@ -200,7 +214,6 @@ paths:
                     - name: attr2_name
                       value: attr2_value
                   maxItems: 10
-                  nullable: true
                   example:
                   - name: attr1_name
                     value: attr1_value
@@ -557,6 +570,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /metadata-ingestion/v1/many-agent-metadata:
     post:
       tags:
@@ -590,67 +608,77 @@ paths:
                         description: 'An event id used to track the submission; if none is provided, service will generate one
 
                           '
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 256
-                        nullable: true
                         example: eventId-158
                       startTs:
                         description: The date and time when the agent is hired in ISO-8601
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         format: date-time
-                        nullable: true
                         example: '2022-07-08T11:15:53.237517000Z'
                       lobId:
                         description: The line of business id
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 256
-                        nullable: true
                         example: '1038'
                       lobName:
                         description: The descriptive name of the line of business
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         maxLength: 256
-                        nullable: true
                         example: manufacturing
                       groupId:
                         description: The group id of which the agent belong to
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 256
-                        nullable: true
                         example: group5
                       groupName:
                         description: The descriptive name of the group
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         maxLength: 256
-                        nullable: true
                         example: XYZ
                       agentName:
                         description: The name of the agent
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         maxLength: 256
-                        nullable: true
                         example: Jane Doe
                       agentLocation:
                         description: The location (or address) of where the agent worked
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         maxLength: 256
-                        nullable: true
                         example: Northern-California
                       supervisorId:
                         description: The supervisor id of who the agent report to
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 256
-                        nullable: true
                         example: '3080'
                       supervisorName:
                         description: The name of the agent's supervisor
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         maxLength: 256
-                        nullable: true
                         example: Linda Lemon
                       languages:
                         description: 'A list of agent''s known language codes in ISO 639
@@ -658,75 +686,87 @@ paths:
                           e.g., English (United States) code = en-US
 
                           '
-                        type: array
+                        type:
+                        - array
+                        - 'null'
                         items:
                           type: string
                           pattern: '[a-zA-Z0-9\-]+'
                           maxLength: 16
-                        nullable: true
                         example:
                         - en-us
                         - zh-hans-hk
                       concurrency:
                         description: The number of issues that an agent can take at a time
-                        type: integer
-                        nullable: true
+                        type:
+                        - integer
+                        - 'null'
                         example: 3
                       categoryLabel:
                         description: The category label that indicates the types of workflows an agent have access to or problems they solved
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 256
-                        nullable: true
                         example: Tier-2-Escalation
                       accountAccessLevel:
                         description: The levels of mapping that an agent have access to make changes to customer accounts
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 256
-                        nullable: true
                         example: High-Profile
                       ranking:
                         description: Some numerical value indicating relative or absolute performance on a single scale
-                        type: integer
-                        nullable: true
+                        type:
+                        - integer
+                        - 'null'
                         example: 78
                       vendor:
                         description: Vendor or BPO (Business Process Outsourcing) that the agent is part of
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         maxLength: 256
-                        nullable: true
                         example: Contracting
                       jobTitle:
                         description: The agent's job title
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 256
-                        nullable: true
                         example: Booking-Manager
                       jobRole:
                         description: The agent's role
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 256
-                        nullable: true
                         example: booking
                       workShift:
                         description: The hours or shift name they work
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 256
-                        nullable: true
                         example: afternoon
                       emailAddress:
                         description: The agent's email address
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         format: email
-                        nullable: true
                         example: jdoe@example.com
                       attributes:
                         description: A map of key-value pairs for extra metadata attributes
-                        type: array
+                        type:
+                        - array
+                        - 'null'
                         items:
                           description: A key-value pair of additional metadata attributes
                           type: object
@@ -745,7 +785,6 @@ paths:
                           - name: attr2_name
                             value: attr2_value
                         maxItems: 10
-                        nullable: true
                         example:
                         - name: attr1_name
                           value: attr1_value
@@ -1187,6 +1226,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /metadata-ingestion/v1/single-convo-metadata:
     post:
       tags:
@@ -1214,61 +1258,69 @@ paths:
                   description: 'An event id used to track the submission; if none is provided, service will generate one
 
                     '
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 256
-                  nullable: true
                   example: eventId-1388
                 lobId:
                   description: The line of business id
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 256
-                  nullable: true
                   example: '1038'
                 lobName:
                   description: The descriptive name of the line of business
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   maxLength: 256
-                  nullable: true
                   example: manufacturing
                 groupId:
                   description: The group id of which the agent belong to
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 256
-                  nullable: true
                   example: group59
                 groupName:
                   description: The descriptive name of the group
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   maxLength: 256
-                  nullable: true
                   example: groupXYZ
                 agentRoutingCode:
                   description: The agent's routing attribute
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 256
-                  nullable: true
                   example: route-13988
                 campaign:
                   description: The activities related to the issue
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 256
-                  nullable: true
                   example: campaign-A
                 deviceType:
                   description: The client's device type
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   enum:
                   - TABLET
                   - PHONE
                   - DESKTOP
                   - WATCH
                   - OTHER
-                  nullable: true
                   example: TABLET
                 platform:
                   description: 'The client''s platform type
@@ -1276,7 +1328,9 @@ paths:
                     WAB: WhatsApp Business
 
                     '
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   enum:
                   - SMS
                   - WEB
@@ -1295,42 +1349,47 @@ paths:
                   - GOOGLEBIZ
                   - GBM
                   - WAB
-                  nullable: true
                   example: IOS
                 companySegment:
                   description: The company's segment of which the issue belongs to
-                  type: array
+                  type:
+                  - array
+                  - 'null'
                   items:
                     type: string
                     pattern: '[a-zA-Z0-9\-\_]+'
                     maxLength: 64
-                  nullable: true
                   example:
                   - Sales
                   - Marketing
                 companySubdivision:
                   description: The company's subdivision of which the issue belongs to
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 256
-                  nullable: true
                   example: Operating
                 businessRule:
                   description: The business rule to use
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   maxLength: 256
-                  nullable: true
                   example: Apply customer's discount
                 entryType:
                   description: The way the issue started and created in the system
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 256
-                  nullable: true
                   example: reactive
                 operatingSystem:
                   description: The operating system used to enter the issue
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   enum:
                   - MAC_OS
                   - LINUX
@@ -1338,25 +1397,28 @@ paths:
                   - ANDROID
                   - IOS
                   - OTHER
-                  nullable: true
                   example: MAC_OS
                 browserType:
                   description: The browser type used
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 64
-                  nullable: true
                   example: Safari
                 browserVersion:
                   description: The browser version used
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_\.]+'
                   maxLength: 16
-                  nullable: true
                   example: 14.1.2
                 attributes:
                   description: A map of key-value pairs for extra metadata attributes
-                  type: array
+                  type:
+                  - array
+                  - 'null'
                   items:
                     description: A key-value pair of additional metadata attributes
                     type: object
@@ -1375,7 +1437,6 @@ paths:
                     - name: attr2_name
                       value: attr2_value
                   maxItems: 10
-                  nullable: true
                   example:
                   - name: attr1_name
                     value: attr1_value
@@ -1729,6 +1790,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /metadata-ingestion/v1/many-convo-metadata:
     post:
       tags:
@@ -1764,61 +1830,69 @@ paths:
                         description: 'An event id used to track the submission; if none is provided, service will generate one
 
                           '
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 256
-                        nullable: true
                         example: eventId-1388
                       lobId:
                         description: The line of business id
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 256
-                        nullable: true
                         example: '1038'
                       lobName:
                         description: The descriptive name of the line of business
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         maxLength: 256
-                        nullable: true
                         example: manufacturing
                       groupId:
                         description: The group id of which the agent belong to
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 256
-                        nullable: true
                         example: group59
                       groupName:
                         description: The descriptive name of the group
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         maxLength: 256
-                        nullable: true
                         example: groupXYZ
                       agentRoutingCode:
                         description: The agent's routing attribute
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 256
-                        nullable: true
                         example: route-13988
                       campaign:
                         description: The activities related to the issue
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 256
-                        nullable: true
                         example: campaign-A
                       deviceType:
                         description: The client's device type
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         enum:
                         - TABLET
                         - PHONE
                         - DESKTOP
                         - WATCH
                         - OTHER
-                        nullable: true
                         example: TABLET
                       platform:
                         description: 'The client''s platform type
@@ -1826,7 +1900,9 @@ paths:
                           WAB: WhatsApp Business
 
                           '
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         enum:
                         - SMS
                         - WEB
@@ -1845,42 +1921,47 @@ paths:
                         - GOOGLEBIZ
                         - GBM
                         - WAB
-                        nullable: true
                         example: IOS
                       companySegment:
                         description: The company's segment of which the issue belongs to
-                        type: array
+                        type:
+                        - array
+                        - 'null'
                         items:
                           type: string
                           pattern: '[a-zA-Z0-9\-\_]+'
                           maxLength: 64
-                        nullable: true
                         example:
                         - Sales
                         - Marketing
                       companySubdivision:
                         description: The company's subdivision of which the issue belongs to
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 256
-                        nullable: true
                         example: Operating
                       businessRule:
                         description: The business rule to use
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         maxLength: 256
-                        nullable: true
                         example: Apply customer's discount
                       entryType:
                         description: The way the issue started and created in the system
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 256
-                        nullable: true
                         example: reactive
                       operatingSystem:
                         description: The operating system used to enter the issue
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         enum:
                         - MAC_OS
                         - LINUX
@@ -1888,25 +1969,28 @@ paths:
                         - ANDROID
                         - IOS
                         - OTHER
-                        nullable: true
                         example: MAC_OS
                       browserType:
                         description: The browser type used
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 64
-                        nullable: true
                         example: Safari
                       browserVersion:
                         description: The browser version used
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_\.]+'
                         maxLength: 16
-                        nullable: true
                         example: 14.1.2
                       attributes:
                         description: A map of key-value pairs for extra metadata attributes
-                        type: array
+                        type:
+                        - array
+                        - 'null'
                         items:
                           description: A key-value pair of additional metadata attributes
                           type: object
@@ -1925,7 +2009,6 @@ paths:
                           - name: attr2_name
                             value: attr2_value
                         maxItems: 10
-                        nullable: true
                         example:
                         - name: attr1_name
                           value: attr1_value
@@ -2355,6 +2438,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /metadata-ingestion/v1/single-customer-metadata:
     post:
       tags:
@@ -2388,62 +2476,72 @@ paths:
                   description: 'An event id used to track the submission; if none is provided, service will generate one
 
                     '
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 256
-                  nullable: true
                   example: eventId-1938
                 status:
                   description: The descriptive label to describe the customer's status and/or type
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 256
-                  nullable: true
                   example: new
                 phoneNumber:
                   description: The customer's phone number
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[0-9\-\.\(\)\+]+'
                   maxLength: 32
-                  nullable: true
                   example: (555)555-0100
                 emailAddress:
                   description: The customer's email address
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   format: email
-                  nullable: true
                   example: jdoe@example.com
                 userId:
                   description: The customer's user Id
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 256
-                  nullable: true
                   example: user908038
                 addressCountry:
                   description: The country portion of the customer's address
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 128
-                  nullable: true
                   example: United-States
                 addressState:
                   description: The state portion of the customer's address
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 128
-                  nullable: true
                   example: New-York
                 addressZipcode:
                   description: The zipcode/postal code portion of the customer's address
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   pattern: '[a-zA-Z0-9\-\_]+'
                   maxLength: 16
-                  nullable: true
                   example: '10001'
                 attributes:
                   description: A map of key-value pairs for extra metadata attributes
-                  type: array
+                  type:
+                  - array
+                  - 'null'
                   items:
                     description: A key-value pair of additional metadata attributes
                     type: object
@@ -2462,7 +2560,6 @@ paths:
                     - name: attr2_name
                       value: attr2_value
                   maxItems: 10
-                  nullable: true
                   example:
                   - name: attr1_name
                     value: attr1_value
@@ -2808,6 +2905,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /metadata-ingestion/v1/many-customer-metadata:
     post:
       tags:
@@ -2847,62 +2949,72 @@ paths:
                         description: 'An event id used to track the submission; if none is provided, service will generate one
 
                           '
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 256
-                        nullable: true
                         example: eventId-1938
                       status:
                         description: The descriptive label to describe the customer's status and/or type
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 256
-                        nullable: true
                         example: new
                       phoneNumber:
                         description: The customer's phone number
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[0-9\-\.\(\)\+]+'
                         maxLength: 32
-                        nullable: true
                         example: (555)555-0100
                       emailAddress:
                         description: The customer's email address
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         format: email
-                        nullable: true
                         example: jdoe@example.com
                       userId:
                         description: The customer's user Id
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 256
-                        nullable: true
                         example: user908038
                       addressCountry:
                         description: The country portion of the customer's address
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 128
-                        nullable: true
                         example: United-States
                       addressState:
                         description: The state portion of the customer's address
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 128
-                        nullable: true
                         example: New-York
                       addressZipcode:
                         description: The zipcode/postal code portion of the customer's address
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         pattern: '[a-zA-Z0-9\-\_]+'
                         maxLength: 16
-                        nullable: true
                         example: '10001'
                       attributes:
                         description: A map of key-value pairs for extra metadata attributes
-                        type: array
+                        type:
+                        - array
+                        - 'null'
                         items:
                           description: A key-value pair of additional metadata attributes
                           type: object
@@ -2921,7 +3033,6 @@ paths:
                           - name: attr2_name
                             value: attr2_value
                         maxItems: 10
-                        nullable: true
                         example:
                         - name: attr1_name
                           value: attr1_value
@@ -3335,7 +3446,1007 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
 components:
+  schemas:
+    DefaultErrorResponse:
+      description: Default error response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 500-01
+            message: Internal server error
+    DefaultErrorDetails:
+      description: Error details
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Unique ID of the failing request
+        message:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+      required:
+      - requestId
+      - message
+    AddMetadataResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/MessageSentStatus'
+      required:
+      - result
+      example:
+        result:
+          eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
+          error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
+    UnprocessableEntity:
+      description: Unprocessable Entity response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 422-01
+            message: Unprocessable Entity
+    MessageSentStatus:
+      description: A response with the status of a sent message
+      type: object
+      properties:
+        eventId:
+          description: An UUID identifier string computed for the submitted event message
+          type: string
+          example: 5484e507-feaf-11ec-bfc1-fda566fa9333
+        error:
+          description: Status of the failed message if value is not blank; the error is contained in the string
+          type: string
+          example: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
+      example:
+        eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
+        error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
+    CustomerMetadataMany:
+      description: A request to send more than one customer metadata; send a list of items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerMetadata'
+          minItems: 1
+          maxItems: 1000
+      example:
+        items:
+        - externalConversationId: id-509
+          externalCustomerId: 555.555.0100-jdoe@example.com
+          eventId: eventId-1938
+          status: new
+          phoneNumber: (555)555-0100
+          emailAddress: jdoe@example.com
+          userId: user908038
+          addressCountry: United-States
+          addressState: New-York
+          addressZipcode: '10001'
+          attributes:
+          - name: attr1_name
+            value: attr1_value
+          - name: attr2_name
+            value: attr2_value
+        - externalConversationId: id-203
+          externalCustomerId: 555.555.0101-mdoe@example.com
+          eventId: eventId-1331
+          status: existing
+          phoneNumber: (555)555-0101
+          emailAddress: mdoe@example.com
+          userId: user3201033
+          addressCountry: United-States
+          addressState: New-York
+          addressZipcode: '10002'
+          attributes:
+          - name: attr1_name
+            value: attr1_value
+          - name: attr2_name
+            value: attr2_value
+        - externalConversationId: id-69221
+          externalCustomerId: 555.555.0191
+          attributes: null
+        - externalConversationId: id-69223
+          externalCustomerId: 555.555.0193
+        - externalConversationId: id-69229
+          externalCustomerId: zdoe@example.com
+          phoneNumber: null
+          userId: null
+          addressCountry: null
+    CustomerMetadata:
+      description: A set of customer metadata attributes
+      type: object
+      properties:
+        externalConversationId:
+          description: Conversation ID from the external chat / voice system
+          type: string
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: issue509
+        externalCustomerId:
+          description: The customer id involved in respect to the issue in question
+          type: string
+          pattern: '[a-zA-Z0-9\-\_\.\@]+'
+          maxLength: 256
+          example: 555.555.0100-jdoe@example.com
+        eventId:
+          description: 'An event id used to track the submission; if none is provided, service will generate one
+
+            '
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: eventId-1938
+        status:
+          description: The descriptive label to describe the customer's status and/or type
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: new
+        phoneNumber:
+          description: The customer's phone number
+          type:
+          - string
+          - 'null'
+          pattern: '[0-9\-\.\(\)\+]+'
+          maxLength: 32
+          example: (555)555-0100
+        emailAddress:
+          description: The customer's email address
+          type:
+          - string
+          - 'null'
+          format: email
+          example: jdoe@example.com
+        userId:
+          description: The customer's user Id
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: user908038
+        addressCountry:
+          description: The country portion of the customer's address
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 128
+          example: United-States
+        addressState:
+          description: The state portion of the customer's address
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 128
+          example: New-York
+        addressZipcode:
+          description: The zipcode/postal code portion of the customer's address
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 16
+          example: '10001'
+        attributes:
+          description: A map of key-value pairs for extra metadata attributes
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Attribute'
+          maxItems: 10
+          example:
+          - name: attr1_name
+            value: attr1_value
+          - name: attr2_name
+            value: attr2_value
+      required:
+      - externalConversationId
+      - externalCustomerId
+      example:
+        externalConversationId: id-509
+        externalCustomerId: 555.555.0100-jdoe@example.com
+        eventId: eventId-1938
+        status: new
+        phoneNumber: (555)555-0100
+        emailAddress: jdoe@example.com
+        userId: user908038
+        addressCountry: United-States
+        addressState: New-York
+        addressZipcode: '10001'
+        attributes:
+        - name: attr1_name
+          value: attr1_value
+        - name: attr2_name
+          value: attr2_value
+    ConflictResponse:
+      description: Conflict response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 409-01
+            message: Conflict
+    ForbiddenResponse:
+      description: Forbidden response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 403-01
+            message: Forbidden Response
+    Attribute:
+      description: A key-value pair of additional metadata attributes
+      type: object
+      properties:
+        name:
+          description: The name of the attribute
+          type: string
+          maxLength: 256
+        value:
+          description: The value of the named attribute
+          type: string
+          maxLength: 1024
+      example:
+      - name: attr1_name
+        value: attr1_value
+      - name: attr2_name
+        value: attr2_value
+    ConversationMetadata:
+      description: A set of conversation metadata attributes
+      type: object
+      properties:
+        externalConversationId:
+          description: Conversation ID from the external chat / voice system
+          type: string
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: issue1389
+        eventId:
+          description: 'An event id used to track the submission; if none is provided, service will generate one
+
+            '
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: eventId-1388
+        lobId:
+          description: The line of business id
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: '1038'
+        lobName:
+          description: The descriptive name of the line of business
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+          example: manufacturing
+        groupId:
+          description: The group id of which the agent belong to
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: group59
+        groupName:
+          description: The descriptive name of the group
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+          example: groupXYZ
+        agentRoutingCode:
+          description: The agent's routing attribute
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: route-13988
+        campaign:
+          description: The activities related to the issue
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: campaign-A
+        deviceType:
+          description: The client's device type
+          type:
+          - string
+          - 'null'
+          enum:
+          - TABLET
+          - PHONE
+          - DESKTOP
+          - WATCH
+          - OTHER
+          example: TABLET
+        platform:
+          description: 'The client''s platform type
+
+            WAB: WhatsApp Business
+
+            '
+          type:
+          - string
+          - 'null'
+          enum:
+          - SMS
+          - WEB
+          - IOS
+          - ANDROID
+          - APP
+          - LOCAL
+          - VOICE
+          - VOICE_IOS
+          - VOICE_ANDROID
+          - VOICE_ECHO
+          - VOICE_HOMEPOD
+          - VOICE_GGLHOME
+          - VOICE_WEB
+          - APPLEBIZ
+          - GOOGLEBIZ
+          - GBM
+          - WAB
+          example: IOS
+        companySegment:
+          description: The company's segment of which the issue belongs to
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            pattern: '[a-zA-Z0-9\-\_]+'
+            maxLength: 64
+          example:
+          - Sales
+          - Marketing
+        companySubdivision:
+          description: The company's subdivision of which the issue belongs to
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: Operating
+        businessRule:
+          description: The business rule to use
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+          example: Apply customer's discount
+        entryType:
+          description: The way the issue started and created in the system
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: reactive
+        operatingSystem:
+          description: The operating system used to enter the issue
+          type:
+          - string
+          - 'null'
+          enum:
+          - MAC_OS
+          - LINUX
+          - WINDOWS
+          - ANDROID
+          - IOS
+          - OTHER
+          example: MAC_OS
+        browserType:
+          description: The browser type used
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 64
+          example: Safari
+        browserVersion:
+          description: The browser version used
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_\.]+'
+          maxLength: 16
+          example: 14.1.2
+        attributes:
+          description: A map of key-value pairs for extra metadata attributes
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Attribute'
+          maxItems: 10
+          example:
+          - name: attr1_name
+            value: attr1_value
+          - name: attr2_name
+            value: attr2_value
+      required:
+      - externalConversationId
+      example:
+        externalConversationId: id-1389
+        eventId: eventId-1388
+        lobId: '1038'
+        lobName: manufacturing
+        groupId: group59
+        groupName: groupXYZ
+        agentRoutingCode: route-13988
+        campaign: campaign-A
+        deviceType: TABLET
+        platform: IOS
+        companySegment:
+        - Sales
+        - Marketing
+        companySubdivision: operating
+        businessRule: Apply customer's discount
+        entryType: reactive
+        operatingSystem: MAC_OS
+        browserType: Safari
+        browserVersion: 14.1.2
+        attributes:
+        - name: attr1_name
+          value: attr1_value
+        - name: attr2_name
+          value: attr2_value
+    AgentMetadataMany:
+      description: A request to send more than one agent metadata; send a list of items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentMetadata'
+          minItems: 1
+          maxItems: 1000
+      example:
+        items:
+        - externalAgentId: agent158
+          startTs: '2022-07-08T11:15:53.237517000Z'
+          lobId: '1038'
+          lobName: manufacturing
+          groupId: group5
+          groupName: XYZ
+          agentName: Jane Doe
+          agentLocation: Northern-California
+          supervisorId: '3080'
+          supervisorName: Linda Lemon
+          languages:
+          - en-us
+          - zh-hans-hk
+          - es-pe
+          concurrency: 3
+          categoryLabel: Tier-2-Escalation
+          accountAccessLevel: High-Profile
+          ranking: 78
+          vendor: Contracting
+          jobTitle: Booking-Manager
+          jobRole: booking
+          workShift: afternoon
+          emailAddress: jdoe@example.com
+          attributes:
+          - name: attr1_name
+            value: attr1_value
+          - name: attr2_name
+            value: attr2_value
+        - externalAgentId: agent392
+          startTs: '2021-09-02T11:15:53.237517000Z'
+          lobId: '968'
+          lobName: insurance
+          groupId: group3
+          groupName: DFG
+          agentName: Jonathan Master
+          agentLocation: Southern-California
+          supervisorId: '1290'
+          supervisorName: John Luna
+          languages:
+          - en-us
+          concurrency: 3
+          categoryLabel: Tier-1-Service
+          accountAccessLevel: High-Profile
+          ranking: 75
+          vendor: Contracting
+          jobTitle: Customer-Service
+          jobRole: Support
+          workShift: afternoon
+          emailAddress: jmaster@example.com
+          attributes:
+          - name: attr1_name
+            value: attr1_value
+        - externalAgentId: agent6922
+          startTs: null
+        - externalAgentId: agent222
+        - externalAgentId: agent333
+          emailAddress: jdoe@example.com
+    AddManyMetadataResponse:
+      type: object
+      properties:
+        errorCount:
+          description: Number of message sent with error(s)
+          type: integer
+        results:
+          description: A list of send result
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageSentStatus'
+      required:
+      - errorCount
+      - results
+      example:
+        errorCount: 1
+        results:
+        - eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
+          error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
+        - eventId: fcf99667-feaf-11ec-a42e-11799134528c
+          error: ''
+    AgentMetadata:
+      description: A set of agent metadata attributes
+      type: object
+      properties:
+        externalAgentId:
+          description: The agent id in question
+          type: string
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: agent158
+        eventId:
+          description: 'An event id used to track the submission; if none is provided, service will generate one
+
+            '
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: eventId-158
+        startTs:
+          description: The date and time when the agent is hired in ISO-8601
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2022-07-08T11:15:53.237517000Z'
+        lobId:
+          description: The line of business id
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: '1038'
+        lobName:
+          description: The descriptive name of the line of business
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+          example: manufacturing
+        groupId:
+          description: The group id of which the agent belong to
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: group5
+        groupName:
+          description: The descriptive name of the group
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+          example: XYZ
+        agentName:
+          description: The name of the agent
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+          example: Jane Doe
+        agentLocation:
+          description: The location (or address) of where the agent worked
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+          example: Northern-California
+        supervisorId:
+          description: The supervisor id of who the agent report to
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: '3080'
+        supervisorName:
+          description: The name of the agent's supervisor
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+          example: Linda Lemon
+        languages:
+          description: 'A list of agent''s known language codes in ISO 639
+
+            e.g., English (United States) code = en-US
+
+            '
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            pattern: '[a-zA-Z0-9\-]+'
+            maxLength: 16
+          example:
+          - en-us
+          - zh-hans-hk
+        concurrency:
+          description: The number of issues that an agent can take at a time
+          type:
+          - integer
+          - 'null'
+          example: 3
+        categoryLabel:
+          description: The category label that indicates the types of workflows an agent have access to or problems they solved
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: Tier-2-Escalation
+        accountAccessLevel:
+          description: The levels of mapping that an agent have access to make changes to customer accounts
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: High-Profile
+        ranking:
+          description: Some numerical value indicating relative or absolute performance on a single scale
+          type:
+          - integer
+          - 'null'
+          example: 78
+        vendor:
+          description: Vendor or BPO (Business Process Outsourcing) that the agent is part of
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+          example: Contracting
+        jobTitle:
+          description: The agent's job title
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: Booking-Manager
+        jobRole:
+          description: The agent's role
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: booking
+        workShift:
+          description: The hours or shift name they work
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: afternoon
+        emailAddress:
+          description: The agent's email address
+          type:
+          - string
+          - 'null'
+          format: email
+          example: jdoe@example.com
+        attributes:
+          description: A map of key-value pairs for extra metadata attributes
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Attribute'
+          maxItems: 10
+          example:
+          - name: attr1_name
+            value: attr1_value
+          - name: attr2_name
+            value: attr2_value
+      required:
+      - externalAgentId
+      example:
+        externalAgentId: agent158
+        startTs: '2022-07-08T11:15:53.237517000Z'
+        lobId: '1038'
+        lobName: manufacturing
+        groupId: group5
+        groupName: XYZ
+        agentName: Jane Doe
+        agentLocation: Northern-California
+        supervisorId: '3080'
+        supervisorName: Linda Lemon
+        languages:
+        - en-us
+        - zh-hans-hk
+        concurrency: 3
+        categoryLabel: Tier-2-Escalation
+        accountAccessLevel: High-Profile
+        ranking: 78
+        vendor: Contracting
+        jobTitle: Booking-Manager
+        jobRole: booking
+        workShift: afternoon
+        emailAddress: jdoe@example.com
+        attributes:
+        - name: attr1_name
+          value: attr1_value
+        - name: attr2_name
+          value: attr2_value
+    NotFoundResponse:
+      description: Not Found response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 404-01
+            message: Not Found
+    RequestEntityTooLargeResponse:
+      description: Request Entity Too Large response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 413-01
+            message: Request Entity Too Large
+    ConversationMetadataMany:
+      description: 'A request to send more than one conversation metadata attributes; send a list of items
+
+        '
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationMetadata'
+          minItems: 1
+          maxItems: 1000
+      example:
+        items:
+        - externalConversationId: id-1389
+          eventId: eventId-1388
+          lobId: '1038'
+          lobName: manufacturing
+          groupId: group59
+          groupName: groupXYZ
+          agentRoutingCode: route-13988
+          campaign: campaign-A
+          deviceType: TABLET
+          platform: IOS
+          companySegment:
+          - Sales
+          - Marketing
+          companySubdivision: operating
+          businessRule: Apply customer's discount
+          entryType: reactive
+          operatingSystem: MAC_OS
+          browserType: Safari
+          browserVersion: 14.1.2
+          attributes:
+          - name: attr1_name
+            value: attr1_value
+          - name: attr2_name
+            value: attr2_value
+        - externlConversationId: issue1390
+          eventId: eventId-1268
+          lobId: '930'
+          lobName: retail
+          groupId: store-93
+          groupName: PlazaA
+          agentRoutingCode: route-1983
+          campaign: campaign-B
+          deviceType: PHONE
+          platform: ANDROID
+          companySegment:
+          - SALES
+          - FINANCE
+          companySubdivision: operating
+          businessRule: Apply customer's discount
+          entryType: proactive
+          operatingSystem: ANDROID
+          browserType: Chrome
+          browserVersion: 103.0.5060.128
+          attributes:
+          - name: attr1_name
+            value: attr1_value
+          - name: attr2_name
+            value: attr2_value
+    UnauthorizedResponse:
+      description: Unauthorized response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 401-01
+            message: Unauthorized
+    TooManyRequestsResponse:
+      description: Too Many Requests response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 429-01
+            message: Too Many Requests
+    ServiceUnavailableResponse:
+      description: Service Unavailable response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 503-01
+            message: Service Unavailable
+  responses:
+    Forbidden:
+      description: 403 - Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenResponse'
+    DefaultError:
+      description: 500 - Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DefaultErrorResponse'
+    BadRequestForBatch:
+      description: '400 - Bad request
+
+        Submit a batch of items to the service to be ingested. Record can be traced back to the submitted record by the eventId.
+
+        If any of the records encounter issue during the ingestion, a message sent status will be returned with an error message for each record.
+
+        All items in the batch encountered client input validation failures.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AddManyMetadataResponse'
+    UnprocessableEntity:
+      description: 422 - Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnprocessableEntity'
+    BadRequestForSingle:
+      description: '400 - Bad request
+
+        Submit a single item to the service to be ingested. Record can be traced back to the submitted record by the eventId.
+
+        A message sent status will be returned with an error message for bad input failure.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AddMetadataResponse'
+    ServiceUnavailable:
+      description: 503 - Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ServiceUnavailableResponse'
+    NotFound:
+      description: 404 - Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+    RequestEntityTooLarge:
+      description: 413 - Request Entity Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RequestEntityTooLargeResponse'
+    TooManyRequests:
+      description: 429 - Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TooManyRequestsResponse'
+    SuccessForBatch:
+      description: '200 - Success | Partial Success
+
+        Submit a batch of items to the service to be ingested. Record can be traced back to the submitted record by the eventId.
+
+        If any of the records encounter issue during the ingestion, a message sent status will be returned with an error message for each record.
+
+        A 200 success is returned as long as there is one item ingested successfully, i.e., "partial success".
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AddManyMetadataResponse'
+    Conflict:
+      description: 409 - Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConflictResponse'
+    Unauthorized:
+      description: 401 - Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
+    SuccessForSingle:
+      description: '200 - Success
+
+        Submit a single item to the service to be ingested. Record can be traced back to the submitted record by the eventId.
+
+        A message sent status will be returned with no error message for successful input checks.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AddMetadataResponse'
   securitySchemes:
     API-ID:
       type: apiKey
@@ -3345,3 +4456,6 @@ components:
       type: apiKey
       in: header
       name: asapp-api-secret
+x-refined-from:
+- asapp-metadata-ingestion-openapi.yml
+- asapp-openapi-openapi.yml

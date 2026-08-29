@@ -1,19 +1,11 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: AutoCompose Conversations API
-  description: 'Autocompose API to suggest the next agent message.
-
-    Suggestions are based on the conversation history, conversation metadata, and
-
-    the in-progress message text the agent has already typed into the composer.
-
-    '
-  version: 0.0.3
+  title: Asapp Conversations API
+  version: '1.0'
+  description: 'Operations tagged Conversations across 2 of this provider''s published API definitions: asapp-conversations-openapi.yml, asapp-openapi-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.sandbox.asapp.com
-security:
-- API-ID: []
-  API-Secret: []
+- url: https://api.test.asapp.com
 tags:
 - name: Conversations
   description: Operations to send conversational inputs to ASAPP AI services
@@ -395,6 +387,9 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
     get:
       tags:
       - Conversations
@@ -705,6 +700,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /conversation/v1/conversations/{conversationId}:
     parameters:
     - name: conversationId
@@ -1009,6 +1009,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /conversation/v1/conversations/{conversationId}/messages:
     parameters:
     - name: conversationId
@@ -1366,6 +1371,9 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
     get:
       tags:
       - Conversations
@@ -1407,8 +1415,9 @@ paths:
                               - customer
                               - system
                             externalId:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                               description: The unique identifier for the relevant participant role.
                           required:
                           - role
@@ -1718,6 +1727,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /conversation/v1/conversations/{conversationId}/messages/{messageId}:
     parameters:
     - name: conversationId
@@ -1771,8 +1785,9 @@ paths:
                         - customer
                         - system
                       externalId:
-                        type: string
-                        nullable: true
+                        type:
+                        - string
+                        - 'null'
                         description: The unique identifier for the relevant participant role.
                     required:
                     - role
@@ -2082,6 +2097,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /conversation/v1/conversations/{conversationId}/messages/batch:
     parameters:
     - name: conversationId
@@ -2453,6 +2473,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /conversation/v1/conversation/messages:
     get:
       tags:
@@ -2506,8 +2531,9 @@ paths:
                               - customer
                               - system
                             externalId:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                               description: The unique identifier for the relevant participant role.
                           required:
                           - role
@@ -2817,6 +2843,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /conversation/v1/conversations/{conversationId}/authenticate:
     post:
       tags:
@@ -3098,7 +3129,566 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
 components:
+  schemas:
+    DefaultErrorResponse:
+      description: Default error response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 500-01
+            message: Internal server error
+    MessagesResponse:
+      description: Response for messages
+      type: object
+      properties:
+        id:
+          type: string
+          description: Message ID to be used for analytics
+      example:
+        id: 01BX5ZZKBKACTAV9WEVGEMMVS1
+    DefaultErrorDetails:
+      description: Error details
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Unique ID of the failing request
+        message:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+      required:
+      - requestId
+      - message
+    Conversation:
+      description: Represents a conversation between an agent and a customer.
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the conversation within the ASAPP system.
+        externalId:
+          type: string
+          description: The unique identifier for the conversation in your external chat or voice system.
+        agent:
+          type: object
+          description: Information about the agent participating in the conversation.
+          properties:
+            externalId:
+              type: string
+              description: The unique identifier for the agent in your external system.
+            name:
+              type: string
+              description: The display name of the agent.
+          required:
+          - externalId
+        customer:
+          type: object
+          description: Information about the customer participating in the conversation.
+          properties:
+            externalId:
+              type: string
+              description: The unique identifier for the customer in your external system.
+            name:
+              type: string
+              description: The display name of the customer.
+          required:
+          - externalId
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: Additional key-value pairs to store custom metadata about the conversation. Use this for filtering or categorization purposes.
+      required:
+      - externalId
+      - customer
+      example:
+        id: 01BX5ZZKBKACTAV9WEVGEMMVRZ
+        externalId: id-111
+        agent:
+          externalId: agent-111
+          name: agent-x
+        customer:
+          externalId: customer-x
+          name: customer-name-x
+        metadata:
+          organizationalGroup: some-group
+          subdivision: some-division
+          queue: some-queue
+    UnprocessableEntity:
+      description: Unprocessable Entity response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 422-01
+            message: Unprocessable Entity
+    BatchMessages:
+      description: A batch of messages for conversation
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+          minItems: 1
+          maxItems: 300
+      example:
+        messages:
+        - text: Hello, I would like to upgrade my internet plan to GOLD.
+          sender:
+            role: customer
+            externalId: customer-xyz
+          timestamp: '2021-11-23T12:13:14.555Z'
+        - text: Let me help you with that
+          sender:
+            role: agent
+            externalId: agent-111
+          timestamp: '2021-11-23T12:13:16.666Z'
+    ConflictResponse:
+      description: Conflict response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 409-01
+            message: Conflict
+    Participant:
+      description: Represents a participant in the conversation.
+      type: object
+      properties:
+        role:
+          $ref: '#/components/schemas/ParticipantRole'
+          description: The role of the participant in the conversation.
+        externalId:
+          type: string
+          description: The unique identifier for the participant in your external system. This should be consistent across all interactions for the same individual.
+      required:
+      - role
+      - externalId
+    GetMessagesResponse:
+      description: Response for GetMessages
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            description: A message sent by a participant of a conversation
+            type: object
+            properties:
+              text:
+                type: string
+                minLength: 1
+                description: Text sent
+              sender:
+                description: A participant within a conversation
+                type: object
+                properties:
+                  role:
+                    $ref: '#/components/schemas/ParticipantRole'
+                  externalId:
+                    type:
+                    - string
+                    - 'null'
+                    description: The unique identifier for the relevant participant role.
+                required:
+                - role
+              messageId:
+                type: string
+                minLength: 1
+                description: The identifier of the message.
+              createdTimestamp:
+                type: string
+                format: date-time
+                description: The time when the message objectwas created in the ASAPP system.
+              clientTimestamp:
+                type: string
+                format: date-time
+                description: The timestamp of when the message was sent.
+            required:
+            - text
+            - sender
+            - messageId
+            - createdTimestamp
+            - clientTimestamp
+            example:
+              text: Hello, I would like to upgrade my internet plan to GOLD.
+              sender:
+                role: customer
+                externalId: '123456'
+              messageId: 01GMXE90AEV7H3J4DPBDKB1R79
+              createdTimestamp: '2021-11-23T12:13:16.853Z'
+              clientTimestamp: '2021-11-23T12:13:14.555Z'
+    ConversationResponse:
+      description: Response for conversation
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier of the conversation.
+      example:
+        id: 01BX5ZZKBKACTAV9WEVGEMMVRZ
+    TimeBasedConversation:
+      description: Conversation between an agent and a customer that requires a timestamp of creation
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier of the conversation.
+        externalId:
+          type: string
+          description: Your unique identifier for a conversation.
+        agent:
+          type: object
+          description: Information about the agent participating in the conversation.
+          properties:
+            externalId:
+              type: string
+              description: The unique identifier for the agent in your external system.
+            name:
+              type: string
+              description: The display name of the agent.
+          required:
+          - externalId
+        customer:
+          type: object
+          description: Information about the customer participating in the conversation.
+          properties:
+            externalId:
+              type: string
+              description: The unique identifier for the customer in your external system.
+            name:
+              type: string
+              description: The display name of the customer.
+          required:
+          - externalId
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: Additional key-value pairs to store custom metadata about the conversation. Use this for filtering or categorization purposes.
+        timestamp:
+          type: string
+          format: date-time
+          description: The time when the conversation was created. Include the timezone, otherwise UTC will be assumed.
+      required:
+      - externalId
+      - customer
+      - timestamp
+      example:
+        externalId: id-111
+        agent:
+          externalId: agent-111
+          name: agent-x
+        customer:
+          externalId: customer-x
+          name: customer-name-x
+        metadata:
+          organizationalGroup: some-group
+          subdivision: some-division
+          queue: some-queue
+        timestamp: '2021-11-23T12:13:14.555Z'
+    ForbiddenResponse:
+      description: Forbidden response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 403-01
+            message: Forbidden Response
+    Conversations:
+      description: A list of conversations
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Conversation'
+    GetMessageResponse:
+      description: Response for GetMessage
+      type: object
+      properties:
+        text:
+          type: string
+          minLength: 1
+          description: Text sent
+        sender:
+          description: A participant within a conversation
+          type: object
+          properties:
+            role:
+              $ref: '#/components/schemas/ParticipantRole'
+            externalId:
+              type:
+              - string
+              - 'null'
+              description: The unique identifier for the relevant participant role.
+          required:
+          - role
+        messageId:
+          type: string
+          minLength: 1
+          description: The identifier of the message.
+        createdTimestamp:
+          type: string
+          format: date-time
+          description: The time when the message object was created in the ASAPP system.
+        clientTimestamp:
+          type: string
+          format: date-time
+          description: The timestamp of when the message was sent.
+      required:
+      - text
+      - sender
+      - messageId
+      - createdTimestamp
+      - clientTimestamp
+      example:
+        text: Hello, I would like to upgrade my internet plan to GOLD.
+        sender:
+          role: customer
+          externalId: '123456'
+        messageId: 01GMXE90AEV7H3J4DPBDKB1R79
+        createdTimestamp: '2021-11-23T12:13:16.853Z'
+        clientTimestamp: '2021-11-23T12:13:14.555Z'
+    Message:
+      description: Represents a single message within a conversation.
+      type: object
+      properties:
+        text:
+          type: string
+          minLength: 1
+          description: The content of the message.
+        sender:
+          $ref: '#/components/schemas/Participant'
+          description: Information about the participant who sent the message.
+        timestamp:
+          type: string
+          format: date-time
+          description: The time when the message was sent. Include the timezone, otherwise UTC will be assumed.
+      required:
+      - text
+      - sender
+      - timestamp
+      example:
+        text: Hello, I would like to upgrade my internet plan to GOLD.
+        sender:
+          role: agent
+          externalId: 123
+        timestamp: '2021-11-23T12:13:14.555Z'
+    ParticipantRole:
+      description: 'A participant role, usually the customer or an agent for human participants. System participant is also allowed but keep in mind
+
+        that this role won''t be considered a participant in a conversation, just a message sender.
+
+        '
+      type: string
+      enum:
+      - agent
+      - customer
+      - system
+    NotFoundResponse:
+      description: Not Found response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 404-01
+            message: Not Found
+    RequestEntityTooLargeResponse:
+      description: Request Entity Too Large response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 413-01
+            message: Request Entity Too Large
+    AuthObject:
+      type: object
+      description: Contains authentication information for a customer in a conversation.
+      properties:
+        streamId:
+          type: string
+          description: The unique identifier for the connection where responses should be sent.
+          example: 97555020-0276-435f-8104-c378221ba292
+        customerExternalId:
+          type: string
+          description: The unique identifier for the customer in your external system.
+          example: a03839d6-461c-479c-99db-8160174ef12d
+        auth:
+          type: object
+          description: "An authentication payload that could contain different types of credentials, such as a token, used to \nauthenticate an end user. All of the fields are optional, but at least one will be required\n"
+          minProperties: 1
+          properties:
+            body:
+              type: object
+              description: Any authentication data to be sent in the request body, if applicable.
+            cookies:
+              type: object
+              description: Any authentication data to be sent as cookies, if applicable.
+            headers:
+              type: object
+              description: Any authentication data to be sent in the request headers, if applicable.
+            token:
+              type: string
+              description: An authentication token for the user, if applicable.
+      required:
+      - customerExternalId
+      - auth
+      example:
+        customerExternalId: customer-xyz
+        token: cGFzc3dvcmQ=
+    UnauthorizedResponse:
+      description: Unauthorized response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 401-01
+            message: Unauthorized
+    BatchMessagesResponse:
+      description: Response for batch messages
+      type: object
+    TooManyRequestsResponse:
+      description: Too Many Requests response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 429-01
+            message: Too Many Requests
+    BadRequestResponse:
+      description: Bad request response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 400-01
+            message: Bad request
+    ServiceUnavailableResponse:
+      description: Service Unavailable response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 503-01
+            message: Service Unavailable
+  responses:
+    Forbidden:
+      description: 403 - Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenResponse'
+    DefaultError:
+      description: 500 - Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DefaultErrorResponse'
+    UnprocessableEntity:
+      description: 422 - Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnprocessableEntity'
+    ServiceUnavailable:
+      description: 503 - Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ServiceUnavailableResponse'
+    NotFound:
+      description: 404 - Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+    RequestEntityTooLarge:
+      description: 413 - Request Entity Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RequestEntityTooLargeResponse'
+    TooManyRequests:
+      description: 429 - Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TooManyRequestsResponse'
+    Conflict:
+      description: 409 - Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConflictResponse'
+    BadRequest:
+      description: 400 - Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+    Unauthorized:
+      description: 401 - Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
+  parameters:
+    externalId:
+      name: externalId
+      description: Your identifier for a conversation.
+      in: query
+      required: true
+      schema:
+        type: string
+      example:
+        externalId: id-111
+    conversationId:
+      name: conversationId
+      description: The identifier for a conversation.
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: ^[A-Z0-9]+$
+    messageId:
+      name: messageId
+      description: Internal message identifier from ASAPP
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: ^[A-Z0-9]+$
   securitySchemes:
     API-ID:
       type: apiKey
@@ -3108,3 +3698,6 @@ components:
       type: apiKey
       in: header
       name: asapp-api-secret
+x-refined-from:
+- asapp-conversations-openapi.yml
+- asapp-openapi-openapi.yml

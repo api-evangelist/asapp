@@ -1,19 +1,11 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: AutoCompose API
-  description: 'Autocompose API to suggest the next agent message.
-
-    Suggestions are based on the conversation history, conversation metadata, and
-
-    the in-progress message text the agent has already typed into the composer.
-
-    '
+  title: Asapp Auto Compose API
   version: 0.0.3
+  description: 'Operations tagged AutoCompose across 2 of this provider''s published API definitions: asapp-autocompose-openapi.yml, asapp-openapi-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.sandbox.asapp.com
-security:
-- API-ID: []
-  API-Secret: []
+- url: https://api.test.asapp.com
 tags:
 - name: AutoCompose
   description: Improve agent productivity with AutoCompose API
@@ -442,6 +434,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /autocompose/v1/profanity/evaluation:
     post:
       tags:
@@ -756,6 +753,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /autocompose/v1/spellcheck/correction:
     post:
       tags:
@@ -1113,6 +1115,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /autocompose/v1/analytics/message-sent:
     post:
       tags:
@@ -1564,6 +1571,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /autocompose/v1/conversations/{conversationId}/message-analytic-events:
     parameters:
     - name: conversationId
@@ -1673,11 +1685,12 @@ paths:
                   type: string
                   example: 4d2fd982640c311394008259594399a1
                 spellcheckApplied:
-                  type: object
+                  type:
+                  - object
+                  - 'null'
                   description: 'The details about the spellcheck applied analytic event
 
                     '
-                  nullable: true
                   properties:
                     correctionId:
                       description: The ID of the spellcheck correction API response
@@ -1686,11 +1699,12 @@ paths:
                   required:
                   - correctionId
                 spellcheckUndone:
-                  type: object
+                  type:
+                  - object
+                  - 'null'
                   description: 'The details about the spellcheck undone analytic event
 
                     '
-                  nullable: true
                   properties:
                     correctionId:
                       description: The ID of the spellcheck correction API response
@@ -1699,9 +1713,10 @@ paths:
                   required:
                   - correctionId
                 customResponseDrawerInserted:
-                  type: object
+                  type:
+                  - object
+                  - 'null'
                   description: The details about the custom response drawer inserted analytic event
-                  nullable: true
                   properties:
                     query:
                       description: 'The query the agent typed to search in the custom response drawer
@@ -1719,9 +1734,10 @@ paths:
                   - query
                   - text
                 customPanelInserted:
-                  type: object
+                  type:
+                  - object
+                  - 'null'
                   description: The details about the custom panel inserted analytic event
-                  nullable: true
                   properties:
                     text:
                       description: 'The text of the custom response the agent inserted using the custom response panel
@@ -1732,9 +1748,10 @@ paths:
                   required:
                   - text
                 globalPanelInserted:
-                  type: object
+                  type:
+                  - object
+                  - 'null'
                   description: The details about the global panel inserted analytic event
-                  nullable: true
                   properties:
                     text:
                       description: 'The text of the custom response the agent inserted using the global response panel
@@ -2064,6 +2081,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /autocompose/v1/settings:
     parameters:
     - name: agentId
@@ -2389,6 +2411,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /autocompose/v1/responses/globals:
     get:
       tags:
@@ -2796,6 +2823,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /autocompose/v1/responses/customs:
     parameters:
     - name: agentId
@@ -3197,6 +3229,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /autocompose/v1/responses/customs/folder:
     parameters:
     - name: agentId
@@ -3541,6 +3578,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /autocompose/v1/responses/customs/response:
     parameters:
     - name: agentId
@@ -3908,6 +3950,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /autocompose/v1/responses/customs/response/{responseId}:
     parameters:
     - name: agentId
@@ -4250,6 +4297,9 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
     delete:
       tags:
       - AutoCompose
@@ -4540,6 +4590,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /autocompose/v1/responses/customs/folder/{folderId}:
     parameters:
     - name: agentId
@@ -4869,6 +4924,9 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
     delete:
       tags:
       - AutoCompose
@@ -5159,6 +5217,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /autocompose/v1/autopilot/greetings:
     parameters:
     - name: agentId
@@ -5474,6 +5537,9 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
     put:
       tags:
       - AutoCompose
@@ -5802,6 +5868,11 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
   /autocompose/v1/autopilot/greetings/status:
     parameters:
     - name: agentId
@@ -6112,6 +6183,9 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
     put:
       tags:
       - AutoCompose
@@ -6430,7 +6504,875 @@ paths:
                     required:
                     - requestId
                     - message
+      security:
+      - API-ID: []
+        API-Secret: []
+    servers:
+    - url: https://api.sandbox.asapp.com
 components:
+  schemas:
+    DefaultErrorResponse:
+      description: Default error response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 500-01
+            message: Internal server error
+    MessagesResponse:
+      description: Response for messages
+      type: object
+      properties:
+        id:
+          type: string
+          description: Message ID to be used for analytics
+      example:
+        id: 01BX5ZZKBKACTAV9WEVGEMMVS1
+    DefaultErrorDetails:
+      description: Error details
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Unique ID of the failing request
+        message:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+      required:
+      - requestId
+      - message
+    Folder:
+      type: object
+      description: A folder of responses
+      properties:
+        id:
+          type: string
+          description: The ID of the folder
+          readOnly: true
+        parentFolderId:
+          type: string
+          description: The ID of the parent folder.
+        name:
+          type: string
+          description: the name of the folder
+      required:
+      - name
+      example:
+        id: '123'
+        parentFolderId: '456'
+        name: folder name
+    ProfanityResult:
+      description: ProfanityResult
+      type: object
+      properties:
+        hasProfanity:
+          description: A boolean value describing if the text contains a curse word.
+          type: boolean
+          example: false
+    AutopilotStatus:
+      type: object
+      description: Autopilot status for an agent
+      properties:
+        enabled:
+          type: boolean
+          description: If true, autopilot is enabled
+      required:
+      - enabled
+      example:
+        enabled: true
+    Response:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of this response, data format is UUID
+          readOnly: true
+        text:
+          type: string
+          description: The text of the response
+        title:
+          type: string
+          description: The title of the response. Always non-empty for custom responses, but may be empty for other types of responses (global and organic).
+        folderId:
+          type: string
+          description: the ID of the folder the response belongs to.
+        metadata:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: the name of this metadata item
+              allowedValues:
+                type: array
+                items:
+                  type: string
+                description: the list of allowed values for this metadata item
+          description: free-form metadata, in the form of a map of keys to lists of allowed values for each key, that can be added to any response. At least one of the values in the list for each key included  here must match what gets sent when requesting suggestions, so that responses can be filtered appropriately.
+    UnprocessableEntity:
+      description: Unprocessable Entity response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 422-01
+            message: Unprocessable Entity
+    Suggestions:
+      description: Suggestions for next agent message
+      type: object
+      properties:
+        id:
+          description: ID for the suggestions that were returned (to be used in analytics events)
+          type: string
+        message:
+          $ref: '#/components/schemas/MessagesResponse'
+        suggestions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Suggestion'
+        phraseCompletion:
+          $ref: '#/components/schemas/PhraseCompletion'
+        autopilotMessage:
+          $ref: '#/components/schemas/AutopilotMessage'
+    GlobalResponsesWithVersion:
+      type: object
+      properties:
+        responses:
+          $ref: '#/components/schemas/Responses'
+        version:
+          $ref: '#/components/schemas/GlobalResponsesVersion'
+    AutopilotGreeting:
+      type: object
+      description: Autopilot greetings for an agent
+      properties:
+        greetingGeneric:
+          type: string
+          description: Generic greeting, without any template data
+        greetingCustomerName:
+          type: string
+          description: Greeting with template for customer name
+      required:
+      - greetingGeneric
+      - greetingCustomerName
+      example:
+        greetingGeneric: Welcome!
+        greetingCustomerName: Welcome {NAME}!
+    ConflictResponse:
+      description: Conflict response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 409-01
+            message: Conflict
+    Participant:
+      description: Represents a participant in the conversation.
+      type: object
+      properties:
+        role:
+          $ref: '#/components/schemas/ParticipantRole'
+          description: The role of the participant in the conversation.
+        externalId:
+          type: string
+          description: The unique identifier for the participant in your external system. This should be consistent across all interactions for the same individual.
+      required:
+      - role
+      - externalId
+    Settings:
+      type: object
+      properties:
+        suggestionsWhileTypingDisabled:
+          type: boolean
+          description: if true, suggestions endpoint should not be called while agent is typing
+        phraseCompletionsDisabled:
+          type: boolean
+          description: if true, phraseCompletion from suggestions endpoint should not be shown to the agent
+        spellcheckDisabled:
+          type: boolean
+          description: if true, spelling corrections endpoint should not be called while agent is typing
+        autopilotGreetingsDisabled:
+          type: boolean
+          description: if true, autopilot greetings should not be available for configuration
+        autocomposeDisabled:
+          type: boolean
+          description: 'if true, all AutoCompose features should be disabled (regardless of the other settings); this
+
+            is intended for use in A/B tests in which a control group of agents is not exposed to AutoCompose
+
+            '
+    SpellcheckCorrection:
+      type: object
+      properties:
+        id:
+          description: ID for the spelling correction that was returned (to be used in analytics events)
+          type: string
+          example: 01BX5ZZKBKACTAV9WEVGEMMVS1
+        misspelledText:
+          description: misspelling that needs to be replaced with the corrected text
+          type: string
+          example: tihs
+        correctedText:
+          type: string
+          description: correction for the misspelling
+          example: this
+        position:
+          type: integer
+          description: position where the misspelling starts
+          example: 7
+    ForbiddenResponse:
+      description: Forbidden response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 403-01
+            message: Forbidden Response
+    MessageSentEvent:
+      description: 'Analytics event describing the agent''s usage of AutoCompose features while composing a message (we sometimes refer to these as augmentation features, because they augment the agent''s work).
+
+        Note that many of the fields are not technically required according to this spec. This does not mean that they can omitted arbitrarily. They should all be set, when they relevant for AutoCompose features a particular ASAPP customer is using and the data is available. For some use cases, some fields are not relevant (for example, phraseAutocompletePresentedCt is only relevant if phrase completions are being used). In other cases, the field may relevant but the data might not be avaialble (for example, if the request for suggestions returns too late, it might not be possible set initialSuggestionsId). The customer should try to fill in all relevant fields when they can; this information enables ASAPP to report on the performance of our features and to improve their perforamnce over time.
+
+        When a field is omitted, it will take on a default value in the event data. String fields default to empty string and numeric fields default to 0.'
+      type: object
+      required:
+      - conversationId
+      - messageId
+      - augmentationType
+      example:
+        conversationId: 01G1167H5FFQ47SMSRYGKBW7HM
+        messageId: 01BX5ZZKBKACTAV9WEVGEMMVS1
+        augmentationType:
+        - AUTOSUGGEST
+      properties:
+        conversationId:
+          description: The ASAPP conversation id for the conversation.
+          type: string
+          example: 01G1167H5FFQ47SMSRYGKBW7HM
+        messageId:
+          description: 'The ASAPP ID of the message that was sent. This is required for every event,
+
+            to enable correlating the analytics event with the message that was sent.
+
+            '
+          type: string
+          example: 01BX5ZZKBKACTAV9WEVGEMMVS1
+        augmentationType:
+          description: 'Types of AutoCompose augmentation features used for composing the
+
+            message. Ordering of augmentations and repeated uses of an
+
+            augmentation type are preserved. This is required, so that the usage of
+
+            AutoCompose features can be measured.
+
+            '
+          type: array
+          items:
+            type: string
+            enum:
+            - FREEHAND
+            - AUTOSUGGEST
+            - AUTOCOMPLETE
+            - PHRASE_AUTOCOMPLETE
+            - CUSTOM_DRAWER
+            - CUSTOM_INSERT
+            - GLOBAL_INSERT
+            - FLUENCY_APPLY
+            - FLUENCY_UNDO
+          example:
+          - AUTOSUGGEST
+          - PHRASE_AUTOCOMPLETE
+          - FLUENCY_APPLY
+        numEdits:
+          description: 'Number of keystrokes of editing the agent did after selecting a full-message suggestions
+
+            (one of the suggestions in the suggestions array, not phraseCompletion). Selecting a
+
+            full-message suggestion resets the counter. Accepting a phrase completion by hitting tab
+
+            or right arrow increments the counter just like other keystrokes. The idea is to have a rough
+
+            idea of how much editing the agent had to do after selecting a full-message suggestion (in the
+
+            ideal case, the message was satisfactory to send as-is and numEdits equals 0).
+
+            '
+          type: integer
+          example: 2
+        selectedSuggestionText:
+          description: 'If the agent used a full-message suggestion to compose this message,
+
+            this is the text of the suggestion
+
+            '
+          type: string
+          example: How can I help you today?
+        selectedSuggestionsId:
+          description: 'If the agent used a full-message suggestion to compose this message, this is the ID of
+
+            the set of suggestions that the suggestion came from. This helps ASAPP assoicate the MessageSent
+
+            event with events emitted by AutoCompose internally. If the agent did not use a full-message
+
+            suggestion, this field can left blank.
+
+            '
+          type: string
+          example: 4d2fd982640c311394008259594399a1
+        selectedSuggestionIndex:
+          description: 'If the agent used a full-message suggestion to compose this message, this is the
+
+            index of the selected suggestion in the set of suggestions that the agent used, starting
+
+            from 1 for the top suggestion, 2 for the second from the top, and so on. This should be
+
+            omitted if no suggestion was selected, but it is required if the agent selected
+
+            a suggestion, to enable identifying which of the suggestions was used.
+
+            '
+          type: integer
+          example: 1
+        initialSuggestionsId:
+          description: 'The ID for the first set of suggestions the agent saw while composing this message.
+
+            This is required for every event, if suggestions were shown to the agent. If for some reason
+
+            suggestions were not available, it can be omitted.
+
+            '
+          type: string
+          example: 5e9491b203e6ecccfef964e26fb1a5d3
+        timeToAction:
+          description: "Number of seconds between the agent sending their previous\nmessage and their first action for composing this message.\nAn agent action is when one of the following occur:\n - Typing in the composer\n - Selecting a suggestion\n - Using a phrase completion\n - Inserting a custom or global response from the library\n - Pasting a text into the composer\n"
+          type: number
+          example: 1.891412
+        craftingTime:
+          description: 'Number of seconds between the agent''s first action
+
+            and last action for composing this message.
+
+            '
+          type: number
+          example: 10.9472
+        dwellTime:
+          description: 'Number of seconds between the agent''s last action
+
+            for composing this message and the message being sent.
+
+            '
+          type: number
+          example: 4.132985
+        phraseAutocompletePresentedCt:
+          description: 'Number of phrase autocomplete suggestions presented
+
+            to the agent.
+
+            '
+          type: integer
+          example: 3
+        phraseAutocompleteSelectedCt:
+          description: 'Number of phrase autocomplete suggestions selected
+
+            by the agent.
+
+            '
+          type: integer
+          example: 1
+    Message:
+      description: Represents a single message within a conversation.
+      type: object
+      properties:
+        text:
+          type: string
+          minLength: 1
+          description: The content of the message.
+        sender:
+          $ref: '#/components/schemas/Participant'
+          description: Information about the participant who sent the message.
+        timestamp:
+          type: string
+          format: date-time
+          description: The time when the message was sent. Include the timezone, otherwise UTC will be assumed.
+      required:
+      - text
+      - sender
+      - timestamp
+      example:
+        text: Hello, I would like to upgrade my internet plan to GOLD.
+        sender:
+          role: agent
+          externalId: 123
+        timestamp: '2021-11-23T12:13:14.555Z'
+    NewCustomResponse:
+      type: object
+      properties:
+        text:
+          type: string
+          description: The text of the response
+        title:
+          type: string
+          description: The title of the response
+        folderId:
+          type: string
+          description: the ID of the folder the response belongs to (used for custom responses).
+        metadata:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: the name of this metadata item
+              allowedValues:
+                type: array
+                items:
+                  type: string
+                description: the list of allowed values for this metadata item
+          description: free-form metadata, in the form of a map of keys to lists of allowed values for each key, that can be added to any response. At least one of the values in the list for each key included  here must match what gets sent when requesting suggestions, so that responses can be filtered appropriately.
+      required:
+      - text
+      - title
+      example:
+        text: fold text
+        title: folder title
+        folderId: '123'
+    ParticipantRole:
+      description: 'A participant role, usually the customer or an agent for human participants. System participant is also allowed but keep in mind
+
+        that this role won''t be considered a participant in a conversation, just a message sender.
+
+        '
+      type: string
+      enum:
+      - agent
+      - customer
+      - system
+    GlobalResponsesVersion:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of this version of the global responses
+          readOnly: true
+        description:
+          type: string
+          description: A human-readable description of the version
+    Suggestion:
+      description: Suggestion
+      type: object
+      properties:
+        text:
+          type: string
+          description: Suggestion text for the agent
+          example: Hello John, how can I help you?
+        templateText:
+          type: string
+          description: Suggestion text with placeholders for metadata instead of the values filled in
+          example: Hello {NAME}, how can I help you?
+        title:
+          type: string
+          description: The title of the response
+          example: Greeting
+    SuggestionsRequest:
+      description: A suggestions request with an optional message to add to the conversation
+      type: object
+      properties:
+        query:
+          description: text the agent has already entered into the composer
+          type: string
+        message:
+          $ref: '#/components/schemas/Message'
+      example:
+        query: Hello, how can
+        message:
+          text: Hello, I would like to upgrade my internet plan to GOLD.
+          sender:
+            role: customer
+            externalId: customer-x
+          timestamp: '2023-06-01T19:16:55.706Z'
+    NotFoundResponse:
+      description: Not Found response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 404-01
+            message: Not Found
+    RequestEntityTooLargeResponse:
+      description: Request Entity Too Large response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 413-01
+            message: Request Entity Too Large
+    AutopilotMessage:
+      description: Recommended message for the agent to autopilot send.
+      type: object
+      properties:
+        text:
+          type: string
+          description: Text of the message
+          example: Hello John, how can I help you?
+        templateText:
+          type: string
+          description: Text of the message with placeholders for metadata instead of the values filled in
+          example: Hello {NAME}, how can I help you?
+        title:
+          type: string
+          description: The title of the message
+          example: Greeting
+        delaySeconds:
+          type: integer
+          description: Delay before the message is sent to the customer, during which a preview of the message is shown to the agent and they can choose to cancel it
+          example: 5
+        triggerAfterSeconds:
+          type: integer
+          description: Delay before showing the preview and starting the countdown to send the message
+          example: 0
+    MessageAnalyticEvent:
+      description: 'Analytics event reporting actions the agent performed while composing a message.
+
+        '
+      type: object
+      required:
+      - type
+      - suggestionsId
+      example:
+        type: suggestion-1-inserted
+        suggestionsId: 4d2fd982640c311394008259594399a1
+      properties:
+        type:
+          type: string
+          example: suggestion-1-inserted
+          enum:
+          - suggestion-1-inserted
+          - suggestion-2-inserted
+          - suggestion-3-inserted
+          - phrase-completion-accepted
+          - spellcheck-applied
+          - spellcheck-undone
+          - custom-response-drawer-inserted
+          - custom-panel-inserted
+          - global-panel-inserted
+          description: 'The type of message analytic event.
+
+            '
+        suggestionsId:
+          description: 'For suggestion-1-inserted, suggestion-2-inserted, suggestion-3-inserted, phrase-completion-accepted,
+
+            this is the `id` from the Suggestions API response that the agent
+
+            interacted with. This allows ASAPP to connect the event with additional information (e.g., the
+
+            text of the suggestion that was inserted).
+
+
+            For spellcheck-undone, custom-response-drawer-inserted, custom-panel-inserted, and global-panel-inserted, this is the
+
+            `id` of the most recent Suggestions API response in this conversation.
+
+
+            In all of these cases, providing the Suggestions `id` allows ASAPP to associate the event with the message the agent
+
+            is composing. During the normal flow of using the AutoCompose API, the Suggestions API will always have been called
+
+            at least once since the previous agent message by the time a message analytic event occurs, and each time the
+
+            Suggestions API is called, ASAPP records the ID of the previous
+
+            agent message. Thus, the Suggestions `id` in the analytic event links back to the previous agent message. This permits
+
+            the analytic event to later be linked to the new message the agent is composing, even though the event occurs before
+
+            the message is sent.
+
+            '
+          type: string
+          example: 4d2fd982640c311394008259594399a1
+        spellcheckApplied:
+          type:
+          - object
+          - 'null'
+          description: 'The details about the spellcheck applied analytic event
+
+            '
+          properties:
+            correctionId:
+              description: The ID of the spellcheck correction API response
+              type: string
+              example: 75bc8912c66842594375bc8912c66842
+          required:
+          - correctionId
+        spellcheckUndone:
+          type:
+          - object
+          - 'null'
+          description: 'The details about the spellcheck undone analytic event
+
+            '
+          properties:
+            correctionId:
+              description: The ID of the spellcheck correction API response
+              type: string
+              example: 75bc8912c66842594375bc8912c66842
+          required:
+          - correctionId
+        customResponseDrawerInserted:
+          type:
+          - object
+          - 'null'
+          description: The details about the custom response drawer inserted analytic event
+          properties:
+            query:
+              description: 'The query the agent typed to search in the custom response drawer
+
+                '
+              type: string
+              example: Hi
+            text:
+              description: 'The text of the custom response the agent inserted from the custom response drawer
+
+                '
+              type: string
+              example: Hi, I'm Alice. How can I help you today?
+          required:
+          - query
+          - text
+        customPanelInserted:
+          type:
+          - object
+          - 'null'
+          description: The details about the custom panel inserted analytic event
+          properties:
+            text:
+              description: 'The text of the custom response the agent inserted using the custom response panel
+
+                '
+              type: string
+              example: Hi, I'm Alice. How can I help you today?
+          required:
+          - text
+        globalPanelInserted:
+          type:
+          - object
+          - 'null'
+          description: The details about the global panel inserted analytic event
+          properties:
+            text:
+              description: 'The text of the custom response the agent inserted using the global response panel
+
+                '
+              type: string
+              example: How can I help you today?
+          required:
+          - text
+    PhraseCompletion:
+      description: Completion of the phrase the agent is currently typing, to be displayed inline in the composer
+      type: object
+      properties:
+        text:
+          type: string
+          description: Phrase completion text for the agent (this may be empty if the model does not have a confident prediction for how to complete the message)
+          example: Hello, how can I help you?
+    UnauthorizedResponse:
+      description: Unauthorized response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 401-01
+            message: Unauthorized
+    TooManyRequestsResponse:
+      description: Too Many Requests response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 429-01
+            message: Too Many Requests
+    BadRequestResponse:
+      description: Bad request response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 400-01
+            message: Bad request
+    Responses:
+      type: object
+      description: A set of responses and folders for an agent
+      properties:
+        responsesList:
+          type: array
+          description: the list of responses with their associated metadata
+          items:
+            $ref: '#/components/schemas/Response'
+        folderList:
+          type: array
+          description: the list of folders
+          items:
+            $ref: '#/components/schemas/Folder'
+        pageToken:
+          type: string
+          description: the token to the next page if there is one, otherwise empty
+    ServiceUnavailableResponse:
+      description: Service Unavailable response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 503-01
+            message: Service Unavailable
+    SpellcheckQuery:
+      type: object
+      properties:
+        text:
+          description: text being typed by the agent, already entered into the composer
+          type: string
+        typingEvent:
+          type: object
+          properties:
+            cursorStart:
+              description: position of the cursor before the typing event, to identify if a word is being typed
+              type: integer
+            cursorEnd:
+              description: position of the cursor after the typing event, to identify if a word is being typed
+              type: integer
+          required:
+          - cursorStart
+          - cursorEnd
+        userDictionary:
+          description: Words that should not be corrected if they are present on the text
+          type: array
+          items:
+            type: string
+      required:
+      - text
+      - typingEvent
+      example:
+        text: 'How is tihs '
+        typingEvent:
+          cursorStart: 11
+          cursorEnd: 12
+        userDictionary:
+        - Hellooo
+  responses:
+    Forbidden:
+      description: 403 - Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenResponse'
+    DefaultError:
+      description: 500 - Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DefaultErrorResponse'
+    UnprocessableEntity:
+      description: 422 - Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnprocessableEntity'
+    ServiceUnavailable:
+      description: 503 - Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ServiceUnavailableResponse'
+    NotFound:
+      description: 404 - Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+    RequestEntityTooLarge:
+      description: 413 - Request Entity Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RequestEntityTooLargeResponse'
+    TooManyRequests:
+      description: 429 - Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TooManyRequestsResponse'
+    Conflict:
+      description: 409 - Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConflictResponse'
+    BadRequest:
+      description: 400 - Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+    Unauthorized:
+      description: 401 - Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
+  parameters:
+    conversationId:
+      name: conversationId
+      description: The identifier for a conversation.
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: ^[A-Z0-9]+$
+    folderId:
+      name: folderId
+      description: Identifier of the folder, data format is expected to be UUID
+      in: path
+      required: true
+      schema:
+        type: string
+    responseId:
+      name: responseId
+      description: Identifier of the response, data format is expected to be UUID
+      in: path
+      required: true
+      schema:
+        type: string
+    agentId:
+      name: agentId
+      description: Identifier of the agent, data format is expected to be UUID
+      in: query
+      required: true
+      schema:
+        type: string
   securitySchemes:
     API-ID:
       type: apiKey
@@ -6440,3 +7382,6 @@ components:
       type: apiKey
       in: header
       name: asapp-api-secret
+x-refined-from:
+- asapp-autocompose-openapi.yml
+- asapp-openapi-openapi.yml

@@ -1,14 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: AutoCompose Disengage API
-  description: 'Autocompose API to suggest the next agent message.
-
-    Suggestions are based on the conversation history, conversation metadata, and
-
-    the in-progress message text the agent has already typed into the composer.
-
-    '
-  version: 0.0.3
+  title: MG GenAgent API Router Disengage API
+  description: Router service for controlling MG GenAgent
+  version: '1'
 servers:
 - url: https://api.sandbox.asapp.com
 security:
