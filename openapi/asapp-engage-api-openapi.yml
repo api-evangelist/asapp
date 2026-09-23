@@ -17,7 +17,7 @@ paths:
       tags:
       - Engage
       operationId: engage
-      summary: Engage Genagent in a conversation.
+      summary: Engage Genagent in a conversation
       description: Engage Genagent in a conversation.
       requestBody:
         required: true

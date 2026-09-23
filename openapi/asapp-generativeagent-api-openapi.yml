@@ -21,9 +21,7 @@ paths:
         This API should be called after a customer sends a message while not speaking with a live agent. The Bot replies will not be returned on this request; they will be delivered asynchronously via the webhook callback.
 
 
-        This API also adds an optional **message** field to create a message for a given conversation before triggering the bot replies. The message object is the exact same message used in the conversations API /message endpoint
-
-        '
+        This API also adds an optional **message** field to create a message for a given conversation before triggering the bot replies. The message object is the exact same message used in the conversations API /message endpoint'
       operationId: postAnalyze
       requestBody:
         required: true
@@ -427,9 +425,7 @@ paths:
         This API should be called when the client boots-up to request a streaming_url, before it calls endpoints whose responses are delivered asynchronously (and most likely before calling any other endpoint).
 
 
-        Provide the streamId to reconnect to a previous stream.
-
-        '
+        Provide the streamId to reconnect to a previous stream.'
       operationId: postStreams
       requestBody:
         required: true
@@ -567,9 +563,7 @@ paths:
       tags:
       - GenerativeAgent
       summary: Get GenerativeAgent state
-      description: 'This API provides the current state of the generative agent for a given conversation.
-
-        '
+      description: This API provides the current state of the generative agent for a given conversation.
       operationId: getState
       parameters:
       - in: query
@@ -640,9 +634,7 @@ paths:
         - `SIP`: Session Initiation Protocol (SIP) transfer.
 
 
-        You can optionally provide `inputContext` to provide context for the conversation. This is passed to GenerativeAgent.
-
-        '
+        You can optionally provide `inputContext` to provide context for the conversation. This is passed to GenerativeAgent.'
       requestBody:
         required: true
         content:
@@ -1194,9 +1186,7 @@ paths:
       - GenerativeAgent
       operationId: getCallTransfer
       summary: Get Call Transfer
-      description: 'Get Call Transfer resource by ID.
-
-        '
+      description: Get Call Transfer resource by ID.
       parameters:
       - name: callTransferId
         description: The identifier for the call transfer.
@@ -1698,9 +1688,7 @@ paths:
       description: 'Lookup Call Transfer with phone number and retrieve variables.
 
 
-        Used by ASAPP to match the phone number with a call transfer.
-
-        '
+        Used by ASAPP to match the phone number with a call transfer.'
       requestBody:
         required: true
         content:
@@ -2120,13 +2108,11 @@ paths:
       tags:
       - GenerativeAgent
       operationId: completeCallTransfer
-      summary: Complete Call Transfer with phone number.
+      summary: Complete Call Transfer with phone number
       description: 'Complete Call Transfer with phone number.
 
 
-        Used by ASAPP to release phone number back to the pool and update Call Transfer resource status.
-
-        '
+        Used by ASAPP to release phone number back to the pool and update Call Transfer resource status.'
       requestBody:
         required: true
         content:
@@ -2445,6 +2431,16 @@ paths:
     - url: https://api.sandbox.asapp.com
 components:
   schemas:
+    ServiceUnavailableResponse:
+      description: Service Unavailable response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 503-01
+            message: Service Unavailable
     DefaultErrorResponse:
       description: Default error response
       type: object
@@ -2455,65 +2451,6 @@ components:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
             code: 500-01
             message: Internal server error
-    DefaultErrorDetails:
-      description: Error details
-      type: object
-      properties:
-        requestId:
-          type: string
-          description: Unique ID of the failing request
-        message:
-          type: string
-          description: Error message
-        code:
-          type: string
-          description: Error code
-      required:
-      - requestId
-      - message
-    UnprocessableEntity:
-      description: Unprocessable Entity response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 422-01
-            message: Unprocessable Entity
-    Participant:
-      description: Represents a participant in the conversation.
-      type: object
-      properties:
-        role:
-          $ref: '#/components/schemas/ParticipantRole'
-          description: The role of the participant in the conversation.
-        externalId:
-          type: string
-          description: The unique identifier for the participant in your external system. This should be consistent across all interactions for the same individual.
-      required:
-      - role
-      - externalId
-    ConflictResponse:
-      description: Conflict response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 409-01
-            message: Conflict
-    ForbiddenResponse:
-      description: Forbidden response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 403-01
-            message: Forbidden Response
     Message:
       description: Represents a single message within a conversation.
       type: object
@@ -2539,6 +2476,55 @@ components:
           role: agent
           externalId: 123
         timestamp: '2021-11-23T12:13:14.555Z'
+    ForbiddenResponse:
+      description: Forbidden response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 403-01
+            message: Forbidden Response
+    ConflictResponse:
+      description: Conflict response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 409-01
+            message: Conflict
+    Participant:
+      description: Represents a participant in the conversation.
+      type: object
+      properties:
+        role:
+          $ref: '#/components/schemas/ParticipantRole'
+          description: The role of the participant in the conversation.
+        externalId:
+          type: string
+          description: The unique identifier for the participant in your external system. This should be consistent across all interactions for the same individual.
+      required:
+      - role
+      - externalId
+    DefaultErrorDetails:
+      description: Error details
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Unique ID of the failing request
+        message:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+      required:
+      - requestId
+      - message
     ParticipantRole:
       description: 'A participant role, usually the customer or an agent for human participants. System participant is also allowed but keep in mind
 
@@ -2550,36 +2536,6 @@ components:
       - agent
       - customer
       - system
-    NotFoundResponse:
-      description: Not Found response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 404-01
-            message: Not Found
-    RequestEntityTooLargeResponse:
-      description: Request Entity Too Large response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 413-01
-            message: Request Entity Too Large
-    TooManyRequestsResponse:
-      description: Too Many Requests response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 429-01
-            message: Too Many Requests
     UnauthorizedResponse:
       description: Unauthorized response
       type: object
@@ -2590,6 +2546,26 @@ components:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
             code: 401-01
             message: Unauthorized
+    TooManyRequestsResponse:
+      description: Too Many Requests response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 429-01
+            message: Too Many Requests
+    NotFoundResponse:
+      description: Not Found response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 404-01
+            message: Not Found
     BadRequestResponse:
       description: Bad request response
       type: object
@@ -2600,77 +2576,87 @@ components:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
             code: 400-01
             message: Bad request
-    ServiceUnavailableResponse:
-      description: Service Unavailable response
+    RequestEntityTooLargeResponse:
+      description: Request Entity Too Large response
       type: object
       properties:
         error:
           $ref: '#/components/schemas/DefaultErrorDetails'
           example:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 503-01
-            message: Service Unavailable
-  responses:
-    Forbidden:
-      description: 403 - Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenResponse'
-    DefaultError:
-      description: 500 - Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/DefaultErrorResponse'
+            code: 413-01
+            message: Request Entity Too Large
     UnprocessableEntity:
-      description: 422 - Unprocessable Entity
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnprocessableEntity'
-    ServiceUnavailable:
-      description: 503 - Service Unavailable
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ServiceUnavailableResponse'
-    NotFound:
-      description: 404 - Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundResponse'
+      description: Unprocessable Entity response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 422-01
+            message: Unprocessable Entity
+  responses:
     RequestEntityTooLarge:
       description: 413 - Request Entity Too Large
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/RequestEntityTooLargeResponse'
-    TooManyRequests:
-      description: 429 - Too Many Requests
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/TooManyRequestsResponse'
     Conflict:
       description: 409 - Conflict
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ConflictResponse'
-    BadRequest:
-      description: 400 - Bad request
+    DefaultError:
+      description: 500 - Internal Server Error
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/BadRequestResponse'
+            $ref: '#/components/schemas/DefaultErrorResponse'
     Unauthorized:
       description: 401 - Unauthorized
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/UnauthorizedResponse'
+    ServiceUnavailable:
+      description: 503 - Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ServiceUnavailableResponse'
+    TooManyRequests:
+      description: 429 - Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TooManyRequestsResponse'
+    NotFound:
+      description: 404 - Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+    BadRequest:
+      description: 400 - Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+    UnprocessableEntity:
+      description: 422 - Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnprocessableEntity'
+    Forbidden:
+      description: 403 - Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenResponse'
   securitySchemes:
     API-ID:
       type: apiKey

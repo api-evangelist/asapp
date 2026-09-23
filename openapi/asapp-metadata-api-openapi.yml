@@ -1,14 +1,19 @@
 openapi: 3.2.0
 info:
-  title: Asapp Metadata API
-  version: '1.0'
-  description: 'Operations tagged Metadata across 2 of this provider''s published API definitions: asapp-metadata-ingestion-openapi.yml, asapp-openapi-openapi.yml. Each path carries the servers of the definition it was published in.'
+  title: AutoCompose Metadata API
+  description: 'Autocompose API to suggest the next agent message.
+
+    Suggestions are based on the conversation history, conversation metadata, and
+
+    the in-progress message text the agent has already typed into the composer.'
+  version: 0.0.3
 servers:
 - url: https://api.sandbox.asapp.com
 - url: https://api.test.asapp.com
 tags:
 - name: Metadata
   description: API to submit entity's attributes to ASAPP
+  x-displayName: Metadata
 paths:
   /metadata-ingestion/v1/single-agent-metadata:
     post:
@@ -16,3443 +21,246 @@ paths:
       - Metadata
       operationId: singleAgentMetadata
       summary: Add an agent metadata
-      description: 'Add metadata attributes of one agent
-
-        '
+      description: Add metadata attributes of one agent
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              description: A set of agent metadata attributes
-              type: object
-              properties:
-                externalAgentId:
-                  description: The agent id in question
-                  type: string
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 256
-                  example: agent158
-                eventId:
-                  description: 'An event id used to track the submission; if none is provided, service will generate one
-
-                    '
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 256
-                  example: eventId-158
-                startTs:
-                  description: The date and time when the agent is hired in ISO-8601
-                  type:
-                  - string
-                  - 'null'
-                  format: date-time
-                  example: '2022-07-08T11:15:53.237517000Z'
-                lobId:
-                  description: The line of business id
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 256
-                  example: '1038'
-                lobName:
-                  description: The descriptive name of the line of business
-                  type:
-                  - string
-                  - 'null'
-                  maxLength: 256
-                  example: manufacturing
-                groupId:
-                  description: The group id of which the agent belong to
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 256
-                  example: group5
-                groupName:
-                  description: The descriptive name of the group
-                  type:
-                  - string
-                  - 'null'
-                  maxLength: 256
-                  example: XYZ
-                agentName:
-                  description: The name of the agent
-                  type:
-                  - string
-                  - 'null'
-                  maxLength: 256
-                  example: Jane Doe
-                agentLocation:
-                  description: The location (or address) of where the agent worked
-                  type:
-                  - string
-                  - 'null'
-                  maxLength: 256
-                  example: Northern-California
-                supervisorId:
-                  description: The supervisor id of who the agent report to
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 256
-                  example: '3080'
-                supervisorName:
-                  description: The name of the agent's supervisor
-                  type:
-                  - string
-                  - 'null'
-                  maxLength: 256
-                  example: Linda Lemon
-                languages:
-                  description: 'A list of agent''s known language codes in ISO 639
-
-                    e.g., English (United States) code = en-US
-
-                    '
-                  type:
-                  - array
-                  - 'null'
-                  items:
-                    type: string
-                    pattern: '[a-zA-Z0-9\-]+'
-                    maxLength: 16
-                  example:
-                  - en-us
-                  - zh-hans-hk
-                concurrency:
-                  description: The number of issues that an agent can take at a time
-                  type:
-                  - integer
-                  - 'null'
-                  example: 3
-                categoryLabel:
-                  description: The category label that indicates the types of workflows an agent have access to or problems they solved
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 256
-                  example: Tier-2-Escalation
-                accountAccessLevel:
-                  description: The levels of mapping that an agent have access to make changes to customer accounts
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 256
-                  example: High-Profile
-                ranking:
-                  description: Some numerical value indicating relative or absolute performance on a single scale
-                  type:
-                  - integer
-                  - 'null'
-                  example: 78
-                vendor:
-                  description: Vendor or BPO (Business Process Outsourcing) that the agent is part of
-                  type:
-                  - string
-                  - 'null'
-                  maxLength: 256
-                  example: Contracting
-                jobTitle:
-                  description: The agent's job title
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 256
-                  example: Booking-Manager
-                jobRole:
-                  description: The agent's role
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 256
-                  example: booking
-                workShift:
-                  description: The hours or shift name they work
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 256
-                  example: afternoon
-                emailAddress:
-                  description: The agent's email address
-                  type:
-                  - string
-                  - 'null'
-                  format: email
-                  example: jdoe@example.com
-                attributes:
-                  description: A map of key-value pairs for extra metadata attributes
-                  type:
-                  - array
-                  - 'null'
-                  items:
-                    description: A key-value pair of additional metadata attributes
-                    type: object
-                    properties:
-                      name:
-                        description: The name of the attribute
-                        type: string
-                        maxLength: 256
-                      value:
-                        description: The value of the named attribute
-                        type: string
-                        maxLength: 1024
-                    example:
-                    - name: attr1_name
-                      value: attr1_value
-                    - name: attr2_name
-                      value: attr2_value
-                  maxItems: 10
-                  example:
-                  - name: attr1_name
-                    value: attr1_value
-                  - name: attr2_name
-                    value: attr2_value
-              required:
-              - externalAgentId
-              example:
-                externalAgentId: agent158
-                startTs: '2022-07-08T11:15:53.237517000Z'
-                lobId: '1038'
-                lobName: manufacturing
-                groupId: group5
-                groupName: XYZ
-                agentName: Jane Doe
-                agentLocation: Northern-California
-                supervisorId: '3080'
-                supervisorName: Linda Lemon
-                languages:
-                - en-us
-                - zh-hans-hk
-                concurrency: 3
-                categoryLabel: Tier-2-Escalation
-                accountAccessLevel: High-Profile
-                ranking: 78
-                vendor: Contracting
-                jobTitle: Booking-Manager
-                jobRole: booking
-                workShift: afternoon
-                emailAddress: jdoe@example.com
-                attributes:
-                - name: attr1_name
-                  value: attr1_value
-                - name: attr2_name
-                  value: attr2_value
+              $ref: '#/components/schemas/AgentMetadata'
       responses:
         '200':
-          description: '200 - Success
-
-            Submit a single item to the service to be ingested. Record can be traced back to the submitted record by the eventId.
-
-            A message sent status will be returned with no error message for successful input checks.
-
-            '
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  result:
-                    description: A response with the status of a sent message
-                    type: object
-                    properties:
-                      eventId:
-                        description: An UUID identifier string computed for the submitted event message
-                        type: string
-                        example: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                      error:
-                        description: Status of the failed message if value is not blank; the error is contained in the string
-                        type: string
-                        example: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                    example:
-                      eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                      error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                required:
-                - result
-                example:
-                  result:
-                    eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                    error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
+          $ref: '#/components/responses/SuccessForSingle'
         '400':
-          description: '400 - Bad request
-
-            Submit a single item to the service to be ingested. Record can be traced back to the submitted record by the eventId.
-
-            A message sent status will be returned with an error message for bad input failure.
-
-            '
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  result:
-                    description: A response with the status of a sent message
-                    type: object
-                    properties:
-                      eventId:
-                        description: An UUID identifier string computed for the submitted event message
-                        type: string
-                        example: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                      error:
-                        description: Status of the failed message if value is not blank; the error is contained in the string
-                        type: string
-                        example: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                    example:
-                      eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                      error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                required:
-                - result
-                example:
-                  result:
-                    eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                    error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
+          $ref: '#/components/responses/BadRequestForSingle'
         '401':
-          description: 401 - Unauthorized
-          content:
-            application/json:
-              schema:
-                description: Unauthorized response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 401-01
-                      message: Unauthorized
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/Unauthorized'
         '403':
-          description: 403 - Forbidden
-          content:
-            application/json:
-              schema:
-                description: Forbidden response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 403-01
-                      message: Forbidden Response
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: 404 - Not Found
-          content:
-            application/json:
-              schema:
-                description: Not Found response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 404-01
-                      message: Not Found
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/NotFound'
         '409':
-          description: 409 - Conflict
-          content:
-            application/json:
-              schema:
-                description: Conflict response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 409-01
-                      message: Conflict
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/Conflict'
         '413':
-          description: 413 - Request Entity Too Large
-          content:
-            application/json:
-              schema:
-                description: Request Entity Too Large response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 413-01
-                      message: Request Entity Too Large
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/RequestEntityTooLarge'
         '422':
-          description: 422 - Unprocessable Entity
-          content:
-            application/json:
-              schema:
-                description: Unprocessable Entity response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 422-01
-                      message: Unprocessable Entity
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
-          description: 429 - Too Many Requests
-          content:
-            application/json:
-              schema:
-                description: Too Many Requests response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 429-01
-                      message: Too Many Requests
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/TooManyRequests'
         '503':
-          description: 503 - Service Unavailable
-          content:
-            application/json:
-              schema:
-                description: Service Unavailable response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 503-01
-                      message: Service Unavailable
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/ServiceUnavailable'
         default:
-          description: 500 - Internal Server Error
-          content:
-            application/json:
-              schema:
-                description: Default error response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 500-01
-                      message: Internal server error
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/DefaultError'
       security:
       - API-ID: []
         API-Secret: []
-    servers:
-    - url: https://api.sandbox.asapp.com
   /metadata-ingestion/v1/many-agent-metadata:
     post:
       tags:
       - Metadata
       operationId: manyAgentMetadata
       summary: Add multiple agent metadata
-      description: 'Add multiple agent metadata items; submit items in a batch in one request
-
-        '
+      description: Add multiple agent metadata items; submit items in a batch in one request
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              description: A request to send more than one agent metadata; send a list of items
-              type: object
-              properties:
-                items:
-                  type: array
-                  items:
-                    description: A set of agent metadata attributes
-                    type: object
-                    properties:
-                      externalAgentId:
-                        description: The agent id in question
-                        type: string
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 256
-                        example: agent158
-                      eventId:
-                        description: 'An event id used to track the submission; if none is provided, service will generate one
-
-                          '
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 256
-                        example: eventId-158
-                      startTs:
-                        description: The date and time when the agent is hired in ISO-8601
-                        type:
-                        - string
-                        - 'null'
-                        format: date-time
-                        example: '2022-07-08T11:15:53.237517000Z'
-                      lobId:
-                        description: The line of business id
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 256
-                        example: '1038'
-                      lobName:
-                        description: The descriptive name of the line of business
-                        type:
-                        - string
-                        - 'null'
-                        maxLength: 256
-                        example: manufacturing
-                      groupId:
-                        description: The group id of which the agent belong to
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 256
-                        example: group5
-                      groupName:
-                        description: The descriptive name of the group
-                        type:
-                        - string
-                        - 'null'
-                        maxLength: 256
-                        example: XYZ
-                      agentName:
-                        description: The name of the agent
-                        type:
-                        - string
-                        - 'null'
-                        maxLength: 256
-                        example: Jane Doe
-                      agentLocation:
-                        description: The location (or address) of where the agent worked
-                        type:
-                        - string
-                        - 'null'
-                        maxLength: 256
-                        example: Northern-California
-                      supervisorId:
-                        description: The supervisor id of who the agent report to
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 256
-                        example: '3080'
-                      supervisorName:
-                        description: The name of the agent's supervisor
-                        type:
-                        - string
-                        - 'null'
-                        maxLength: 256
-                        example: Linda Lemon
-                      languages:
-                        description: 'A list of agent''s known language codes in ISO 639
-
-                          e.g., English (United States) code = en-US
-
-                          '
-                        type:
-                        - array
-                        - 'null'
-                        items:
-                          type: string
-                          pattern: '[a-zA-Z0-9\-]+'
-                          maxLength: 16
-                        example:
-                        - en-us
-                        - zh-hans-hk
-                      concurrency:
-                        description: The number of issues that an agent can take at a time
-                        type:
-                        - integer
-                        - 'null'
-                        example: 3
-                      categoryLabel:
-                        description: The category label that indicates the types of workflows an agent have access to or problems they solved
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 256
-                        example: Tier-2-Escalation
-                      accountAccessLevel:
-                        description: The levels of mapping that an agent have access to make changes to customer accounts
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 256
-                        example: High-Profile
-                      ranking:
-                        description: Some numerical value indicating relative or absolute performance on a single scale
-                        type:
-                        - integer
-                        - 'null'
-                        example: 78
-                      vendor:
-                        description: Vendor or BPO (Business Process Outsourcing) that the agent is part of
-                        type:
-                        - string
-                        - 'null'
-                        maxLength: 256
-                        example: Contracting
-                      jobTitle:
-                        description: The agent's job title
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 256
-                        example: Booking-Manager
-                      jobRole:
-                        description: The agent's role
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 256
-                        example: booking
-                      workShift:
-                        description: The hours or shift name they work
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 256
-                        example: afternoon
-                      emailAddress:
-                        description: The agent's email address
-                        type:
-                        - string
-                        - 'null'
-                        format: email
-                        example: jdoe@example.com
-                      attributes:
-                        description: A map of key-value pairs for extra metadata attributes
-                        type:
-                        - array
-                        - 'null'
-                        items:
-                          description: A key-value pair of additional metadata attributes
-                          type: object
-                          properties:
-                            name:
-                              description: The name of the attribute
-                              type: string
-                              maxLength: 256
-                            value:
-                              description: The value of the named attribute
-                              type: string
-                              maxLength: 1024
-                          example:
-                          - name: attr1_name
-                            value: attr1_value
-                          - name: attr2_name
-                            value: attr2_value
-                        maxItems: 10
-                        example:
-                        - name: attr1_name
-                          value: attr1_value
-                        - name: attr2_name
-                          value: attr2_value
-                    required:
-                    - externalAgentId
-                    example:
-                      externalAgentId: agent158
-                      startTs: '2022-07-08T11:15:53.237517000Z'
-                      lobId: '1038'
-                      lobName: manufacturing
-                      groupId: group5
-                      groupName: XYZ
-                      agentName: Jane Doe
-                      agentLocation: Northern-California
-                      supervisorId: '3080'
-                      supervisorName: Linda Lemon
-                      languages:
-                      - en-us
-                      - zh-hans-hk
-                      concurrency: 3
-                      categoryLabel: Tier-2-Escalation
-                      accountAccessLevel: High-Profile
-                      ranking: 78
-                      vendor: Contracting
-                      jobTitle: Booking-Manager
-                      jobRole: booking
-                      workShift: afternoon
-                      emailAddress: jdoe@example.com
-                      attributes:
-                      - name: attr1_name
-                        value: attr1_value
-                      - name: attr2_name
-                        value: attr2_value
-                  minItems: 1
-                  maxItems: 1000
-              example:
-                items:
-                - externalAgentId: agent158
-                  startTs: '2022-07-08T11:15:53.237517000Z'
-                  lobId: '1038'
-                  lobName: manufacturing
-                  groupId: group5
-                  groupName: XYZ
-                  agentName: Jane Doe
-                  agentLocation: Northern-California
-                  supervisorId: '3080'
-                  supervisorName: Linda Lemon
-                  languages:
-                  - en-us
-                  - zh-hans-hk
-                  - es-pe
-                  concurrency: 3
-                  categoryLabel: Tier-2-Escalation
-                  accountAccessLevel: High-Profile
-                  ranking: 78
-                  vendor: Contracting
-                  jobTitle: Booking-Manager
-                  jobRole: booking
-                  workShift: afternoon
-                  emailAddress: jdoe@example.com
-                  attributes:
-                  - name: attr1_name
-                    value: attr1_value
-                  - name: attr2_name
-                    value: attr2_value
-                - externalAgentId: agent392
-                  startTs: '2021-09-02T11:15:53.237517000Z'
-                  lobId: '968'
-                  lobName: insurance
-                  groupId: group3
-                  groupName: DFG
-                  agentName: Jonathan Master
-                  agentLocation: Southern-California
-                  supervisorId: '1290'
-                  supervisorName: John Luna
-                  languages:
-                  - en-us
-                  concurrency: 3
-                  categoryLabel: Tier-1-Service
-                  accountAccessLevel: High-Profile
-                  ranking: 75
-                  vendor: Contracting
-                  jobTitle: Customer-Service
-                  jobRole: Support
-                  workShift: afternoon
-                  emailAddress: jmaster@example.com
-                  attributes:
-                  - name: attr1_name
-                    value: attr1_value
-                - externalAgentId: agent6922
-                  startTs: null
-                - externalAgentId: agent222
-                - externalAgentId: agent333
-                  emailAddress: jdoe@example.com
+              $ref: '#/components/schemas/AgentMetadataMany'
       responses:
         '200':
-          description: '200 - Success | Partial Success
-
-            Submit a batch of items to the service to be ingested. Record can be traced back to the submitted record by the eventId.
-
-            If any of the records encounter issue during the ingestion, a message sent status will be returned with an error message for each record.
-
-            A 200 success is returned as long as there is one item ingested successfully, i.e., "partial success".
-
-            '
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  errorCount:
-                    description: Number of message sent with error(s)
-                    type: integer
-                  results:
-                    description: A list of send result
-                    type: array
-                    items:
-                      description: A response with the status of a sent message
-                      type: object
-                      properties:
-                        eventId:
-                          description: An UUID identifier string computed for the submitted event message
-                          type: string
-                          example: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                        error:
-                          description: Status of the failed message if value is not blank; the error is contained in the string
-                          type: string
-                          example: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                      example:
-                        eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                        error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                required:
-                - errorCount
-                - results
-                example:
-                  errorCount: 1
-                  results:
-                  - eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                    error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                  - eventId: fcf99667-feaf-11ec-a42e-11799134528c
-                    error: ''
+          $ref: '#/components/responses/SuccessForBatch'
         '400':
-          description: '400 - Bad request
-
-            Submit a batch of items to the service to be ingested. Record can be traced back to the submitted record by the eventId.
-
-            If any of the records encounter issue during the ingestion, a message sent status will be returned with an error message for each record.
-
-            All items in the batch encountered client input validation failures.
-
-            '
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  errorCount:
-                    description: Number of message sent with error(s)
-                    type: integer
-                  results:
-                    description: A list of send result
-                    type: array
-                    items:
-                      description: A response with the status of a sent message
-                      type: object
-                      properties:
-                        eventId:
-                          description: An UUID identifier string computed for the submitted event message
-                          type: string
-                          example: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                        error:
-                          description: Status of the failed message if value is not blank; the error is contained in the string
-                          type: string
-                          example: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                      example:
-                        eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                        error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                required:
-                - errorCount
-                - results
-                example:
-                  errorCount: 1
-                  results:
-                  - eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                    error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                  - eventId: fcf99667-feaf-11ec-a42e-11799134528c
-                    error: ''
+          $ref: '#/components/responses/BadRequestForBatch'
         '401':
-          description: 401 - Unauthorized
-          content:
-            application/json:
-              schema:
-                description: Unauthorized response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 401-01
-                      message: Unauthorized
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/Unauthorized'
         '403':
-          description: 403 - Forbidden
-          content:
-            application/json:
-              schema:
-                description: Forbidden response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 403-01
-                      message: Forbidden Response
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: 404 - Not Found
-          content:
-            application/json:
-              schema:
-                description: Not Found response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 404-01
-                      message: Not Found
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/NotFound'
         '409':
-          description: 409 - Conflict
-          content:
-            application/json:
-              schema:
-                description: Conflict response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 409-01
-                      message: Conflict
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/Conflict'
         '413':
-          description: 413 - Request Entity Too Large
-          content:
-            application/json:
-              schema:
-                description: Request Entity Too Large response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 413-01
-                      message: Request Entity Too Large
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/RequestEntityTooLarge'
         '422':
-          description: 422 - Unprocessable Entity
-          content:
-            application/json:
-              schema:
-                description: Unprocessable Entity response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 422-01
-                      message: Unprocessable Entity
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
-          description: 429 - Too Many Requests
-          content:
-            application/json:
-              schema:
-                description: Too Many Requests response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 429-01
-                      message: Too Many Requests
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/TooManyRequests'
         '503':
-          description: 503 - Service Unavailable
-          content:
-            application/json:
-              schema:
-                description: Service Unavailable response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 503-01
-                      message: Service Unavailable
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/ServiceUnavailable'
         default:
-          description: 500 - Internal Server Error
-          content:
-            application/json:
-              schema:
-                description: Default error response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 500-01
-                      message: Internal server error
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/DefaultError'
       security:
       - API-ID: []
         API-Secret: []
-    servers:
-    - url: https://api.sandbox.asapp.com
   /metadata-ingestion/v1/single-convo-metadata:
     post:
       tags:
       - Metadata
       operationId: singleConvoMetadata
       summary: Add a conversation metadata
-      description: 'Add metadata attributes of one issue/conversation
-
-        '
+      description: Add metadata attributes of one issue/conversation
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              description: A set of conversation metadata attributes
-              type: object
-              properties:
-                externalConversationId:
-                  description: Conversation ID from the external chat / voice system
-                  type: string
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 256
-                  example: issue1389
-                eventId:
-                  description: 'An event id used to track the submission; if none is provided, service will generate one
-
-                    '
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 256
-                  example: eventId-1388
-                lobId:
-                  description: The line of business id
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 256
-                  example: '1038'
-                lobName:
-                  description: The descriptive name of the line of business
-                  type:
-                  - string
-                  - 'null'
-                  maxLength: 256
-                  example: manufacturing
-                groupId:
-                  description: The group id of which the agent belong to
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 256
-                  example: group59
-                groupName:
-                  description: The descriptive name of the group
-                  type:
-                  - string
-                  - 'null'
-                  maxLength: 256
-                  example: groupXYZ
-                agentRoutingCode:
-                  description: The agent's routing attribute
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 256
-                  example: route-13988
-                campaign:
-                  description: The activities related to the issue
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 256
-                  example: campaign-A
-                deviceType:
-                  description: The client's device type
-                  type:
-                  - string
-                  - 'null'
-                  enum:
-                  - TABLET
-                  - PHONE
-                  - DESKTOP
-                  - WATCH
-                  - OTHER
-                  example: TABLET
-                platform:
-                  description: 'The client''s platform type
-
-                    WAB: WhatsApp Business
-
-                    '
-                  type:
-                  - string
-                  - 'null'
-                  enum:
-                  - SMS
-                  - WEB
-                  - IOS
-                  - ANDROID
-                  - APP
-                  - LOCAL
-                  - VOICE
-                  - VOICE_IOS
-                  - VOICE_ANDROID
-                  - VOICE_ECHO
-                  - VOICE_HOMEPOD
-                  - VOICE_GGLHOME
-                  - VOICE_WEB
-                  - APPLEBIZ
-                  - GOOGLEBIZ
-                  - GBM
-                  - WAB
-                  example: IOS
-                companySegment:
-                  description: The company's segment of which the issue belongs to
-                  type:
-                  - array
-                  - 'null'
-                  items:
-                    type: string
-                    pattern: '[a-zA-Z0-9\-\_]+'
-                    maxLength: 64
-                  example:
-                  - Sales
-                  - Marketing
-                companySubdivision:
-                  description: The company's subdivision of which the issue belongs to
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 256
-                  example: Operating
-                businessRule:
-                  description: The business rule to use
-                  type:
-                  - string
-                  - 'null'
-                  maxLength: 256
-                  example: Apply customer's discount
-                entryType:
-                  description: The way the issue started and created in the system
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 256
-                  example: reactive
-                operatingSystem:
-                  description: The operating system used to enter the issue
-                  type:
-                  - string
-                  - 'null'
-                  enum:
-                  - MAC_OS
-                  - LINUX
-                  - WINDOWS
-                  - ANDROID
-                  - IOS
-                  - OTHER
-                  example: MAC_OS
-                browserType:
-                  description: The browser type used
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 64
-                  example: Safari
-                browserVersion:
-                  description: The browser version used
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_\.]+'
-                  maxLength: 16
-                  example: 14.1.2
-                attributes:
-                  description: A map of key-value pairs for extra metadata attributes
-                  type:
-                  - array
-                  - 'null'
-                  items:
-                    description: A key-value pair of additional metadata attributes
-                    type: object
-                    properties:
-                      name:
-                        description: The name of the attribute
-                        type: string
-                        maxLength: 256
-                      value:
-                        description: The value of the named attribute
-                        type: string
-                        maxLength: 1024
-                    example:
-                    - name: attr1_name
-                      value: attr1_value
-                    - name: attr2_name
-                      value: attr2_value
-                  maxItems: 10
-                  example:
-                  - name: attr1_name
-                    value: attr1_value
-                  - name: attr2_name
-                    value: attr2_value
-              required:
-              - externalConversationId
-              example:
-                externalConversationId: id-1389
-                eventId: eventId-1388
-                lobId: '1038'
-                lobName: manufacturing
-                groupId: group59
-                groupName: groupXYZ
-                agentRoutingCode: route-13988
-                campaign: campaign-A
-                deviceType: TABLET
-                platform: IOS
-                companySegment:
-                - Sales
-                - Marketing
-                companySubdivision: operating
-                businessRule: Apply customer's discount
-                entryType: reactive
-                operatingSystem: MAC_OS
-                browserType: Safari
-                browserVersion: 14.1.2
-                attributes:
-                - name: attr1_name
-                  value: attr1_value
-                - name: attr2_name
-                  value: attr2_value
+              $ref: '#/components/schemas/ConversationMetadata'
       responses:
         '200':
-          description: '200 - Success
-
-            Submit a single item to the service to be ingested. Record can be traced back to the submitted record by the eventId.
-
-            A message sent status will be returned with no error message for successful input checks.
-
-            '
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  result:
-                    description: A response with the status of a sent message
-                    type: object
-                    properties:
-                      eventId:
-                        description: An UUID identifier string computed for the submitted event message
-                        type: string
-                        example: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                      error:
-                        description: Status of the failed message if value is not blank; the error is contained in the string
-                        type: string
-                        example: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                    example:
-                      eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                      error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                required:
-                - result
-                example:
-                  result:
-                    eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                    error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
+          $ref: '#/components/responses/SuccessForSingle'
         '400':
-          description: '400 - Bad request
-
-            Submit a single item to the service to be ingested. Record can be traced back to the submitted record by the eventId.
-
-            A message sent status will be returned with an error message for bad input failure.
-
-            '
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  result:
-                    description: A response with the status of a sent message
-                    type: object
-                    properties:
-                      eventId:
-                        description: An UUID identifier string computed for the submitted event message
-                        type: string
-                        example: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                      error:
-                        description: Status of the failed message if value is not blank; the error is contained in the string
-                        type: string
-                        example: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                    example:
-                      eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                      error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                required:
-                - result
-                example:
-                  result:
-                    eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                    error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
+          $ref: '#/components/responses/BadRequestForSingle'
         '401':
-          description: 401 - Unauthorized
-          content:
-            application/json:
-              schema:
-                description: Unauthorized response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 401-01
-                      message: Unauthorized
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/Unauthorized'
         '403':
-          description: 403 - Forbidden
-          content:
-            application/json:
-              schema:
-                description: Forbidden response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 403-01
-                      message: Forbidden Response
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: 404 - Not Found
-          content:
-            application/json:
-              schema:
-                description: Not Found response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 404-01
-                      message: Not Found
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/NotFound'
         '409':
-          description: 409 - Conflict
-          content:
-            application/json:
-              schema:
-                description: Conflict response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 409-01
-                      message: Conflict
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/Conflict'
         '413':
-          description: 413 - Request Entity Too Large
-          content:
-            application/json:
-              schema:
-                description: Request Entity Too Large response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 413-01
-                      message: Request Entity Too Large
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/RequestEntityTooLarge'
         '422':
-          description: 422 - Unprocessable Entity
-          content:
-            application/json:
-              schema:
-                description: Unprocessable Entity response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 422-01
-                      message: Unprocessable Entity
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
-          description: 429 - Too Many Requests
-          content:
-            application/json:
-              schema:
-                description: Too Many Requests response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 429-01
-                      message: Too Many Requests
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/TooManyRequests'
         '503':
-          description: 503 - Service Unavailable
-          content:
-            application/json:
-              schema:
-                description: Service Unavailable response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 503-01
-                      message: Service Unavailable
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/ServiceUnavailable'
         default:
-          description: 500 - Internal Server Error
-          content:
-            application/json:
-              schema:
-                description: Default error response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 500-01
-                      message: Internal server error
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/DefaultError'
       security:
       - API-ID: []
         API-Secret: []
-    servers:
-    - url: https://api.sandbox.asapp.com
   /metadata-ingestion/v1/many-convo-metadata:
     post:
       tags:
       - Metadata
       operationId: manyConversationMetadata
       summary: Add multiple conversation metadata
-      description: 'Add multiple issue/conversation metadata items; submit items in a batch in one request
-
-        '
+      description: Add multiple issue/conversation metadata items; submit items in a batch in one request
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              description: 'A request to send more than one conversation metadata attributes; send a list of items
-
-                '
-              type: object
-              properties:
-                items:
-                  type: array
-                  items:
-                    description: A set of conversation metadata attributes
-                    type: object
-                    properties:
-                      externalConversationId:
-                        description: Conversation ID from the external chat / voice system
-                        type: string
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 256
-                        example: issue1389
-                      eventId:
-                        description: 'An event id used to track the submission; if none is provided, service will generate one
-
-                          '
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 256
-                        example: eventId-1388
-                      lobId:
-                        description: The line of business id
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 256
-                        example: '1038'
-                      lobName:
-                        description: The descriptive name of the line of business
-                        type:
-                        - string
-                        - 'null'
-                        maxLength: 256
-                        example: manufacturing
-                      groupId:
-                        description: The group id of which the agent belong to
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 256
-                        example: group59
-                      groupName:
-                        description: The descriptive name of the group
-                        type:
-                        - string
-                        - 'null'
-                        maxLength: 256
-                        example: groupXYZ
-                      agentRoutingCode:
-                        description: The agent's routing attribute
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 256
-                        example: route-13988
-                      campaign:
-                        description: The activities related to the issue
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 256
-                        example: campaign-A
-                      deviceType:
-                        description: The client's device type
-                        type:
-                        - string
-                        - 'null'
-                        enum:
-                        - TABLET
-                        - PHONE
-                        - DESKTOP
-                        - WATCH
-                        - OTHER
-                        example: TABLET
-                      platform:
-                        description: 'The client''s platform type
-
-                          WAB: WhatsApp Business
-
-                          '
-                        type:
-                        - string
-                        - 'null'
-                        enum:
-                        - SMS
-                        - WEB
-                        - IOS
-                        - ANDROID
-                        - APP
-                        - LOCAL
-                        - VOICE
-                        - VOICE_IOS
-                        - VOICE_ANDROID
-                        - VOICE_ECHO
-                        - VOICE_HOMEPOD
-                        - VOICE_GGLHOME
-                        - VOICE_WEB
-                        - APPLEBIZ
-                        - GOOGLEBIZ
-                        - GBM
-                        - WAB
-                        example: IOS
-                      companySegment:
-                        description: The company's segment of which the issue belongs to
-                        type:
-                        - array
-                        - 'null'
-                        items:
-                          type: string
-                          pattern: '[a-zA-Z0-9\-\_]+'
-                          maxLength: 64
-                        example:
-                        - Sales
-                        - Marketing
-                      companySubdivision:
-                        description: The company's subdivision of which the issue belongs to
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 256
-                        example: Operating
-                      businessRule:
-                        description: The business rule to use
-                        type:
-                        - string
-                        - 'null'
-                        maxLength: 256
-                        example: Apply customer's discount
-                      entryType:
-                        description: The way the issue started and created in the system
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 256
-                        example: reactive
-                      operatingSystem:
-                        description: The operating system used to enter the issue
-                        type:
-                        - string
-                        - 'null'
-                        enum:
-                        - MAC_OS
-                        - LINUX
-                        - WINDOWS
-                        - ANDROID
-                        - IOS
-                        - OTHER
-                        example: MAC_OS
-                      browserType:
-                        description: The browser type used
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 64
-                        example: Safari
-                      browserVersion:
-                        description: The browser version used
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_\.]+'
-                        maxLength: 16
-                        example: 14.1.2
-                      attributes:
-                        description: A map of key-value pairs for extra metadata attributes
-                        type:
-                        - array
-                        - 'null'
-                        items:
-                          description: A key-value pair of additional metadata attributes
-                          type: object
-                          properties:
-                            name:
-                              description: The name of the attribute
-                              type: string
-                              maxLength: 256
-                            value:
-                              description: The value of the named attribute
-                              type: string
-                              maxLength: 1024
-                          example:
-                          - name: attr1_name
-                            value: attr1_value
-                          - name: attr2_name
-                            value: attr2_value
-                        maxItems: 10
-                        example:
-                        - name: attr1_name
-                          value: attr1_value
-                        - name: attr2_name
-                          value: attr2_value
-                    required:
-                    - externalConversationId
-                    example:
-                      externalConversationId: id-1389
-                      eventId: eventId-1388
-                      lobId: '1038'
-                      lobName: manufacturing
-                      groupId: group59
-                      groupName: groupXYZ
-                      agentRoutingCode: route-13988
-                      campaign: campaign-A
-                      deviceType: TABLET
-                      platform: IOS
-                      companySegment:
-                      - Sales
-                      - Marketing
-                      companySubdivision: operating
-                      businessRule: Apply customer's discount
-                      entryType: reactive
-                      operatingSystem: MAC_OS
-                      browserType: Safari
-                      browserVersion: 14.1.2
-                      attributes:
-                      - name: attr1_name
-                        value: attr1_value
-                      - name: attr2_name
-                        value: attr2_value
-                  minItems: 1
-                  maxItems: 1000
-              example:
-                items:
-                - externalConversationId: id-1389
-                  eventId: eventId-1388
-                  lobId: '1038'
-                  lobName: manufacturing
-                  groupId: group59
-                  groupName: groupXYZ
-                  agentRoutingCode: route-13988
-                  campaign: campaign-A
-                  deviceType: TABLET
-                  platform: IOS
-                  companySegment:
-                  - Sales
-                  - Marketing
-                  companySubdivision: operating
-                  businessRule: Apply customer's discount
-                  entryType: reactive
-                  operatingSystem: MAC_OS
-                  browserType: Safari
-                  browserVersion: 14.1.2
-                  attributes:
-                  - name: attr1_name
-                    value: attr1_value
-                  - name: attr2_name
-                    value: attr2_value
-                - externlConversationId: issue1390
-                  eventId: eventId-1268
-                  lobId: '930'
-                  lobName: retail
-                  groupId: store-93
-                  groupName: PlazaA
-                  agentRoutingCode: route-1983
-                  campaign: campaign-B
-                  deviceType: PHONE
-                  platform: ANDROID
-                  companySegment:
-                  - SALES
-                  - FINANCE
-                  companySubdivision: operating
-                  businessRule: Apply customer's discount
-                  entryType: proactive
-                  operatingSystem: ANDROID
-                  browserType: Chrome
-                  browserVersion: 103.0.5060.128
-                  attributes:
-                  - name: attr1_name
-                    value: attr1_value
-                  - name: attr2_name
-                    value: attr2_value
+              $ref: '#/components/schemas/ConversationMetadataMany'
       responses:
         '200':
-          description: '200 - Success | Partial Success
-
-            Submit a batch of items to the service to be ingested. Record can be traced back to the submitted record by the eventId.
-
-            If any of the records encounter issue during the ingestion, a message sent status will be returned with an error message for each record.
-
-            A 200 success is returned as long as there is one item ingested successfully, i.e., "partial success".
-
-            '
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  errorCount:
-                    description: Number of message sent with error(s)
-                    type: integer
-                  results:
-                    description: A list of send result
-                    type: array
-                    items:
-                      description: A response with the status of a sent message
-                      type: object
-                      properties:
-                        eventId:
-                          description: An UUID identifier string computed for the submitted event message
-                          type: string
-                          example: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                        error:
-                          description: Status of the failed message if value is not blank; the error is contained in the string
-                          type: string
-                          example: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                      example:
-                        eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                        error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                required:
-                - errorCount
-                - results
-                example:
-                  errorCount: 1
-                  results:
-                  - eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                    error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                  - eventId: fcf99667-feaf-11ec-a42e-11799134528c
-                    error: ''
+          $ref: '#/components/responses/SuccessForBatch'
         '400':
-          description: '400 - Bad request
-
-            Submit a batch of items to the service to be ingested. Record can be traced back to the submitted record by the eventId.
-
-            If any of the records encounter issue during the ingestion, a message sent status will be returned with an error message for each record.
-
-            All items in the batch encountered client input validation failures.
-
-            '
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  errorCount:
-                    description: Number of message sent with error(s)
-                    type: integer
-                  results:
-                    description: A list of send result
-                    type: array
-                    items:
-                      description: A response with the status of a sent message
-                      type: object
-                      properties:
-                        eventId:
-                          description: An UUID identifier string computed for the submitted event message
-                          type: string
-                          example: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                        error:
-                          description: Status of the failed message if value is not blank; the error is contained in the string
-                          type: string
-                          example: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                      example:
-                        eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                        error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                required:
-                - errorCount
-                - results
-                example:
-                  errorCount: 1
-                  results:
-                  - eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                    error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                  - eventId: fcf99667-feaf-11ec-a42e-11799134528c
-                    error: ''
+          $ref: '#/components/responses/BadRequestForBatch'
         '401':
-          description: 401 - Unauthorized
-          content:
-            application/json:
-              schema:
-                description: Unauthorized response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 401-01
-                      message: Unauthorized
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/Unauthorized'
         '403':
-          description: 403 - Forbidden
-          content:
-            application/json:
-              schema:
-                description: Forbidden response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 403-01
-                      message: Forbidden Response
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: 404 - Not Found
-          content:
-            application/json:
-              schema:
-                description: Not Found response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 404-01
-                      message: Not Found
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/NotFound'
         '409':
-          description: 409 - Conflict
-          content:
-            application/json:
-              schema:
-                description: Conflict response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 409-01
-                      message: Conflict
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/Conflict'
         '413':
-          description: 413 - Request Entity Too Large
-          content:
-            application/json:
-              schema:
-                description: Request Entity Too Large response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 413-01
-                      message: Request Entity Too Large
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/RequestEntityTooLarge'
         '422':
-          description: 422 - Unprocessable Entity
-          content:
-            application/json:
-              schema:
-                description: Unprocessable Entity response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 422-01
-                      message: Unprocessable Entity
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
-          description: 429 - Too Many Requests
-          content:
-            application/json:
-              schema:
-                description: Too Many Requests response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 429-01
-                      message: Too Many Requests
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/TooManyRequests'
         '503':
-          description: 503 - Service Unavailable
-          content:
-            application/json:
-              schema:
-                description: Service Unavailable response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 503-01
-                      message: Service Unavailable
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/ServiceUnavailable'
         default:
-          description: 500 - Internal Server Error
-          content:
-            application/json:
-              schema:
-                description: Default error response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 500-01
-                      message: Internal server error
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/DefaultError'
       security:
       - API-ID: []
         API-Secret: []
-    servers:
-    - url: https://api.sandbox.asapp.com
   /metadata-ingestion/v1/single-customer-metadata:
     post:
       tags:
       - Metadata
       operationId: singleCustomerMetadata
       summary: Add a customer metadata
-      description: 'Add metadata attributes of one customer
-
-        '
+      description: Add metadata attributes of one customer
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              description: A set of customer metadata attributes
-              type: object
-              properties:
-                externalConversationId:
-                  description: Conversation ID from the external chat / voice system
-                  type: string
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 256
-                  example: issue509
-                externalCustomerId:
-                  description: The customer id involved in respect to the issue in question
-                  type: string
-                  pattern: '[a-zA-Z0-9\-\_\.\@]+'
-                  maxLength: 256
-                  example: 555.555.0100-jdoe@example.com
-                eventId:
-                  description: 'An event id used to track the submission; if none is provided, service will generate one
-
-                    '
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 256
-                  example: eventId-1938
-                status:
-                  description: The descriptive label to describe the customer's status and/or type
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 256
-                  example: new
-                phoneNumber:
-                  description: The customer's phone number
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[0-9\-\.\(\)\+]+'
-                  maxLength: 32
-                  example: (555)555-0100
-                emailAddress:
-                  description: The customer's email address
-                  type:
-                  - string
-                  - 'null'
-                  format: email
-                  example: jdoe@example.com
-                userId:
-                  description: The customer's user Id
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 256
-                  example: user908038
-                addressCountry:
-                  description: The country portion of the customer's address
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 128
-                  example: United-States
-                addressState:
-                  description: The state portion of the customer's address
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 128
-                  example: New-York
-                addressZipcode:
-                  description: The zipcode/postal code portion of the customer's address
-                  type:
-                  - string
-                  - 'null'
-                  pattern: '[a-zA-Z0-9\-\_]+'
-                  maxLength: 16
-                  example: '10001'
-                attributes:
-                  description: A map of key-value pairs for extra metadata attributes
-                  type:
-                  - array
-                  - 'null'
-                  items:
-                    description: A key-value pair of additional metadata attributes
-                    type: object
-                    properties:
-                      name:
-                        description: The name of the attribute
-                        type: string
-                        maxLength: 256
-                      value:
-                        description: The value of the named attribute
-                        type: string
-                        maxLength: 1024
-                    example:
-                    - name: attr1_name
-                      value: attr1_value
-                    - name: attr2_name
-                      value: attr2_value
-                  maxItems: 10
-                  example:
-                  - name: attr1_name
-                    value: attr1_value
-                  - name: attr2_name
-                    value: attr2_value
-              required:
-              - externalConversationId
-              - externalCustomerId
-              example:
-                externalConversationId: id-509
-                externalCustomerId: 555.555.0100-jdoe@example.com
-                eventId: eventId-1938
-                status: new
-                phoneNumber: (555)555-0100
-                emailAddress: jdoe@example.com
-                userId: user908038
-                addressCountry: United-States
-                addressState: New-York
-                addressZipcode: '10001'
-                attributes:
-                - name: attr1_name
-                  value: attr1_value
-                - name: attr2_name
-                  value: attr2_value
+              $ref: '#/components/schemas/CustomerMetadata'
       responses:
         '200':
-          description: '200 - Success
-
-            Submit a single item to the service to be ingested. Record can be traced back to the submitted record by the eventId.
-
-            A message sent status will be returned with no error message for successful input checks.
-
-            '
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  result:
-                    description: A response with the status of a sent message
-                    type: object
-                    properties:
-                      eventId:
-                        description: An UUID identifier string computed for the submitted event message
-                        type: string
-                        example: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                      error:
-                        description: Status of the failed message if value is not blank; the error is contained in the string
-                        type: string
-                        example: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                    example:
-                      eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                      error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                required:
-                - result
-                example:
-                  result:
-                    eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                    error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
+          $ref: '#/components/responses/SuccessForSingle'
         '400':
-          description: '400 - Bad request
-
-            Submit a single item to the service to be ingested. Record can be traced back to the submitted record by the eventId.
-
-            A message sent status will be returned with an error message for bad input failure.
-
-            '
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  result:
-                    description: A response with the status of a sent message
-                    type: object
-                    properties:
-                      eventId:
-                        description: An UUID identifier string computed for the submitted event message
-                        type: string
-                        example: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                      error:
-                        description: Status of the failed message if value is not blank; the error is contained in the string
-                        type: string
-                        example: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                    example:
-                      eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                      error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                required:
-                - result
-                example:
-                  result:
-                    eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                    error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
+          $ref: '#/components/responses/BadRequestForSingle'
         '401':
-          description: 401 - Unauthorized
-          content:
-            application/json:
-              schema:
-                description: Unauthorized response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 401-01
-                      message: Unauthorized
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/Unauthorized'
         '403':
-          description: 403 - Forbidden
-          content:
-            application/json:
-              schema:
-                description: Forbidden response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 403-01
-                      message: Forbidden Response
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: 404 - Not Found
-          content:
-            application/json:
-              schema:
-                description: Not Found response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 404-01
-                      message: Not Found
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/NotFound'
         '409':
-          description: 409 - Conflict
-          content:
-            application/json:
-              schema:
-                description: Conflict response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 409-01
-                      message: Conflict
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/Conflict'
         '413':
-          description: 413 - Request Entity Too Large
-          content:
-            application/json:
-              schema:
-                description: Request Entity Too Large response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 413-01
-                      message: Request Entity Too Large
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/RequestEntityTooLarge'
         '422':
-          description: 422 - Unprocessable Entity
-          content:
-            application/json:
-              schema:
-                description: Unprocessable Entity response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 422-01
-                      message: Unprocessable Entity
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
-          description: 429 - Too Many Requests
-          content:
-            application/json:
-              schema:
-                description: Too Many Requests response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 429-01
-                      message: Too Many Requests
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/TooManyRequests'
         '503':
-          description: 503 - Service Unavailable
-          content:
-            application/json:
-              schema:
-                description: Service Unavailable response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 503-01
-                      message: Service Unavailable
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/ServiceUnavailable'
         default:
-          description: 500 - Internal Server Error
-          content:
-            application/json:
-              schema:
-                description: Default error response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 500-01
-                      message: Internal server error
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/DefaultError'
       security:
       - API-ID: []
         API-Secret: []
-    servers:
-    - url: https://api.sandbox.asapp.com
   /metadata-ingestion/v1/many-customer-metadata:
     post:
       tags:
       - Metadata
       operationId: manyCustomerMetadata
       summary: Add multiple customer metadata
-      description: 'Add multiple customer metadata items; submit items in a batch in one request
-
-        '
+      description: Add multiple customer metadata items; submit items in a batch in one request
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              description: A request to send more than one customer metadata; send a list of items
-              type: object
-              properties:
-                items:
-                  type: array
-                  items:
-                    description: A set of customer metadata attributes
-                    type: object
-                    properties:
-                      externalConversationId:
-                        description: Conversation ID from the external chat / voice system
-                        type: string
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 256
-                        example: issue509
-                      externalCustomerId:
-                        description: The customer id involved in respect to the issue in question
-                        type: string
-                        pattern: '[a-zA-Z0-9\-\_\.\@]+'
-                        maxLength: 256
-                        example: 555.555.0100-jdoe@example.com
-                      eventId:
-                        description: 'An event id used to track the submission; if none is provided, service will generate one
-
-                          '
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 256
-                        example: eventId-1938
-                      status:
-                        description: The descriptive label to describe the customer's status and/or type
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 256
-                        example: new
-                      phoneNumber:
-                        description: The customer's phone number
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[0-9\-\.\(\)\+]+'
-                        maxLength: 32
-                        example: (555)555-0100
-                      emailAddress:
-                        description: The customer's email address
-                        type:
-                        - string
-                        - 'null'
-                        format: email
-                        example: jdoe@example.com
-                      userId:
-                        description: The customer's user Id
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 256
-                        example: user908038
-                      addressCountry:
-                        description: The country portion of the customer's address
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 128
-                        example: United-States
-                      addressState:
-                        description: The state portion of the customer's address
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 128
-                        example: New-York
-                      addressZipcode:
-                        description: The zipcode/postal code portion of the customer's address
-                        type:
-                        - string
-                        - 'null'
-                        pattern: '[a-zA-Z0-9\-\_]+'
-                        maxLength: 16
-                        example: '10001'
-                      attributes:
-                        description: A map of key-value pairs for extra metadata attributes
-                        type:
-                        - array
-                        - 'null'
-                        items:
-                          description: A key-value pair of additional metadata attributes
-                          type: object
-                          properties:
-                            name:
-                              description: The name of the attribute
-                              type: string
-                              maxLength: 256
-                            value:
-                              description: The value of the named attribute
-                              type: string
-                              maxLength: 1024
-                          example:
-                          - name: attr1_name
-                            value: attr1_value
-                          - name: attr2_name
-                            value: attr2_value
-                        maxItems: 10
-                        example:
-                        - name: attr1_name
-                          value: attr1_value
-                        - name: attr2_name
-                          value: attr2_value
-                    required:
-                    - externalConversationId
-                    - externalCustomerId
-                    example:
-                      externalConversationId: id-509
-                      externalCustomerId: 555.555.0100-jdoe@example.com
-                      eventId: eventId-1938
-                      status: new
-                      phoneNumber: (555)555-0100
-                      emailAddress: jdoe@example.com
-                      userId: user908038
-                      addressCountry: United-States
-                      addressState: New-York
-                      addressZipcode: '10001'
-                      attributes:
-                      - name: attr1_name
-                        value: attr1_value
-                      - name: attr2_name
-                        value: attr2_value
-                  minItems: 1
-                  maxItems: 1000
-              example:
-                items:
-                - externalConversationId: id-509
-                  externalCustomerId: 555.555.0100-jdoe@example.com
-                  eventId: eventId-1938
-                  status: new
-                  phoneNumber: (555)555-0100
-                  emailAddress: jdoe@example.com
-                  userId: user908038
-                  addressCountry: United-States
-                  addressState: New-York
-                  addressZipcode: '10001'
-                  attributes:
-                  - name: attr1_name
-                    value: attr1_value
-                  - name: attr2_name
-                    value: attr2_value
-                - externalConversationId: id-203
-                  externalCustomerId: 555.555.0101-mdoe@example.com
-                  eventId: eventId-1331
-                  status: existing
-                  phoneNumber: (555)555-0101
-                  emailAddress: mdoe@example.com
-                  userId: user3201033
-                  addressCountry: United-States
-                  addressState: New-York
-                  addressZipcode: '10002'
-                  attributes:
-                  - name: attr1_name
-                    value: attr1_value
-                  - name: attr2_name
-                    value: attr2_value
-                - externalConversationId: id-69221
-                  externalCustomerId: 555.555.0191
-                  attributes: null
-                - externalConversationId: id-69223
-                  externalCustomerId: 555.555.0193
-                - externalConversationId: id-69229
-                  externalCustomerId: zdoe@example.com
-                  phoneNumber: null
-                  userId: null
-                  addressCountry: null
+              $ref: '#/components/schemas/CustomerMetadataMany'
       responses:
         '200':
-          description: '200 - Success | Partial Success
-
-            Submit a batch of items to the service to be ingested. Record can be traced back to the submitted record by the eventId.
-
-            If any of the records encounter issue during the ingestion, a message sent status will be returned with an error message for each record.
-
-            A 200 success is returned as long as there is one item ingested successfully, i.e., "partial success".
-
-            '
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  errorCount:
-                    description: Number of message sent with error(s)
-                    type: integer
-                  results:
-                    description: A list of send result
-                    type: array
-                    items:
-                      description: A response with the status of a sent message
-                      type: object
-                      properties:
-                        eventId:
-                          description: An UUID identifier string computed for the submitted event message
-                          type: string
-                          example: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                        error:
-                          description: Status of the failed message if value is not blank; the error is contained in the string
-                          type: string
-                          example: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                      example:
-                        eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                        error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                required:
-                - errorCount
-                - results
-                example:
-                  errorCount: 1
-                  results:
-                  - eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                    error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                  - eventId: fcf99667-feaf-11ec-a42e-11799134528c
-                    error: ''
+          $ref: '#/components/responses/SuccessForBatch'
         '400':
-          description: '400 - Bad request
-
-            Submit a batch of items to the service to be ingested. Record can be traced back to the submitted record by the eventId.
-
-            If any of the records encounter issue during the ingestion, a message sent status will be returned with an error message for each record.
-
-            All items in the batch encountered client input validation failures.
-
-            '
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  errorCount:
-                    description: Number of message sent with error(s)
-                    type: integer
-                  results:
-                    description: A list of send result
-                    type: array
-                    items:
-                      description: A response with the status of a sent message
-                      type: object
-                      properties:
-                        eventId:
-                          description: An UUID identifier string computed for the submitted event message
-                          type: string
-                          example: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                        error:
-                          description: Status of the failed message if value is not blank; the error is contained in the string
-                          type: string
-                          example: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                      example:
-                        eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                        error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                required:
-                - errorCount
-                - results
-                example:
-                  errorCount: 1
-                  results:
-                  - eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-                    error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-                  - eventId: fcf99667-feaf-11ec-a42e-11799134528c
-                    error: ''
+          $ref: '#/components/responses/BadRequestForBatch'
         '401':
-          description: 401 - Unauthorized
-          content:
-            application/json:
-              schema:
-                description: Unauthorized response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 401-01
-                      message: Unauthorized
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/Unauthorized'
         '403':
-          description: 403 - Forbidden
-          content:
-            application/json:
-              schema:
-                description: Forbidden response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 403-01
-                      message: Forbidden Response
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: 404 - Not Found
-          content:
-            application/json:
-              schema:
-                description: Not Found response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 404-01
-                      message: Not Found
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/NotFound'
         '409':
-          description: 409 - Conflict
-          content:
-            application/json:
-              schema:
-                description: Conflict response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 409-01
-                      message: Conflict
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/Conflict'
         '413':
-          description: 413 - Request Entity Too Large
-          content:
-            application/json:
-              schema:
-                description: Request Entity Too Large response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 413-01
-                      message: Request Entity Too Large
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/RequestEntityTooLarge'
         '422':
-          description: 422 - Unprocessable Entity
-          content:
-            application/json:
-              schema:
-                description: Unprocessable Entity response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 422-01
-                      message: Unprocessable Entity
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
-          description: 429 - Too Many Requests
-          content:
-            application/json:
-              schema:
-                description: Too Many Requests response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 429-01
-                      message: Too Many Requests
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/TooManyRequests'
         '503':
-          description: 503 - Service Unavailable
-          content:
-            application/json:
-              schema:
-                description: Service Unavailable response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 503-01
-                      message: Service Unavailable
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/ServiceUnavailable'
         default:
-          description: 500 - Internal Server Error
-          content:
-            application/json:
-              schema:
-                description: Default error response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 500-01
-                      message: Internal server error
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/DefaultError'
       security:
       - API-ID: []
         API-Secret: []
-    servers:
-    - url: https://api.sandbox.asapp.com
 components:
   schemas:
+    ServiceUnavailableResponse:
+      description: Service Unavailable response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 503-01
+            message: Service Unavailable
     DefaultErrorResponse:
       description: Default error response
       type: object
@@ -3463,43 +271,6 @@ components:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
             code: 500-01
             message: Internal server error
-    DefaultErrorDetails:
-      description: Error details
-      type: object
-      properties:
-        requestId:
-          type: string
-          description: Unique ID of the failing request
-        message:
-          type: string
-          description: Error message
-        code:
-          type: string
-          description: Error code
-      required:
-      - requestId
-      - message
-    AddMetadataResponse:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/MessageSentStatus'
-      required:
-      - result
-      example:
-        result:
-          eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-          error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-    UnprocessableEntity:
-      description: Unprocessable Entity response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 422-01
-            message: Unprocessable Entity
     MessageSentStatus:
       description: A response with the status of a sent message
       type: object
@@ -3515,208 +286,6 @@ components:
       example:
         eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
         error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-    CustomerMetadataMany:
-      description: A request to send more than one customer metadata; send a list of items
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomerMetadata'
-          minItems: 1
-          maxItems: 1000
-      example:
-        items:
-        - externalConversationId: id-509
-          externalCustomerId: 555.555.0100-jdoe@example.com
-          eventId: eventId-1938
-          status: new
-          phoneNumber: (555)555-0100
-          emailAddress: jdoe@example.com
-          userId: user908038
-          addressCountry: United-States
-          addressState: New-York
-          addressZipcode: '10001'
-          attributes:
-          - name: attr1_name
-            value: attr1_value
-          - name: attr2_name
-            value: attr2_value
-        - externalConversationId: id-203
-          externalCustomerId: 555.555.0101-mdoe@example.com
-          eventId: eventId-1331
-          status: existing
-          phoneNumber: (555)555-0101
-          emailAddress: mdoe@example.com
-          userId: user3201033
-          addressCountry: United-States
-          addressState: New-York
-          addressZipcode: '10002'
-          attributes:
-          - name: attr1_name
-            value: attr1_value
-          - name: attr2_name
-            value: attr2_value
-        - externalConversationId: id-69221
-          externalCustomerId: 555.555.0191
-          attributes: null
-        - externalConversationId: id-69223
-          externalCustomerId: 555.555.0193
-        - externalConversationId: id-69229
-          externalCustomerId: zdoe@example.com
-          phoneNumber: null
-          userId: null
-          addressCountry: null
-    CustomerMetadata:
-      description: A set of customer metadata attributes
-      type: object
-      properties:
-        externalConversationId:
-          description: Conversation ID from the external chat / voice system
-          type: string
-          pattern: '[a-zA-Z0-9\-\_]+'
-          maxLength: 256
-          example: issue509
-        externalCustomerId:
-          description: The customer id involved in respect to the issue in question
-          type: string
-          pattern: '[a-zA-Z0-9\-\_\.\@]+'
-          maxLength: 256
-          example: 555.555.0100-jdoe@example.com
-        eventId:
-          description: 'An event id used to track the submission; if none is provided, service will generate one
-
-            '
-          type:
-          - string
-          - 'null'
-          pattern: '[a-zA-Z0-9\-\_]+'
-          maxLength: 256
-          example: eventId-1938
-        status:
-          description: The descriptive label to describe the customer's status and/or type
-          type:
-          - string
-          - 'null'
-          pattern: '[a-zA-Z0-9\-\_]+'
-          maxLength: 256
-          example: new
-        phoneNumber:
-          description: The customer's phone number
-          type:
-          - string
-          - 'null'
-          pattern: '[0-9\-\.\(\)\+]+'
-          maxLength: 32
-          example: (555)555-0100
-        emailAddress:
-          description: The customer's email address
-          type:
-          - string
-          - 'null'
-          format: email
-          example: jdoe@example.com
-        userId:
-          description: The customer's user Id
-          type:
-          - string
-          - 'null'
-          pattern: '[a-zA-Z0-9\-\_]+'
-          maxLength: 256
-          example: user908038
-        addressCountry:
-          description: The country portion of the customer's address
-          type:
-          - string
-          - 'null'
-          pattern: '[a-zA-Z0-9\-\_]+'
-          maxLength: 128
-          example: United-States
-        addressState:
-          description: The state portion of the customer's address
-          type:
-          - string
-          - 'null'
-          pattern: '[a-zA-Z0-9\-\_]+'
-          maxLength: 128
-          example: New-York
-        addressZipcode:
-          description: The zipcode/postal code portion of the customer's address
-          type:
-          - string
-          - 'null'
-          pattern: '[a-zA-Z0-9\-\_]+'
-          maxLength: 16
-          example: '10001'
-        attributes:
-          description: A map of key-value pairs for extra metadata attributes
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Attribute'
-          maxItems: 10
-          example:
-          - name: attr1_name
-            value: attr1_value
-          - name: attr2_name
-            value: attr2_value
-      required:
-      - externalConversationId
-      - externalCustomerId
-      example:
-        externalConversationId: id-509
-        externalCustomerId: 555.555.0100-jdoe@example.com
-        eventId: eventId-1938
-        status: new
-        phoneNumber: (555)555-0100
-        emailAddress: jdoe@example.com
-        userId: user908038
-        addressCountry: United-States
-        addressState: New-York
-        addressZipcode: '10001'
-        attributes:
-        - name: attr1_name
-          value: attr1_value
-        - name: attr2_name
-          value: attr2_value
-    ConflictResponse:
-      description: Conflict response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 409-01
-            message: Conflict
-    ForbiddenResponse:
-      description: Forbidden response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 403-01
-            message: Forbidden Response
-    Attribute:
-      description: A key-value pair of additional metadata attributes
-      type: object
-      properties:
-        name:
-          description: The name of the attribute
-          type: string
-          maxLength: 256
-        value:
-          description: The value of the named attribute
-          type: string
-          maxLength: 1024
-      example:
-      - name: attr1_name
-        value: attr1_value
-      - name: attr2_name
-        value: attr2_value
     ConversationMetadata:
       description: A set of conversation metadata attributes
       type: object
@@ -3927,6 +496,129 @@ components:
           value: attr1_value
         - name: attr2_name
           value: attr2_value
+    ForbiddenResponse:
+      description: Forbidden response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 403-01
+            message: Forbidden Response
+    CustomerMetadata:
+      description: A set of customer metadata attributes
+      type: object
+      properties:
+        externalConversationId:
+          description: Conversation ID from the external chat / voice system
+          type: string
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: issue509
+        externalCustomerId:
+          description: The customer id involved in respect to the issue in question
+          type: string
+          pattern: '[a-zA-Z0-9\-\_\.\@]+'
+          maxLength: 256
+          example: 555.555.0100-jdoe@example.com
+        eventId:
+          description: 'An event id used to track the submission; if none is provided, service will generate one
+
+            '
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: eventId-1938
+        status:
+          description: The descriptive label to describe the customer's status and/or type
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: new
+        phoneNumber:
+          description: The customer's phone number
+          type:
+          - string
+          - 'null'
+          pattern: '[0-9\-\.\(\)\+]+'
+          maxLength: 32
+          example: (555)555-0100
+        emailAddress:
+          description: The customer's email address
+          type:
+          - string
+          - 'null'
+          format: email
+          example: jdoe@example.com
+        userId:
+          description: The customer's user Id
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: user908038
+        addressCountry:
+          description: The country portion of the customer's address
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 128
+          example: United-States
+        addressState:
+          description: The state portion of the customer's address
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 128
+          example: New-York
+        addressZipcode:
+          description: The zipcode/postal code portion of the customer's address
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 16
+          example: '10001'
+        attributes:
+          description: A map of key-value pairs for extra metadata attributes
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Attribute'
+          maxItems: 10
+          example:
+          - name: attr1_name
+            value: attr1_value
+          - name: attr2_name
+            value: attr2_value
+      required:
+      - externalConversationId
+      - externalCustomerId
+      example:
+        externalConversationId: id-509
+        externalCustomerId: 555.555.0100-jdoe@example.com
+        eventId: eventId-1938
+        status: new
+        phoneNumber: (555)555-0100
+        emailAddress: jdoe@example.com
+        userId: user908038
+        addressCountry: United-States
+        addressState: New-York
+        addressZipcode: '10001'
+        attributes:
+        - name: attr1_name
+          value: attr1_value
+        - name: attr2_name
+          value: attr2_value
     AgentMetadataMany:
       description: A request to send more than one agent metadata; send a list of items
       type: object
@@ -3996,27 +688,78 @@ components:
         - externalAgentId: agent222
         - externalAgentId: agent333
           emailAddress: jdoe@example.com
-    AddManyMetadataResponse:
+    ConversationMetadataMany:
+      description: 'A request to send more than one conversation metadata attributes; send a list of items
+
+        '
       type: object
       properties:
-        errorCount:
-          description: Number of message sent with error(s)
-          type: integer
-        results:
-          description: A list of send result
+        items:
           type: array
           items:
-            $ref: '#/components/schemas/MessageSentStatus'
-      required:
-      - errorCount
-      - results
+            $ref: '#/components/schemas/ConversationMetadata'
+          minItems: 1
+          maxItems: 1000
       example:
-        errorCount: 1
-        results:
-        - eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-          error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-        - eventId: fcf99667-feaf-11ec-a42e-11799134528c
-          error: ''
+        items:
+        - externalConversationId: id-1389
+          eventId: eventId-1388
+          lobId: '1038'
+          lobName: manufacturing
+          groupId: group59
+          groupName: groupXYZ
+          agentRoutingCode: route-13988
+          campaign: campaign-A
+          deviceType: TABLET
+          platform: IOS
+          companySegment:
+          - Sales
+          - Marketing
+          companySubdivision: operating
+          businessRule: Apply customer's discount
+          entryType: reactive
+          operatingSystem: MAC_OS
+          browserType: Safari
+          browserVersion: 14.1.2
+          attributes:
+          - name: attr1_name
+            value: attr1_value
+          - name: attr2_name
+            value: attr2_value
+        - externlConversationId: issue1390
+          eventId: eventId-1268
+          lobId: '930'
+          lobName: retail
+          groupId: store-93
+          groupName: PlazaA
+          agentRoutingCode: route-1983
+          campaign: campaign-B
+          deviceType: PHONE
+          platform: ANDROID
+          companySegment:
+          - SALES
+          - FINANCE
+          companySubdivision: operating
+          businessRule: Apply customer's discount
+          entryType: proactive
+          operatingSystem: ANDROID
+          browserType: Chrome
+          browserVersion: 103.0.5060.128
+          attributes:
+          - name: attr1_name
+            value: attr1_value
+          - name: attr2_name
+            value: attr2_value
+    ConflictResponse:
+      description: Conflict response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 409-01
+            message: Conflict
     AgentMetadata:
       description: A set of agent metadata attributes
       type: object
@@ -4228,88 +971,39 @@ components:
           value: attr1_value
         - name: attr2_name
           value: attr2_value
-    NotFoundResponse:
-      description: Not Found response
+    Attribute:
+      description: A key-value pair of additional metadata attributes
       type: object
       properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 404-01
-            message: Not Found
-    RequestEntityTooLargeResponse:
-      description: Request Entity Too Large response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 413-01
-            message: Request Entity Too Large
-    ConversationMetadataMany:
-      description: 'A request to send more than one conversation metadata attributes; send a list of items
-
-        '
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConversationMetadata'
-          minItems: 1
-          maxItems: 1000
+        name:
+          description: The name of the attribute
+          type: string
+          maxLength: 256
+        value:
+          description: The value of the named attribute
+          type: string
+          maxLength: 1024
       example:
-        items:
-        - externalConversationId: id-1389
-          eventId: eventId-1388
-          lobId: '1038'
-          lobName: manufacturing
-          groupId: group59
-          groupName: groupXYZ
-          agentRoutingCode: route-13988
-          campaign: campaign-A
-          deviceType: TABLET
-          platform: IOS
-          companySegment:
-          - Sales
-          - Marketing
-          companySubdivision: operating
-          businessRule: Apply customer's discount
-          entryType: reactive
-          operatingSystem: MAC_OS
-          browserType: Safari
-          browserVersion: 14.1.2
-          attributes:
-          - name: attr1_name
-            value: attr1_value
-          - name: attr2_name
-            value: attr2_value
-        - externlConversationId: issue1390
-          eventId: eventId-1268
-          lobId: '930'
-          lobName: retail
-          groupId: store-93
-          groupName: PlazaA
-          agentRoutingCode: route-1983
-          campaign: campaign-B
-          deviceType: PHONE
-          platform: ANDROID
-          companySegment:
-          - SALES
-          - FINANCE
-          companySubdivision: operating
-          businessRule: Apply customer's discount
-          entryType: proactive
-          operatingSystem: ANDROID
-          browserType: Chrome
-          browserVersion: 103.0.5060.128
-          attributes:
-          - name: attr1_name
-            value: attr1_value
-          - name: attr2_name
-            value: attr2_value
+      - name: attr1_name
+        value: attr1_value
+      - name: attr2_name
+        value: attr2_value
+    DefaultErrorDetails:
+      description: Error details
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Unique ID of the failing request
+        message:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+      required:
+      - requestId
+      - message
     UnauthorizedResponse:
       description: Unauthorized response
       type: object
@@ -4320,6 +1014,58 @@ components:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
             code: 401-01
             message: Unauthorized
+    CustomerMetadataMany:
+      description: A request to send more than one customer metadata; send a list of items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerMetadata'
+          minItems: 1
+          maxItems: 1000
+      example:
+        items:
+        - externalConversationId: id-509
+          externalCustomerId: 555.555.0100-jdoe@example.com
+          eventId: eventId-1938
+          status: new
+          phoneNumber: (555)555-0100
+          emailAddress: jdoe@example.com
+          userId: user908038
+          addressCountry: United-States
+          addressState: New-York
+          addressZipcode: '10001'
+          attributes:
+          - name: attr1_name
+            value: attr1_value
+          - name: attr2_name
+            value: attr2_value
+        - externalConversationId: id-203
+          externalCustomerId: 555.555.0101-mdoe@example.com
+          eventId: eventId-1331
+          status: existing
+          phoneNumber: (555)555-0101
+          emailAddress: mdoe@example.com
+          userId: user3201033
+          addressCountry: United-States
+          addressState: New-York
+          addressZipcode: '10002'
+          attributes:
+          - name: attr1_name
+            value: attr1_value
+          - name: attr2_name
+            value: attr2_value
+        - externalConversationId: id-69221
+          externalCustomerId: 555.555.0191
+          attributes: null
+        - externalConversationId: id-69223
+          externalCustomerId: 555.555.0193
+        - externalConversationId: id-69229
+          externalCustomerId: zdoe@example.com
+          phoneNumber: null
+          userId: null
+          addressCountry: null
     TooManyRequestsResponse:
       description: Too Many Requests response
       type: object
@@ -4330,29 +1076,75 @@ components:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
             code: 429-01
             message: Too Many Requests
-    ServiceUnavailableResponse:
-      description: Service Unavailable response
+    NotFoundResponse:
+      description: Not Found response
       type: object
       properties:
         error:
           $ref: '#/components/schemas/DefaultErrorDetails'
           example:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 503-01
-            message: Service Unavailable
+            code: 404-01
+            message: Not Found
+    AddManyMetadataResponse:
+      type: object
+      properties:
+        errorCount:
+          description: Number of message sent with error(s)
+          type: integer
+        results:
+          description: A list of send result
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageSentStatus'
+      required:
+      - errorCount
+      - results
+      example:
+        errorCount: 1
+        results:
+        - eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
+          error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
+        - eventId: fcf99667-feaf-11ec-a42e-11799134528c
+          error: ''
+    RequestEntityTooLargeResponse:
+      description: Request Entity Too Large response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 413-01
+            message: Request Entity Too Large
+    AddMetadataResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/MessageSentStatus'
+      required:
+      - result
+      example:
+        result:
+          eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
+          error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
+    UnprocessableEntity:
+      description: Unprocessable Entity response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 422-01
+            message: Unprocessable Entity
   responses:
-    Forbidden:
-      description: 403 - Forbidden
+    RequestEntityTooLarge:
+      description: 413 - Request Entity Too Large
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ForbiddenResponse'
-    DefaultError:
-      description: 500 - Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/DefaultErrorResponse'
+            $ref: '#/components/schemas/RequestEntityTooLargeResponse'
     BadRequestForBatch:
       description: '400 - Bad request
 
@@ -4367,12 +1159,24 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/AddManyMetadataResponse'
-    UnprocessableEntity:
-      description: 422 - Unprocessable Entity
+    Conflict:
+      description: 409 - Conflict
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/UnprocessableEntity'
+            $ref: '#/components/schemas/ConflictResponse'
+    DefaultError:
+      description: 500 - Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DefaultErrorResponse'
+    Unauthorized:
+      description: 401 - Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
     BadRequestForSingle:
       description: '400 - Bad request
 
@@ -4385,30 +1189,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/AddMetadataResponse'
-    ServiceUnavailable:
-      description: 503 - Service Unavailable
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ServiceUnavailableResponse'
-    NotFound:
-      description: 404 - Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundResponse'
-    RequestEntityTooLarge:
-      description: 413 - Request Entity Too Large
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RequestEntityTooLargeResponse'
-    TooManyRequests:
-      description: 429 - Too Many Requests
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/TooManyRequestsResponse'
     SuccessForBatch:
       description: '200 - Success | Partial Success
 
@@ -4423,18 +1203,30 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/AddManyMetadataResponse'
-    Conflict:
-      description: 409 - Conflict
+    ServiceUnavailable:
+      description: 503 - Service Unavailable
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ConflictResponse'
-    Unauthorized:
-      description: 401 - Unauthorized
+            $ref: '#/components/schemas/ServiceUnavailableResponse'
+    TooManyRequests:
+      description: 429 - Too Many Requests
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/UnauthorizedResponse'
+            $ref: '#/components/schemas/TooManyRequestsResponse'
+    NotFound:
+      description: 404 - Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+    UnprocessableEntity:
+      description: 422 - Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnprocessableEntity'
     SuccessForSingle:
       description: '200 - Success
 
@@ -4447,6 +1239,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/AddMetadataResponse'
+    Forbidden:
+      description: 403 - Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenResponse'
   securitySchemes:
     API-ID:
       type: apiKey
@@ -4456,6 +1254,34 @@ components:
       type: apiKey
       in: header
       name: asapp-api-secret
-x-refined-from:
-- asapp-metadata-ingestion-openapi.yml
-- asapp-openapi-openapi.yml
+x-tagGroups:
+- name: AutoCompose API
+  tags:
+  - AutoCompose
+- name: AutoSummary API
+  tags:
+  - AutoSummary
+- name: AutoTranscribe API
+  tags:
+  - AutoTranscribe
+- name: Conversations API
+  tags:
+  - Conversations
+- name: File Exporter API
+  tags:
+  - File Exporter
+- name: GenerativeAgent API
+  tags:
+  - GenerativeAgent
+- name: Health Check API
+  tags:
+  - Health Check
+- name: Knowledge Base API
+  tags:
+  - Knowledge Base
+- name: Metadata Ingestion API
+  tags:
+  - Metadata
+- name: MG Autotranscribe API Router
+  tags:
+  - AutoTranscribe Media Gateway

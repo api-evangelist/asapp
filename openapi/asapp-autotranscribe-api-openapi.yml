@@ -1,14 +1,19 @@
 openapi: 3.2.0
 info:
-  title: Asapp Auto Transcribe API
+  title: AutoCompose Auto Transcribe API
+  description: 'Autocompose API to suggest the next agent message.
+
+    Suggestions are based on the conversation history, conversation metadata, and
+
+    the in-progress message text the agent has already typed into the composer.'
   version: 0.0.3
-  description: 'Operations tagged AutoTranscribe across 2 of this provider''s published API definitions: asapp-autotranscribe-openapi.yml, asapp-openapi-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.sandbox.asapp.com
 - url: https://api.test.asapp.com
 tags:
 - name: AutoTranscribe
   description: Get streaming URL to transcribe audio
+  x-displayName: AutoTranscribe
 paths:
   /autotranscribe/v1/streaming-url:
     post:
@@ -16,9 +21,7 @@ paths:
       - AutoTranscribe
       operationId: getStreamingUrl
       summary: Get streaming URL
-      description: 'Get [websocket streaming URL](/autotranscribe/deploying-autotranscribe-via-websocket) to transcribe audio in real time. This websocket is used to send audio to ASAPP''s transcription service and receive transcription results.
-
-        '
+      description: Get websocket streaming URL to transcribe audio in real time. This websocket is used to send audio to ASAPP's transcription service and receive transcription results.
       requestBody:
         description: The parameters for getting streaming URL
         content:
@@ -37,299 +40,42 @@ paths:
           content:
             application/json:
               schema:
-                description: Get streaming url
-                type: object
-                properties:
-                  streamingUrl:
-                    type: string
-                    description: Streaming websocket URL
+                $ref: '#/components/schemas/StreamingUrl'
         '400':
-          description: 400 - Bad request
-          content:
-            application/json:
-              schema:
-                description: Bad request response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 400-01
-                      message: Bad request
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/BadRequest'
         '401':
-          description: 401 - Unauthorized
-          content:
-            application/json:
-              schema:
-                description: Unauthorized response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 401-01
-                      message: Unauthorized
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/Unauthorized'
         '403':
-          description: 403 - Forbidden
-          content:
-            application/json:
-              schema:
-                description: Forbidden response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 403-01
-                      message: Forbidden Response
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: 404 - Not Found
-          content:
-            application/json:
-              schema:
-                description: Not Found response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 404-01
-                      message: Not Found
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/NotFound'
         '409':
-          description: 409 - Conflict
-          content:
-            application/json:
-              schema:
-                description: Conflict response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 409-01
-                      message: Conflict
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/Conflict'
         '413':
-          description: 413 - Request Entity Too Large
-          content:
-            application/json:
-              schema:
-                description: Request Entity Too Large response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 413-01
-                      message: Request Entity Too Large
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/RequestEntityTooLarge'
         '422':
-          description: 422 - Unprocessable Entity
-          content:
-            application/json:
-              schema:
-                description: Unprocessable Entity response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 422-01
-                      message: Unprocessable Entity
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
-          description: 429 - Too Many Requests
-          content:
-            application/json:
-              schema:
-                description: Too Many Requests response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 429-01
-                      message: Too Many Requests
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/TooManyRequests'
         '503':
-          description: 503 - Service Unavailable
-          content:
-            application/json:
-              schema:
-                description: Service Unavailable response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 503-01
-                      message: Service Unavailable
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/ServiceUnavailable'
         default:
-          description: 500 - Internal Server Error
-          content:
-            application/json:
-              schema:
-                description: Default error response
-                type: object
-                properties:
-                  error:
-                    example:
-                      requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-                      code: 500-01
-                      message: Internal server error
-                    description: Error details
-                    type: object
-                    properties:
-                      requestId:
-                        type: string
-                        description: Unique ID of the failing request
-                      message:
-                        type: string
-                        description: Error message
-                      code:
-                        type: string
-                        description: Error code
-                    required:
-                    - requestId
-                    - message
+          $ref: '#/components/responses/DefaultError'
       security:
       - API-ID: []
         API-Secret: []
-    servers:
-    - url: https://api.sandbox.asapp.com
 components:
   schemas:
+    ServiceUnavailableResponse:
+      description: Service Unavailable response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 503-01
+            message: Service Unavailable
     DefaultErrorResponse:
       description: Default error response
       type: object
@@ -340,6 +86,26 @@ components:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
             code: 500-01
             message: Internal server error
+    ForbiddenResponse:
+      description: Forbidden response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 403-01
+            message: Forbidden Response
+    ConflictResponse:
+      description: Conflict response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 409-01
+            message: Conflict
     DefaultErrorDetails:
       description: Error details
       type: object
@@ -356,73 +122,6 @@ components:
       required:
       - requestId
       - message
-    UnprocessableEntity:
-      description: Unprocessable Entity response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 422-01
-            message: Unprocessable Entity
-    ConflictResponse:
-      description: Conflict response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 409-01
-            message: Conflict
-    StreamingUrl:
-      description: Get streaming url
-      type: object
-      properties:
-        streamingUrl:
-          type: string
-          description: Streaming websocket URL
-    ForbiddenResponse:
-      description: Forbidden response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 403-01
-            message: Forbidden Response
-    NotFoundResponse:
-      description: Not Found response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 404-01
-            message: Not Found
-    RequestEntityTooLargeResponse:
-      description: Request Entity Too Large response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 413-01
-            message: Request Entity Too Large
-    TooManyRequestsResponse:
-      description: Too Many Requests response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 429-01
-            message: Too Many Requests
     UnauthorizedResponse:
       description: Unauthorized response
       type: object
@@ -433,6 +132,33 @@ components:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
             code: 401-01
             message: Unauthorized
+    TooManyRequestsResponse:
+      description: Too Many Requests response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 429-01
+            message: Too Many Requests
+    StreamingUrl:
+      description: Get streaming url
+      type: object
+      properties:
+        streamingUrl:
+          type: string
+          description: Streaming websocket URL
+    NotFoundResponse:
+      description: Not Found response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 404-01
+            message: Not Found
     BadRequestResponse:
       description: Bad request response
       type: object
@@ -443,77 +169,87 @@ components:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
             code: 400-01
             message: Bad request
-    ServiceUnavailableResponse:
-      description: Service Unavailable response
+    RequestEntityTooLargeResponse:
+      description: Request Entity Too Large response
       type: object
       properties:
         error:
           $ref: '#/components/schemas/DefaultErrorDetails'
           example:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 503-01
-            message: Service Unavailable
-  responses:
-    Forbidden:
-      description: 403 - Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenResponse'
-    DefaultError:
-      description: 500 - Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/DefaultErrorResponse'
+            code: 413-01
+            message: Request Entity Too Large
     UnprocessableEntity:
-      description: 422 - Unprocessable Entity
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnprocessableEntity'
-    ServiceUnavailable:
-      description: 503 - Service Unavailable
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ServiceUnavailableResponse'
-    NotFound:
-      description: 404 - Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundResponse'
+      description: Unprocessable Entity response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 422-01
+            message: Unprocessable Entity
+  responses:
     RequestEntityTooLarge:
       description: 413 - Request Entity Too Large
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/RequestEntityTooLargeResponse'
-    TooManyRequests:
-      description: 429 - Too Many Requests
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/TooManyRequestsResponse'
     Conflict:
       description: 409 - Conflict
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ConflictResponse'
-    BadRequest:
-      description: 400 - Bad request
+    DefaultError:
+      description: 500 - Internal Server Error
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/BadRequestResponse'
+            $ref: '#/components/schemas/DefaultErrorResponse'
     Unauthorized:
       description: 401 - Unauthorized
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/UnauthorizedResponse'
+    ServiceUnavailable:
+      description: 503 - Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ServiceUnavailableResponse'
+    TooManyRequests:
+      description: 429 - Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TooManyRequestsResponse'
+    NotFound:
+      description: 404 - Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+    BadRequest:
+      description: 400 - Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+    UnprocessableEntity:
+      description: 422 - Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnprocessableEntity'
+    Forbidden:
+      description: 403 - Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenResponse'
   securitySchemes:
     API-ID:
       type: apiKey
@@ -523,6 +259,34 @@ components:
       type: apiKey
       in: header
       name: asapp-api-secret
-x-refined-from:
-- asapp-autotranscribe-openapi.yml
-- asapp-openapi-openapi.yml
+x-tagGroups:
+- name: AutoCompose API
+  tags:
+  - AutoCompose
+- name: AutoSummary API
+  tags:
+  - AutoSummary
+- name: AutoTranscribe API
+  tags:
+  - AutoTranscribe
+- name: Conversations API
+  tags:
+  - Conversations
+- name: File Exporter API
+  tags:
+  - File Exporter
+- name: GenerativeAgent API
+  tags:
+  - GenerativeAgent
+- name: Health Check API
+  tags:
+  - Health Check
+- name: Knowledge Base API
+  tags:
+  - Knowledge Base
+- name: Metadata Ingestion API
+  tags:
+  - Metadata
+- name: MG Autotranscribe API Router
+  tags:
+  - AutoTranscribe Media Gateway

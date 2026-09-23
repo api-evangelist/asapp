@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: Partner Configuration API
-  description: "This is the Partner Configuration API which allows ASAPP partners to manage configurations. Currently we are offering:\n - Custom Vocabularies: API endpoints to create, delete, update, and retrieve custom vocabularies.\n - Redaction Entities: API endpoints to update and retrieve redaction entities.\n - Structured Data Fields: API endpoints to create, delete, update, and retrieve structured data fields.\n\nImportant Note: Custom Vocabularies and Redaction Entities do not support concurrent operations within the same category. You can perform updates, creations or deletes concurrently between Custom Vocabularies and Redaction Entities, but not within each one. Each operation may take up to 45 seconds to complete.\n"
+  description: This is the Partner Configuration API which allows ASAPP partners to manage configurations.
   version: 1.0.0
 servers:
 - url: https://api.sandbox.asapp.com
@@ -35,9 +35,7 @@ paths:
           maximum: 100
           default: 20
         description: The maximum amount of objects to retrieve
-      description: 'Retrieves all custom vocabulary configurations.
-
-        '
+      description: Retrieves all custom vocabulary configurations.
       operationId: getCustomVocabularyConfigurations
       responses:
         '200':
@@ -400,9 +398,7 @@ paths:
         This helps the system correctly transcribe technical terms, brand names, or industry-specific terminology.
 
 
-        The API returns immediately, but the transcription service can take up to 1 minute to incorporate the custom vocabulary change.
-
-        '
+        The API returns immediately, but the transcription service can take up to 1 minute to incorporate the custom vocabulary change.'
       operationId: postCustomVocabularyConfiguration
       requestBody:
         required: true
@@ -750,9 +746,7 @@ paths:
       tags:
       - Configuration
       summary: Retrieve a custom vocabulary
-      description: 'Get a custom vocabulary configuration
-
-        '
+      description: Get a custom vocabulary configuration
       operationId: getCustomVocabularyConfiguration
       responses:
         '200':
@@ -1068,9 +1062,7 @@ paths:
       tags:
       - Configuration
       summary: Delete a custom vocabulary
-      description: 'Deletes a custom vocabulary configuration
-
-        '
+      description: Deletes a custom vocabulary configuration
       operationId: deleteCustomVocabularyConfiguration
       responses:
         '200':
@@ -1399,9 +1391,7 @@ paths:
         - Voice: Redaction in voice content
 
 
-        The API returns immediately, but the redaction service can take up to 1 minute to incorporate the redaction change.
-
-        '
+        The API returns immediately, but the redaction service can take up to 1 minute to incorporate the redaction change.'
       responses:
         '200':
           description: Successfully retrieved the redaction entities.
@@ -1778,9 +1768,7 @@ paths:
       - Configuration
       summary: Retrieve a redaction entity
       operationId: getRedactionEntity
-      description: 'Get a specific redaction entity with a entity id
-
-        '
+      description: Get a specific redaction entity with a entity id
       responses:
         '200':
           description: Successfully retrieved the redaction entity.
@@ -2117,9 +2105,7 @@ paths:
       - Configuration
       summary: Update a redaction entity
       operationId: updateRedactionEntity
-      description: 'Update the policies of a specific redaction entity. Only the policies field can be modified.
-
-        '
+      description: Update the policies of a specific redaction entity. Only the policies field can be modified.
       requestBody:
         required: true
         content:
@@ -2519,9 +2505,7 @@ paths:
           maximum: 100
           default: 20
         description: The maximum amount of objects to retrieve
-      description: 'Retrieves a list of all configured structured data fields.
-
-        '
+      description: Retrieves a list of all configured structured data fields.
       operationId: getStructuredDataFields
       responses:
         '200':
@@ -2990,7 +2974,26 @@ paths:
       tags:
       - Configuration
       summary: Create a structured data field
-      description: "Creates a new structured data field configuration that defines what information should be\nextracted from conversations.\n\nThis endpoint supports creating two types of structured data fields:\n1. QUESTION type: Defines specific questions to be answered about the conversation\n   Example: \"Did the agent offer the correct promotion?\"\n\n2. ENTITY type: Defines entities to be identified and extracted\n   Example: Product names mentioned in the conversation\n\nThese fields are used by the Structured Data API (/apis/autosummary/retrieve-structured-data)\nto automatically extract the configured information from conversations.\n"
+      description: 'Creates a new structured data field configuration that defines what information should be
+
+        extracted from conversations.
+
+
+        This endpoint supports creating two types of structured data fields:
+
+        1. QUESTION type: Defines specific questions to be answered about the conversation
+
+        Example: "Did the agent offer the correct promotion?"
+
+
+        2. ENTITY type: Defines entities to be identified and extracted
+
+        Example: Product names mentioned in the conversation
+
+
+        These fields are used by the Structured Data API (/apis/autosummary/retrieve-structured-data)
+
+        to automatically extract the configured information from conversations.'
       operationId: postStructuredDataField
       requestBody:
         required: true
@@ -3592,9 +3595,7 @@ paths:
       - Configuration
       summary: Retrieve a structured data field
       operationId: getStructuredDataField
-      description: 'Get a specific structured data field specifying the id
-
-        '
+      description: Get a specific structured data field specifying the id
       responses:
         '200':
           description: Successfully retrieved the structured data field.
@@ -4030,9 +4031,7 @@ paths:
       - Configuration
       summary: Update a structured data field
       operationId: putStructuredDataField
-      description: 'Update a specific structured data field specifying the id
-
-        '
+      description: Update a specific structured data field specifying the id
       requestBody:
         required: true
         content:
@@ -4594,9 +4593,7 @@ paths:
       - Configuration
       summary: Delete a structured data field
       operationId: deleteStructuredDataField
-      description: 'Delete a specific structured data field specifying the id
-
-        '
+      description: Delete a specific structured data field specifying the id
       responses:
         '200':
           description: Successfully deleted the structured data field.
@@ -4903,9 +4900,7 @@ paths:
           maximum: 100
           default: 20
         description: The maximum amount of objects to retrieve
-      description: 'Retrieves a list of all segments.
-
-        '
+      description: Retrieves a list of all segments.
       operationId: getSegments
       responses:
         '200':
@@ -5276,9 +5271,7 @@ paths:
 
         - Extract problem details from support conversations
 
-        - Extract product and promotion info from sales conversations
-
-        '
+        - Extract product and promotion info from sales conversations'
       operationId: postSegment
       requestBody:
         required: true
@@ -5650,9 +5643,7 @@ paths:
       - Configuration
       summary: Retrieve a segment
       operationId: getSegment
-      description: 'Get a specific segment specifying the id
-
-        '
+      description: Get a specific segment specifying the id
       responses:
         '200':
           description: Successfully retrieved the seg,emt.

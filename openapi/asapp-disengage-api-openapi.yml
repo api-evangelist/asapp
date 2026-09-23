@@ -17,7 +17,7 @@ paths:
       tags:
       - Disengage
       operationId: disengage
-      summary: Disengage Genagent from conversation.
+      summary: Disengage Genagent from conversation
       description: Disengage Genagent from conversation.
       requestBody:
         required: true
