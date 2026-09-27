@@ -251,41 +251,217 @@ paths:
         API-Secret: []
 components:
   schemas:
-    ServiceUnavailableResponse:
-      description: Service Unavailable response
+    NotFoundResponse:
+      description: Not Found response
       type: object
       properties:
         error:
           $ref: '#/components/schemas/DefaultErrorDetails'
           example:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 503-01
-            message: Service Unavailable
-    DefaultErrorResponse:
-      description: Default error response
+            code: 404-01
+            message: Not Found
+    CustomerMetadata:
+      description: A set of customer metadata attributes
       type: object
       properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 500-01
-            message: Internal server error
-    MessageSentStatus:
-      description: A response with the status of a sent message
-      type: object
-      properties:
+        externalConversationId:
+          description: Conversation ID from the external chat / voice system
+          type: string
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: issue509
+        externalCustomerId:
+          description: The customer id involved in respect to the issue in question
+          type: string
+          pattern: '[a-zA-Z0-9\-\_\.\@]+'
+          maxLength: 256
+          example: 555.555.0100-jdoe@example.com
         eventId:
-          description: An UUID identifier string computed for the submitted event message
-          type: string
-          example: 5484e507-feaf-11ec-bfc1-fda566fa9333
-        error:
-          description: Status of the failed message if value is not blank; the error is contained in the string
-          type: string
-          example: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
+          description: 'An event id used to track the submission; if none is provided, service will generate one
+
+            '
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: eventId-1938
+        status:
+          description: The descriptive label to describe the customer's status and/or type
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: new
+        phoneNumber:
+          description: The customer's phone number
+          type:
+          - string
+          - 'null'
+          pattern: '[0-9\-\.\(\)\+]+'
+          maxLength: 32
+          example: (555)555-0100
+        emailAddress:
+          description: The customer's email address
+          type:
+          - string
+          - 'null'
+          format: email
+          example: jdoe@example.com
+        userId:
+          description: The customer's user Id
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 256
+          example: user908038
+        addressCountry:
+          description: The country portion of the customer's address
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 128
+          example: United-States
+        addressState:
+          description: The state portion of the customer's address
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 128
+          example: New-York
+        addressZipcode:
+          description: The zipcode/postal code portion of the customer's address
+          type:
+          - string
+          - 'null'
+          pattern: '[a-zA-Z0-9\-\_]+'
+          maxLength: 16
+          example: '10001'
+        attributes:
+          description: A map of key-value pairs for extra metadata attributes
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Attribute'
+          maxItems: 10
+          example:
+          - name: attr1_name
+            value: attr1_value
+          - name: attr2_name
+            value: attr2_value
+      required:
+      - externalConversationId
+      - externalCustomerId
       example:
-        eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-        error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
+        externalConversationId: id-509
+        externalCustomerId: 555.555.0100-jdoe@example.com
+        eventId: eventId-1938
+        status: new
+        phoneNumber: (555)555-0100
+        emailAddress: jdoe@example.com
+        userId: user908038
+        addressCountry: United-States
+        addressState: New-York
+        addressZipcode: '10001'
+        attributes:
+        - name: attr1_name
+          value: attr1_value
+        - name: attr2_name
+          value: attr2_value
+    ForbiddenResponse:
+      description: Forbidden response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 403-01
+            message: Forbidden Response
+    DefaultErrorDetails:
+      description: Error details
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Unique ID of the failing request
+        message:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+      required:
+      - requestId
+      - message
+    RequestEntityTooLargeResponse:
+      description: Request Entity Too Large response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 413-01
+            message: Request Entity Too Large
+    CustomerMetadataMany:
+      description: A request to send more than one customer metadata; send a list of items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerMetadata'
+          minItems: 1
+          maxItems: 1000
+      example:
+        items:
+        - externalConversationId: id-509
+          externalCustomerId: 555.555.0100-jdoe@example.com
+          eventId: eventId-1938
+          status: new
+          phoneNumber: (555)555-0100
+          emailAddress: jdoe@example.com
+          userId: user908038
+          addressCountry: United-States
+          addressState: New-York
+          addressZipcode: '10001'
+          attributes:
+          - name: attr1_name
+            value: attr1_value
+          - name: attr2_name
+            value: attr2_value
+        - externalConversationId: id-203
+          externalCustomerId: 555.555.0101-mdoe@example.com
+          eventId: eventId-1331
+          status: existing
+          phoneNumber: (555)555-0101
+          emailAddress: mdoe@example.com
+          userId: user3201033
+          addressCountry: United-States
+          addressState: New-York
+          addressZipcode: '10002'
+          attributes:
+          - name: attr1_name
+            value: attr1_value
+          - name: attr2_name
+            value: attr2_value
+        - externalConversationId: id-69221
+          externalCustomerId: 555.555.0191
+          attributes: null
+        - externalConversationId: id-69223
+          externalCustomerId: 555.555.0193
+        - externalConversationId: id-69229
+          externalCustomerId: zdoe@example.com
+          phoneNumber: null
+          userId: null
+          addressCountry: null
     ConversationMetadata:
       description: A set of conversation metadata attributes
       type: object
@@ -496,260 +672,36 @@ components:
           value: attr1_value
         - name: attr2_name
           value: attr2_value
-    ForbiddenResponse:
-      description: Forbidden response
+    DefaultErrorResponse:
+      description: Default error response
       type: object
       properties:
         error:
           $ref: '#/components/schemas/DefaultErrorDetails'
           example:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 403-01
-            message: Forbidden Response
-    CustomerMetadata:
-      description: A set of customer metadata attributes
+            code: 500-01
+            message: Internal server error
+    TooManyRequestsResponse:
+      description: Too Many Requests response
       type: object
       properties:
-        externalConversationId:
-          description: Conversation ID from the external chat / voice system
-          type: string
-          pattern: '[a-zA-Z0-9\-\_]+'
-          maxLength: 256
-          example: issue509
-        externalCustomerId:
-          description: The customer id involved in respect to the issue in question
-          type: string
-          pattern: '[a-zA-Z0-9\-\_\.\@]+'
-          maxLength: 256
-          example: 555.555.0100-jdoe@example.com
-        eventId:
-          description: 'An event id used to track the submission; if none is provided, service will generate one
-
-            '
-          type:
-          - string
-          - 'null'
-          pattern: '[a-zA-Z0-9\-\_]+'
-          maxLength: 256
-          example: eventId-1938
-        status:
-          description: The descriptive label to describe the customer's status and/or type
-          type:
-          - string
-          - 'null'
-          pattern: '[a-zA-Z0-9\-\_]+'
-          maxLength: 256
-          example: new
-        phoneNumber:
-          description: The customer's phone number
-          type:
-          - string
-          - 'null'
-          pattern: '[0-9\-\.\(\)\+]+'
-          maxLength: 32
-          example: (555)555-0100
-        emailAddress:
-          description: The customer's email address
-          type:
-          - string
-          - 'null'
-          format: email
-          example: jdoe@example.com
-        userId:
-          description: The customer's user Id
-          type:
-          - string
-          - 'null'
-          pattern: '[a-zA-Z0-9\-\_]+'
-          maxLength: 256
-          example: user908038
-        addressCountry:
-          description: The country portion of the customer's address
-          type:
-          - string
-          - 'null'
-          pattern: '[a-zA-Z0-9\-\_]+'
-          maxLength: 128
-          example: United-States
-        addressState:
-          description: The state portion of the customer's address
-          type:
-          - string
-          - 'null'
-          pattern: '[a-zA-Z0-9\-\_]+'
-          maxLength: 128
-          example: New-York
-        addressZipcode:
-          description: The zipcode/postal code portion of the customer's address
-          type:
-          - string
-          - 'null'
-          pattern: '[a-zA-Z0-9\-\_]+'
-          maxLength: 16
-          example: '10001'
-        attributes:
-          description: A map of key-value pairs for extra metadata attributes
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Attribute'
-          maxItems: 10
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
           example:
-          - name: attr1_name
-            value: attr1_value
-          - name: attr2_name
-            value: attr2_value
-      required:
-      - externalConversationId
-      - externalCustomerId
-      example:
-        externalConversationId: id-509
-        externalCustomerId: 555.555.0100-jdoe@example.com
-        eventId: eventId-1938
-        status: new
-        phoneNumber: (555)555-0100
-        emailAddress: jdoe@example.com
-        userId: user908038
-        addressCountry: United-States
-        addressState: New-York
-        addressZipcode: '10001'
-        attributes:
-        - name: attr1_name
-          value: attr1_value
-        - name: attr2_name
-          value: attr2_value
-    AgentMetadataMany:
-      description: A request to send more than one agent metadata; send a list of items
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 429-01
+            message: Too Many Requests
+    UnprocessableEntity:
+      description: Unprocessable Entity response
       type: object
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/AgentMetadata'
-          minItems: 1
-          maxItems: 1000
-      example:
-        items:
-        - externalAgentId: agent158
-          startTs: '2022-07-08T11:15:53.237517000Z'
-          lobId: '1038'
-          lobName: manufacturing
-          groupId: group5
-          groupName: XYZ
-          agentName: Jane Doe
-          agentLocation: Northern-California
-          supervisorId: '3080'
-          supervisorName: Linda Lemon
-          languages:
-          - en-us
-          - zh-hans-hk
-          - es-pe
-          concurrency: 3
-          categoryLabel: Tier-2-Escalation
-          accountAccessLevel: High-Profile
-          ranking: 78
-          vendor: Contracting
-          jobTitle: Booking-Manager
-          jobRole: booking
-          workShift: afternoon
-          emailAddress: jdoe@example.com
-          attributes:
-          - name: attr1_name
-            value: attr1_value
-          - name: attr2_name
-            value: attr2_value
-        - externalAgentId: agent392
-          startTs: '2021-09-02T11:15:53.237517000Z'
-          lobId: '968'
-          lobName: insurance
-          groupId: group3
-          groupName: DFG
-          agentName: Jonathan Master
-          agentLocation: Southern-California
-          supervisorId: '1290'
-          supervisorName: John Luna
-          languages:
-          - en-us
-          concurrency: 3
-          categoryLabel: Tier-1-Service
-          accountAccessLevel: High-Profile
-          ranking: 75
-          vendor: Contracting
-          jobTitle: Customer-Service
-          jobRole: Support
-          workShift: afternoon
-          emailAddress: jmaster@example.com
-          attributes:
-          - name: attr1_name
-            value: attr1_value
-        - externalAgentId: agent6922
-          startTs: null
-        - externalAgentId: agent222
-        - externalAgentId: agent333
-          emailAddress: jdoe@example.com
-    ConversationMetadataMany:
-      description: 'A request to send more than one conversation metadata attributes; send a list of items
-
-        '
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConversationMetadata'
-          minItems: 1
-          maxItems: 1000
-      example:
-        items:
-        - externalConversationId: id-1389
-          eventId: eventId-1388
-          lobId: '1038'
-          lobName: manufacturing
-          groupId: group59
-          groupName: groupXYZ
-          agentRoutingCode: route-13988
-          campaign: campaign-A
-          deviceType: TABLET
-          platform: IOS
-          companySegment:
-          - Sales
-          - Marketing
-          companySubdivision: operating
-          businessRule: Apply customer's discount
-          entryType: reactive
-          operatingSystem: MAC_OS
-          browserType: Safari
-          browserVersion: 14.1.2
-          attributes:
-          - name: attr1_name
-            value: attr1_value
-          - name: attr2_name
-            value: attr2_value
-        - externlConversationId: issue1390
-          eventId: eventId-1268
-          lobId: '930'
-          lobName: retail
-          groupId: store-93
-          groupName: PlazaA
-          agentRoutingCode: route-1983
-          campaign: campaign-B
-          deviceType: PHONE
-          platform: ANDROID
-          companySegment:
-          - SALES
-          - FINANCE
-          companySubdivision: operating
-          businessRule: Apply customer's discount
-          entryType: proactive
-          operatingSystem: ANDROID
-          browserType: Chrome
-          browserVersion: 103.0.5060.128
-          attributes:
-          - name: attr1_name
-            value: attr1_value
-          - name: attr2_name
-            value: attr2_value
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 422-01
+            message: Unprocessable Entity
     ConflictResponse:
       description: Conflict response
       type: object
@@ -988,22 +940,93 @@ components:
         value: attr1_value
       - name: attr2_name
         value: attr2_value
-    DefaultErrorDetails:
-      description: Error details
+    MessageSentStatus:
+      description: A response with the status of a sent message
       type: object
       properties:
-        requestId:
+        eventId:
+          description: An UUID identifier string computed for the submitted event message
           type: string
-          description: Unique ID of the failing request
-        message:
+          example: 5484e507-feaf-11ec-bfc1-fda566fa9333
+        error:
+          description: Status of the failed message if value is not blank; the error is contained in the string
           type: string
-          description: Error message
-        code:
-          type: string
-          description: Error code
-      required:
-      - requestId
-      - message
+          example: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
+      example:
+        eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
+        error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
+    ServiceUnavailableResponse:
+      description: Service Unavailable response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 503-01
+            message: Service Unavailable
+    ConversationMetadataMany:
+      description: 'A request to send more than one conversation metadata attributes; send a list of items
+
+        '
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationMetadata'
+          minItems: 1
+          maxItems: 1000
+      example:
+        items:
+        - externalConversationId: id-1389
+          eventId: eventId-1388
+          lobId: '1038'
+          lobName: manufacturing
+          groupId: group59
+          groupName: groupXYZ
+          agentRoutingCode: route-13988
+          campaign: campaign-A
+          deviceType: TABLET
+          platform: IOS
+          companySegment:
+          - Sales
+          - Marketing
+          companySubdivision: operating
+          businessRule: Apply customer's discount
+          entryType: reactive
+          operatingSystem: MAC_OS
+          browserType: Safari
+          browserVersion: 14.1.2
+          attributes:
+          - name: attr1_name
+            value: attr1_value
+          - name: attr2_name
+            value: attr2_value
+        - externlConversationId: issue1390
+          eventId: eventId-1268
+          lobId: '930'
+          lobName: retail
+          groupId: store-93
+          groupName: PlazaA
+          agentRoutingCode: route-1983
+          campaign: campaign-B
+          deviceType: PHONE
+          platform: ANDROID
+          companySegment:
+          - SALES
+          - FINANCE
+          companySubdivision: operating
+          businessRule: Apply customer's discount
+          entryType: proactive
+          operatingSystem: ANDROID
+          browserType: Chrome
+          browserVersion: 103.0.5060.128
+          attributes:
+          - name: attr1_name
+            value: attr1_value
+          - name: attr2_name
+            value: attr2_value
     UnauthorizedResponse:
       description: Unauthorized response
       type: object
@@ -1014,78 +1037,17 @@ components:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
             code: 401-01
             message: Unauthorized
-    CustomerMetadataMany:
-      description: A request to send more than one customer metadata; send a list of items
+    AddMetadataResponse:
       type: object
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomerMetadata'
-          minItems: 1
-          maxItems: 1000
+        result:
+          $ref: '#/components/schemas/MessageSentStatus'
+      required:
+      - result
       example:
-        items:
-        - externalConversationId: id-509
-          externalCustomerId: 555.555.0100-jdoe@example.com
-          eventId: eventId-1938
-          status: new
-          phoneNumber: (555)555-0100
-          emailAddress: jdoe@example.com
-          userId: user908038
-          addressCountry: United-States
-          addressState: New-York
-          addressZipcode: '10001'
-          attributes:
-          - name: attr1_name
-            value: attr1_value
-          - name: attr2_name
-            value: attr2_value
-        - externalConversationId: id-203
-          externalCustomerId: 555.555.0101-mdoe@example.com
-          eventId: eventId-1331
-          status: existing
-          phoneNumber: (555)555-0101
-          emailAddress: mdoe@example.com
-          userId: user3201033
-          addressCountry: United-States
-          addressState: New-York
-          addressZipcode: '10002'
-          attributes:
-          - name: attr1_name
-            value: attr1_value
-          - name: attr2_name
-            value: attr2_value
-        - externalConversationId: id-69221
-          externalCustomerId: 555.555.0191
-          attributes: null
-        - externalConversationId: id-69223
-          externalCustomerId: 555.555.0193
-        - externalConversationId: id-69229
-          externalCustomerId: zdoe@example.com
-          phoneNumber: null
-          userId: null
-          addressCountry: null
-    TooManyRequestsResponse:
-      description: Too Many Requests response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 429-01
-            message: Too Many Requests
-    NotFoundResponse:
-      description: Not Found response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 404-01
-            message: Not Found
+        result:
+          eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
+          error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
     AddManyMetadataResponse:
       type: object
       properties:
@@ -1107,44 +1069,142 @@ components:
           error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
         - eventId: fcf99667-feaf-11ec-a42e-11799134528c
           error: ''
-    RequestEntityTooLargeResponse:
-      description: Request Entity Too Large response
+    AgentMetadataMany:
+      description: A request to send more than one agent metadata; send a list of items
       type: object
       properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 413-01
-            message: Request Entity Too Large
-    AddMetadataResponse:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/MessageSentStatus'
-      required:
-      - result
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentMetadata'
+          minItems: 1
+          maxItems: 1000
       example:
-        result:
-          eventId: 5484e507-feaf-11ec-bfc1-fda566fa9333
-          error: 'FAIL_BAD_PARAMS: ERROR: agent id cannot be blank'
-    UnprocessableEntity:
-      description: Unprocessable Entity response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 422-01
-            message: Unprocessable Entity
+        items:
+        - externalAgentId: agent158
+          startTs: '2022-07-08T11:15:53.237517000Z'
+          lobId: '1038'
+          lobName: manufacturing
+          groupId: group5
+          groupName: XYZ
+          agentName: Jane Doe
+          agentLocation: Northern-California
+          supervisorId: '3080'
+          supervisorName: Linda Lemon
+          languages:
+          - en-us
+          - zh-hans-hk
+          - es-pe
+          concurrency: 3
+          categoryLabel: Tier-2-Escalation
+          accountAccessLevel: High-Profile
+          ranking: 78
+          vendor: Contracting
+          jobTitle: Booking-Manager
+          jobRole: booking
+          workShift: afternoon
+          emailAddress: jdoe@example.com
+          attributes:
+          - name: attr1_name
+            value: attr1_value
+          - name: attr2_name
+            value: attr2_value
+        - externalAgentId: agent392
+          startTs: '2021-09-02T11:15:53.237517000Z'
+          lobId: '968'
+          lobName: insurance
+          groupId: group3
+          groupName: DFG
+          agentName: Jonathan Master
+          agentLocation: Southern-California
+          supervisorId: '1290'
+          supervisorName: John Luna
+          languages:
+          - en-us
+          concurrency: 3
+          categoryLabel: Tier-1-Service
+          accountAccessLevel: High-Profile
+          ranking: 75
+          vendor: Contracting
+          jobTitle: Customer-Service
+          jobRole: Support
+          workShift: afternoon
+          emailAddress: jmaster@example.com
+          attributes:
+          - name: attr1_name
+            value: attr1_value
+        - externalAgentId: agent6922
+          startTs: null
+        - externalAgentId: agent222
+        - externalAgentId: agent333
+          emailAddress: jdoe@example.com
   responses:
-    RequestEntityTooLarge:
-      description: 413 - Request Entity Too Large
+    Unauthorized:
+      description: 401 - Unauthorized
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/RequestEntityTooLargeResponse'
+            $ref: '#/components/schemas/UnauthorizedResponse'
+    Forbidden:
+      description: 403 - Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenResponse'
+    SuccessForSingle:
+      description: '200 - Success
+
+        Submit a single item to the service to be ingested. Record can be traced back to the submitted record by the eventId.
+
+        A message sent status will be returned with no error message for successful input checks.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AddMetadataResponse'
+    Conflict:
+      description: 409 - Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConflictResponse'
+    NotFound:
+      description: 404 - Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+    ServiceUnavailable:
+      description: 503 - Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ServiceUnavailableResponse'
+    TooManyRequests:
+      description: 429 - Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TooManyRequestsResponse'
+    UnprocessableEntity:
+      description: 422 - Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnprocessableEntity'
+    BadRequestForSingle:
+      description: '400 - Bad request
+
+        Submit a single item to the service to be ingested. Record can be traced back to the submitted record by the eventId.
+
+        A message sent status will be returned with an error message for bad input failure.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AddMetadataResponse'
     BadRequestForBatch:
       description: '400 - Bad request
 
@@ -1159,36 +1219,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/AddManyMetadataResponse'
-    Conflict:
-      description: 409 - Conflict
+    RequestEntityTooLarge:
+      description: 413 - Request Entity Too Large
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ConflictResponse'
-    DefaultError:
-      description: 500 - Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/DefaultErrorResponse'
-    Unauthorized:
-      description: 401 - Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedResponse'
-    BadRequestForSingle:
-      description: '400 - Bad request
-
-        Submit a single item to the service to be ingested. Record can be traced back to the submitted record by the eventId.
-
-        A message sent status will be returned with an error message for bad input failure.
-
-        '
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AddMetadataResponse'
+            $ref: '#/components/schemas/RequestEntityTooLargeResponse'
     SuccessForBatch:
       description: '200 - Success | Partial Success
 
@@ -1203,48 +1239,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/AddManyMetadataResponse'
-    ServiceUnavailable:
-      description: 503 - Service Unavailable
+    DefaultError:
+      description: 500 - Internal Server Error
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ServiceUnavailableResponse'
-    TooManyRequests:
-      description: 429 - Too Many Requests
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/TooManyRequestsResponse'
-    NotFound:
-      description: 404 - Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundResponse'
-    UnprocessableEntity:
-      description: 422 - Unprocessable Entity
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnprocessableEntity'
-    SuccessForSingle:
-      description: '200 - Success
-
-        Submit a single item to the service to be ingested. Record can be traced back to the submitted record by the eventId.
-
-        A message sent status will be returned with no error message for successful input checks.
-
-        '
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AddMetadataResponse'
-    Forbidden:
-      description: 403 - Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenResponse'
+            $ref: '#/components/schemas/DefaultErrorResponse'
   securitySchemes:
     API-ID:
       type: apiKey
