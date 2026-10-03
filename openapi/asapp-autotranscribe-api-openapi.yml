@@ -65,37 +65,78 @@ paths:
       - API-ID: []
         API-Secret: []
 components:
+  responses:
+    ServiceUnavailable:
+      description: 503 - Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ServiceUnavailableResponse'
+    DefaultError:
+      description: 500 - Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DefaultErrorResponse'
+    BadRequest:
+      description: 400 - Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+    Forbidden:
+      description: 403 - Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenResponse'
+    TooManyRequests:
+      description: 429 - Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TooManyRequestsResponse'
+    UnprocessableEntity:
+      description: 422 - Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnprocessableEntity'
+    Conflict:
+      description: 409 - Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConflictResponse'
+    NotFound:
+      description: 404 - Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+    RequestEntityTooLarge:
+      description: 413 - Request Entity Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RequestEntityTooLargeResponse'
+    Unauthorized:
+      description: 401 - Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
   schemas:
-    BadRequestResponse:
-      description: Bad request response
+    RequestEntityTooLargeResponse:
+      description: Request Entity Too Large response
       type: object
       properties:
         error:
           $ref: '#/components/schemas/DefaultErrorDetails'
           example:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 400-01
-            message: Bad request
-    NotFoundResponse:
-      description: Not Found response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 404-01
-            message: Not Found
-    ForbiddenResponse:
-      description: Forbidden response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 403-01
-            message: Forbidden Response
+            code: 413-01
+            message: Request Entity Too Large
     DefaultErrorDetails:
       description: Error details
       type: object
@@ -112,23 +153,26 @@ components:
       required:
       - requestId
       - message
-    RequestEntityTooLargeResponse:
-      description: Request Entity Too Large response
+    NotFoundResponse:
+      description: Not Found response
       type: object
       properties:
         error:
           $ref: '#/components/schemas/DefaultErrorDetails'
           example:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 413-01
-            message: Request Entity Too Large
-    StreamingUrl:
-      description: Get streaming url
+            code: 404-01
+            message: Not Found
+    BadRequestResponse:
+      description: Bad request response
       type: object
       properties:
-        streamingUrl:
-          type: string
-          description: Streaming websocket URL
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 400-01
+            message: Bad request
     DefaultErrorResponse:
       description: Default error response
       type: object
@@ -149,16 +193,6 @@ components:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
             code: 429-01
             message: Too Many Requests
-    UnprocessableEntity:
-      description: Unprocessable Entity response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 422-01
-            message: Unprocessable Entity
     ConflictResponse:
       description: Conflict response
       type: object
@@ -169,6 +203,26 @@ components:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
             code: 409-01
             message: Conflict
+    ForbiddenResponse:
+      description: Forbidden response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 403-01
+            message: Forbidden Response
+    UnprocessableEntity:
+      description: Unprocessable Entity response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 422-01
+            message: Unprocessable Entity
     ServiceUnavailableResponse:
       description: Service Unavailable response
       type: object
@@ -189,67 +243,13 @@ components:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
             code: 401-01
             message: Unauthorized
-  responses:
-    Unauthorized:
-      description: 401 - Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedResponse'
-    Forbidden:
-      description: 403 - Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenResponse'
-    Conflict:
-      description: 409 - Conflict
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ConflictResponse'
-    NotFound:
-      description: 404 - Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundResponse'
-    ServiceUnavailable:
-      description: 503 - Service Unavailable
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ServiceUnavailableResponse'
-    TooManyRequests:
-      description: 429 - Too Many Requests
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/TooManyRequestsResponse'
-    BadRequest:
-      description: 400 - Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BadRequestResponse'
-    UnprocessableEntity:
-      description: 422 - Unprocessable Entity
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnprocessableEntity'
-    RequestEntityTooLarge:
-      description: 413 - Request Entity Too Large
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RequestEntityTooLargeResponse'
-    DefaultError:
-      description: 500 - Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/DefaultErrorResponse'
+    StreamingUrl:
+      description: Get streaming url
+      type: object
+      properties:
+        streamingUrl:
+          type: string
+          description: Streaming websocket URL
   securitySchemes:
     API-ID:
       type: apiKey
