@@ -2431,12 +2431,36 @@ paths:
     - url: https://api.sandbox.asapp.com
 components:
   responses:
+    UnprocessableEntity:
+      description: 422 - Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnprocessableEntity'
+    RequestEntityTooLarge:
+      description: 413 - Request Entity Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RequestEntityTooLargeResponse'
     ServiceUnavailable:
       description: 503 - Service Unavailable
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ServiceUnavailableResponse'
+    NotFound:
+      description: 404 - Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+    TooManyRequests:
+      description: 429 - Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TooManyRequestsResponse'
     DefaultError:
       description: 500 - Internal Server Error
       content:
@@ -2449,42 +2473,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/BadRequestResponse'
-    Forbidden:
-      description: 403 - Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenResponse'
-    TooManyRequests:
-      description: 429 - Too Many Requests
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/TooManyRequestsResponse'
-    UnprocessableEntity:
-      description: 422 - Unprocessable Entity
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnprocessableEntity'
     Conflict:
       description: 409 - Conflict
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ConflictResponse'
-    NotFound:
-      description: 404 - Not Found
+    Forbidden:
+      description: 403 - Forbidden
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/NotFoundResponse'
-    RequestEntityTooLarge:
-      description: 413 - Request Entity Too Large
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RequestEntityTooLargeResponse'
+            $ref: '#/components/schemas/ForbiddenResponse'
     Unauthorized:
       description: 401 - Unauthorized
       content:
@@ -2492,16 +2492,112 @@ components:
           schema:
             $ref: '#/components/schemas/UnauthorizedResponse'
   schemas:
-    RequestEntityTooLargeResponse:
-      description: Request Entity Too Large response
+    Message:
+      description: Represents a single message within a conversation.
+      type: object
+      properties:
+        text:
+          type: string
+          minLength: 1
+          description: The content of the message.
+        sender:
+          $ref: '#/components/schemas/Participant'
+          description: Information about the participant who sent the message.
+        timestamp:
+          type: string
+          format: date-time
+          description: The time when the message was sent. Include the timezone, otherwise UTC will be assumed.
+      required:
+      - text
+      - sender
+      - timestamp
+      example:
+        text: Hello, I would like to upgrade my internet plan to GOLD.
+        sender:
+          role: agent
+          externalId: 123
+        timestamp: '2021-11-23T12:13:14.555Z'
+    DefaultErrorResponse:
+      description: Default error response
       type: object
       properties:
         error:
           $ref: '#/components/schemas/DefaultErrorDetails'
           example:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 413-01
-            message: Request Entity Too Large
+            code: 500-01
+            message: Internal server error
+    ForbiddenResponse:
+      description: Forbidden response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 403-01
+            message: Forbidden Response
+    BadRequestResponse:
+      description: Bad request response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 400-01
+            message: Bad request
+    TooManyRequestsResponse:
+      description: Too Many Requests response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 429-01
+            message: Too Many Requests
+    UnprocessableEntity:
+      description: Unprocessable Entity response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 422-01
+            message: Unprocessable Entity
+    ParticipantRole:
+      description: 'A participant role, usually the customer or an agent for human participants. System participant is also allowed but keep in mind
+
+        that this role won''t be considered a participant in a conversation, just a message sender.
+
+        '
+      type: string
+      enum:
+      - agent
+      - customer
+      - system
+    UnauthorizedResponse:
+      description: Unauthorized response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 401-01
+            message: Unauthorized
+    ServiceUnavailableResponse:
+      description: Service Unavailable response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 503-01
+            message: Service Unavailable
     DefaultErrorDetails:
       description: Error details
       type: object
@@ -2528,91 +2624,6 @@ components:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
             code: 404-01
             message: Not Found
-    BadRequestResponse:
-      description: Bad request response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 400-01
-            message: Bad request
-    DefaultErrorResponse:
-      description: Default error response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 500-01
-            message: Internal server error
-    TooManyRequestsResponse:
-      description: Too Many Requests response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 429-01
-            message: Too Many Requests
-    ConflictResponse:
-      description: Conflict response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 409-01
-            message: Conflict
-    ForbiddenResponse:
-      description: Forbidden response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 403-01
-            message: Forbidden Response
-    Message:
-      description: Represents a single message within a conversation.
-      type: object
-      properties:
-        text:
-          type: string
-          minLength: 1
-          description: The content of the message.
-        sender:
-          $ref: '#/components/schemas/Participant'
-          description: Information about the participant who sent the message.
-        timestamp:
-          type: string
-          format: date-time
-          description: The time when the message was sent. Include the timezone, otherwise UTC will be assumed.
-      required:
-      - text
-      - sender
-      - timestamp
-      example:
-        text: Hello, I would like to upgrade my internet plan to GOLD.
-        sender:
-          role: agent
-          externalId: 123
-        timestamp: '2021-11-23T12:13:14.555Z'
-    UnprocessableEntity:
-      description: Unprocessable Entity response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 422-01
-            message: Unprocessable Entity
     Participant:
       description: Represents a participant in the conversation.
       type: object
@@ -2626,37 +2637,26 @@ components:
       required:
       - role
       - externalId
-    ServiceUnavailableResponse:
-      description: Service Unavailable response
+    RequestEntityTooLargeResponse:
+      description: Request Entity Too Large response
       type: object
       properties:
         error:
           $ref: '#/components/schemas/DefaultErrorDetails'
           example:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 503-01
-            message: Service Unavailable
-    ParticipantRole:
-      description: 'A participant role, usually the customer or an agent for human participants. System participant is also allowed but keep in mind
-
-        that this role won''t be considered a participant in a conversation, just a message sender.
-
-        '
-      type: string
-      enum:
-      - agent
-      - customer
-      - system
-    UnauthorizedResponse:
-      description: Unauthorized response
+            code: 413-01
+            message: Request Entity Too Large
+    ConflictResponse:
+      description: Conflict response
       type: object
       properties:
         error:
           $ref: '#/components/schemas/DefaultErrorDetails'
           example:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 401-01
-            message: Unauthorized
+            code: 409-01
+            message: Conflict
   securitySchemes:
     API-ID:
       type: apiKey
