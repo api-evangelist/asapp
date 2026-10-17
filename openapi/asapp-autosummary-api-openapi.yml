@@ -2167,68 +2167,93 @@ paths:
     servers:
     - url: https://api.sandbox.asapp.com
 components:
-  responses:
-    UnprocessableEntity:
-      description: 422 - Unprocessable Entity
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnprocessableEntity'
-    RequestEntityTooLarge:
-      description: 413 - Request Entity Too Large
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RequestEntityTooLargeResponse'
-    ServiceUnavailable:
-      description: 503 - Service Unavailable
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ServiceUnavailableResponse'
-    NotFound:
-      description: 404 - Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundResponse'
-    TooManyRequests:
-      description: 429 - Too Many Requests
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/TooManyRequestsResponse'
-    DefaultError:
-      description: 500 - Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/DefaultErrorResponse'
-    BadRequest:
-      description: 400 - Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BadRequestResponse'
-    Conflict:
-      description: 409 - Conflict
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ConflictResponse'
-    Forbidden:
-      description: 403 - Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenResponse'
-    Unauthorized:
-      description: 401 - Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedResponse'
   schemas:
+    BadRequestResponse:
+      description: Bad request response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 400-01
+            message: Bad request
+    UnprocessableEntity:
+      description: Unprocessable Entity response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 422-01
+            message: Unprocessable Entity
+    IntentResult:
+      type: object
+      properties:
+        code:
+          type: string
+          description: The machine-readable code for the given conversation. If no intent was found, then "NO_INTENT" is returned.
+        name:
+          type: string
+          description: The human-readable name of the intent for the given conversation.
+    FreeTextSummaryRequest:
+      type: object
+      oneOf:
+      - type: object
+        properties:
+          conversationId:
+            type: string
+            pattern: ^[A-Z0-9]+$
+            description: The identifier of the conversation from ASAPP's system.
+          agentExternalId:
+            type: string
+            description: Your unique identifier for the agent.
+        required:
+        - conversationId
+      - type: object
+        properties:
+          externalConversationId:
+            type: string
+            description: Your unique identifier for the conversation. This must match to the `externalConversationId` you used in the Conversations API.
+          agentExternalId:
+            type: string
+            description: Your unique identifier for the agent.
+        required:
+        - externalConversationId
+      - type: object
+        properties:
+          issueId:
+            type: string
+            description: The identifier of the conversation from ASAPP's Messaging Platform.
+          agentExternalId:
+            type: string
+            description: Your unique identifier for the agent.
+        required:
+        - issueId
+      example:
+        conversationId: 01GCS2AA9447BCQANJF2SXXVA0
+        agentExternalId: agent-111
+    ConflictResponse:
+      description: Conflict response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 409-01
+            message: Conflict
+    ForbiddenResponse:
+      description: Forbidden response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 403-01
+            message: Forbidden Response
     StructuredDataRequest:
       type: object
       oneOf:
@@ -2272,16 +2297,131 @@ components:
       example:
         conversationId: 01GCS2XA9446BCQANJF2SXXVA0
         agentExternalId: agent-111
-    DefaultErrorResponse:
-      description: Default error response
+    FreeTextSummaryResponse:
+      type: object
+      properties:
+        conversationId:
+          type: string
+          description: The unique identifier of the conversation for which the summary was generated.
+        summaryId:
+          type: string
+          description: 'A unique identifier for this specific summary.
+
+            • Each summary request generates a new summary with a new `summaryId`, even for the same conversation.
+
+            • The entire summary content is regenerated with each request.
+
+            • Use this ID when providing feedback on the summary.
+
+            '
+        summaryText:
+          type: string
+          description: 'The generated free-text summary of the conversation.
+
+            '
+    DefaultErrorDetails:
+      description: Error details
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Unique ID of the failing request
+        message:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+      required:
+      - requestId
+      - message
+    FreeTextSummaryFeedback:
+      type: object
+      description: 'Information regarding the updated free-text summary. It must contain the full updated summary as a string.
+
+        '
+      properties:
+        externalConversationId:
+          description: 'Your unique identifier for the conversation. This must match to the `externalConversationId` you used in the Conversations API.
+
+            '
+          type: string
+        summaryId:
+          description: 'The identifier of the summary you are providing feedback on.
+
+            '
+          type: string
+        summaryText:
+          description: The full text of the final summary.
+          type: string
+      required:
+      - summaryId
+      - summaryText
+      example:
+        externalConversationId: 01GCS2XA9447BCQANJF2SXXVA0
+        summaryId: 0083d936-ff70-49fc-ac19-74f1246d8b27
+        summaryText: 'The customer has issues with his symmetric internet service.
+
+          The customer explained the service has not enough bandwidth.
+
+          The customer explained the service has not enough bandwidth.
+
+          The agent explained how to run a diagnosis.
+
+          The customer ran the diagnosis.
+
+          '
+    NotFoundResponse:
+      description: Not Found response
       type: object
       properties:
         error:
           $ref: '#/components/schemas/DefaultErrorDetails'
           example:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 500-01
-            message: Internal server error
+            code: 404-01
+            message: Not Found
+    UnauthorizedResponse:
+      description: Unauthorized response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 401-01
+            message: Unauthorized
+    ServiceUnavailableResponse:
+      description: Service Unavailable response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 503-01
+            message: Service Unavailable
+    IntentResponse:
+      type: object
+      properties:
+        conversationId:
+          type: string
+          description: The id of the conversation.
+        intent:
+          $ref: '#/components/schemas/IntentResult'
+          description: 'An object containing the determined intent for the conversation.
+
+            '
+    TooManyRequestsResponse:
+      description: Too Many Requests response
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorDetails'
+          example:
+            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
+            code: 429-01
+            message: Too Many Requests
     StructuredDataResponse:
       type: object
       properties:
@@ -2336,170 +2476,16 @@ components:
         - id: e_abc_123
           name: Account Number
           value: 8999246118
-    FreeTextSummaryResponse:
-      type: object
-      properties:
-        conversationId:
-          type: string
-          description: The unique identifier of the conversation for which the summary was generated.
-        summaryId:
-          type: string
-          description: 'A unique identifier for this specific summary.
-
-            • Each summary request generates a new summary with a new `summaryId`, even for the same conversation.
-
-            • The entire summary content is regenerated with each request.
-
-            • Use this ID when providing feedback on the summary.
-
-            '
-        summaryText:
-          type: string
-          description: 'The generated free-text summary of the conversation.
-
-            '
-    ForbiddenResponse:
-      description: Forbidden response
+    DefaultErrorResponse:
+      description: Default error response
       type: object
       properties:
         error:
           $ref: '#/components/schemas/DefaultErrorDetails'
           example:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 403-01
-            message: Forbidden Response
-    BadRequestResponse:
-      description: Bad request response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 400-01
-            message: Bad request
-    TooManyRequestsResponse:
-      description: Too Many Requests response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 429-01
-            message: Too Many Requests
-    UnprocessableEntity:
-      description: Unprocessable Entity response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 422-01
-            message: Unprocessable Entity
-    UnauthorizedResponse:
-      description: Unauthorized response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 401-01
-            message: Unauthorized
-    FreeTextSummaryFeedback:
-      type: object
-      description: 'Information regarding the updated free-text summary. It must contain the full updated summary as a string.
-
-        '
-      properties:
-        externalConversationId:
-          description: 'Your unique identifier for the conversation. This must match to the `externalConversationId` you used in the Conversations API.
-
-            '
-          type: string
-        summaryId:
-          description: 'The identifier of the summary you are providing feedback on.
-
-            '
-          type: string
-        summaryText:
-          description: The full text of the final summary.
-          type: string
-      required:
-      - summaryId
-      - summaryText
-      example:
-        externalConversationId: 01GCS2XA9447BCQANJF2SXXVA0
-        summaryId: 0083d936-ff70-49fc-ac19-74f1246d8b27
-        summaryText: 'The customer has issues with his symmetric internet service.
-
-          The customer explained the service has not enough bandwidth.
-
-          The customer explained the service has not enough bandwidth.
-
-          The agent explained how to run a diagnosis.
-
-          The customer ran the diagnosis.
-
-          '
-    IntentResult:
-      type: object
-      properties:
-        code:
-          type: string
-          description: The machine-readable code for the given conversation. If no intent was found, then "NO_INTENT" is returned.
-        name:
-          type: string
-          description: The human-readable name of the intent for the given conversation.
-    ServiceUnavailableResponse:
-      description: Service Unavailable response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 503-01
-            message: Service Unavailable
-    DefaultErrorDetails:
-      description: Error details
-      type: object
-      properties:
-        requestId:
-          type: string
-          description: Unique ID of the failing request
-        message:
-          type: string
-          description: Error message
-        code:
-          type: string
-          description: Error code
-      required:
-      - requestId
-      - message
-    IntentResponse:
-      type: object
-      properties:
-        conversationId:
-          type: string
-          description: The id of the conversation.
-        intent:
-          $ref: '#/components/schemas/IntentResult'
-          description: 'An object containing the determined intent for the conversation.
-
-            '
-    NotFoundResponse:
-      description: Not Found response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 404-01
-            message: Not Found
+            code: 500-01
+            message: Internal server error
     RequestEntityTooLargeResponse:
       description: Request Entity Too Large response
       type: object
@@ -2510,53 +2496,67 @@ components:
             requestId: 8e033668-9f1a-11ec-b909-0242ac120002
             code: 413-01
             message: Request Entity Too Large
-    FreeTextSummaryRequest:
-      type: object
-      oneOf:
-      - type: object
-        properties:
-          conversationId:
-            type: string
-            pattern: ^[A-Z0-9]+$
-            description: The identifier of the conversation from ASAPP's system.
-          agentExternalId:
-            type: string
-            description: Your unique identifier for the agent.
-        required:
-        - conversationId
-      - type: object
-        properties:
-          externalConversationId:
-            type: string
-            description: Your unique identifier for the conversation. This must match to the `externalConversationId` you used in the Conversations API.
-          agentExternalId:
-            type: string
-            description: Your unique identifier for the agent.
-        required:
-        - externalConversationId
-      - type: object
-        properties:
-          issueId:
-            type: string
-            description: The identifier of the conversation from ASAPP's Messaging Platform.
-          agentExternalId:
-            type: string
-            description: Your unique identifier for the agent.
-        required:
-        - issueId
-      example:
-        conversationId: 01GCS2AA9447BCQANJF2SXXVA0
-        agentExternalId: agent-111
-    ConflictResponse:
-      description: Conflict response
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorDetails'
-          example:
-            requestId: 8e033668-9f1a-11ec-b909-0242ac120002
-            code: 409-01
-            message: Conflict
+  responses:
+    TooManyRequests:
+      description: 429 - Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TooManyRequestsResponse'
+    Conflict:
+      description: 409 - Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConflictResponse'
+    UnprocessableEntity:
+      description: 422 - Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnprocessableEntity'
+    Forbidden:
+      description: 403 - Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenResponse'
+    NotFound:
+      description: 404 - Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+    BadRequest:
+      description: 400 - Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+    Unauthorized:
+      description: 401 - Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
+    DefaultError:
+      description: 500 - Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DefaultErrorResponse'
+    ServiceUnavailable:
+      description: 503 - Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ServiceUnavailableResponse'
+    RequestEntityTooLarge:
+      description: 413 - Request Entity Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RequestEntityTooLargeResponse'
   parameters:
     agentExternalId:
       name: agentExternalId
