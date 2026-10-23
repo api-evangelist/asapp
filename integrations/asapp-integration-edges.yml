@@ -1,0 +1,35 @@
+generated: '2026-10-23'
+method: searched
+checked:
+- hugging-face/integrations/hugging-face-integration-edges.yml
+source:
+- hugging-face/integrations/hugging-face-integration-edges.yml
+edges:
+- partner_name: Hugging Face (hugging-face-hub)
+  partner: hugging-face
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: hugging-face-hub
+  evidence: https://huggingface.co/asapp
+  mirror_of: hugging-face/integrations/hugging-face-integration-edges.yml
+  apps:
+  - asapp/slue-phase-2
+  - asapp/slue
+  - asapp/sew-d-tiny-100k-ft-ls100h
+  - asapp/sew-tiny-100k
+  - asapp/sew-tiny-100k-ft-ls100h
+  - asapp/sew-d-tiny-100k
+  - asapp/sew-d-base-plus-400k-ft-ls100h
+  - asapp/sew-d-mid-400k-ft-ls100h
+  - asapp/sew-mid-100k
+  - asapp/sew-small-100k
+  listing_count: 2
+  detected: '2026-10-23'
+  detected_by: mirror-platform-listings.py
+  category: Hugging Face Hub datasets
+  badges:
+  - Verified publisher (Hugging Face verified organisation)
